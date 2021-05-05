@@ -1,0 +1,129 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: url("./pictures/login-register-bg.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+.container{
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-box{
+    width: 30%;
+    margin-top: 8%;
+    position: relative;
+    vertical-align: middle;
+    display: inline-block;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    padding: 0 60px;
+    border: 1px solid rgb(112, 112, 112);
+    border-radius: 4%;
+    opacity: 90%;
+    box-shadow: 0px 0px 3px #3a3a3a;
+}
+
+.title-box{
+    margin: 30px 0px 35px 0px;
+}
+
+.div-login-input{
+    margin: 30px 0px 10px 0px;
+}
+
+.login-input{
+    font-size: 1.1em;
+    height: 45px;
+    width: 100%;
+    padding-left: 10px;
+}
+
+.btn{
+    background-color:#419f00;
+    color:aliceblue;
+    font-family: 'Nunito', sans-serif, 400;
+    font-size: 1em;
+    font-weight: bold;
+    border: 0;
+    border-radius: .75rem;
+}
+
+#login-btn{
+    margin: 35px 10px 35px 5px;
+    height: 40px;
+    width: 70%;
+}
+
+#login-btn:hover{
+   cursor: pointer; 
+}
+
+.remember-box{
+    margin-bottom: 10px;
+}
+
+.text-box{
+    font-size: 0.95em;
+}
+
+.register-sug{
+    width: 30%;
+    margin-top: 20px;
+    position: relative;
+    vertical-align: middle;
+    display: inline-block;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    padding: 15px 60px 15px 60px;
+    border: 1px solid rgb(112, 112, 112);
+    border-radius: .75rem;
+    opacity: 90%;
+    box-shadow: 0px 0px 3px #3a3a3a;    
+}
+
+.register-box{    
+    width: 30%;
+    margin-top: 4%;
+    position: relative;
+    display: inline-block;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    padding: 0 60px;
+    border: 1px solid rgb(112, 112, 112);
+    border-radius: .75rem;
+    opacity: 90%;
+    box-shadow: 0px 0px 3px #3a3a3a;
+}
+
+input{
+    border-radius: .40rem;
+    border: 1px solid rgb(112, 112, 112);
+}
+
+.politics-text{
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    color: rgb(83, 83, 83);
+}
+
+a:link, a:visited{    
+    color:rgb(47, 47, 47);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover{
+    color:black;
+    text-decoration: none;
+    font-weight: bold;
+    
+}
