@@ -5,7 +5,7 @@
 }
 
 body {
-    background: url("./pictures/login-register-bg.jpg") no-repeat center center fixed;
+    background: url("../pictures/login-register-bg.jpg") no-repeat center center fixed;
     background-size: cover;
 }
 
