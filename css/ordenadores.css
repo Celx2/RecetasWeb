@@ -10,6 +10,7 @@ body {
 }
 
 .container{
+    text-align: center;
     font-family: 'Nunito', sans-serif;
     display: flex;
     flex-direction: column;
@@ -117,6 +118,7 @@ input{
     margin-bottom: 15px;
     color: rgb(83, 83, 83);
 }
+
 
 nav{
     position: fixed;
@@ -295,11 +297,6 @@ user:hover{
 }
 
 
-
-
-
-
-
 a:link, a:visited{    
     color:rgb(47, 47, 47);
     text-decoration: none;
@@ -310,5 +307,8 @@ a:hover{
     color:black;
     text-decoration: none;
     font-weight: bold;
+
     cursor: pointer;
+=======
+    
 }
