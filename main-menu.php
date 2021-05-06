@@ -1,3 +1,11 @@
+<?php
+    include_once ("functions.php");
+    if (!isLoggedIn()){
+        header("Location: index.php?error=2");
+        exit;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
