@@ -118,4 +118,10 @@ function getClientIp() {
     return $ipaddress;
 }
 
+function logout(){ //cierre de sesion
+    unset($_SESSION);
+    session_destroy();
+    session_start();
+    session_regenerate_id(true);
+}
 ?>
