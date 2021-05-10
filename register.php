@@ -1,3 +1,32 @@
+<?php
+
+include_once ("functions.php");
+
+if (isset($_POST["name"]) && isset ($_POST["email"]) && isset($_POST["username"]) && isset($_POST["password"])){//que todos estén puestos7
+
+    //se limpia de posible inyeccion de codigo
+    $name = clear($_POST["name"]);
+    $email = clear($_POST["email"]);
+    $username = clear($_POST["username"]);
+    $password = generateHash(clear($_POST["password"]));
+
+    //se comprueba que no existe otro mail igual en la base de datos
+    if (repeated($email, $username, $DB_LINK)){
+        header("location:register.php?error=2");
+    }
+
+    if (!$DB_LINK=connectDB()) return false;
+    $query="INSERT INTO usuarios (Usuario, Nombre_completo, Correo, Contraseña) VALUES ('$username', '$name', '$email','$password')";
+    $res = mysqli_query($DB_LINK, $query);
+
+    if($res){
+        header("location:index.php?saved=yes");
+    }else{
+        header("location:index.php?error=1234"); //CARLOS
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
