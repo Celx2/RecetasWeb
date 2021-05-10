@@ -20,9 +20,9 @@ if (isset($_POST["name"]) && isset ($_POST["email"]) && isset($_POST["username"]
     $res = mysqli_query($DB_LINK, $query);
 
     if($res){
-        header("location:index.php?saved=yes");
+        header("location:index.php?registered=yes");
     }else{
-        header("location:index.php?error=1234"); //CARLOS
+        header("location:index.php?error=3"); //CARLOS
     }
 }
 ?>
@@ -49,9 +49,19 @@ if (isset($_POST["name"]) && isset ($_POST["email"]) && isset($_POST["username"]
             <h1 class="title">El Título</h1>
         </div>
 
+
+        <?php
+        if(isset($_GET["error"])){
+            showError($_GET["error"]);
+        }
+        else{
+        ?>
         <div class="text-box">
             <h2 class="text">¡Empieza ahora a descubrir miles de recetas!</h2>
         </div>
+        <?php
+        }
+        ?>
 
         <form action="register.php" method="POST">
 

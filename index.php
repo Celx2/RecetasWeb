@@ -75,10 +75,20 @@ include_once ("functions.php");
     <?php
     
         if((isset($_GET["logout"])) && $_GET["logout"] == "yes"){
-
+            logout();
             ?>
-            <div class="logout-confirm-box">
+            <div class="confirm-box">
                 <b>Cierre de sesión exitoso.</b>
+            </div>
+            <?php
+
+        }
+
+        if((isset($_GET["registered"])) && $_GET["registered"] == "yes"){
+            logout();
+            ?>
+            <div class="confirm-box">
+                <b>Usuario registrado exitosamente.</b>
             </div>
             <?php
 

@@ -60,22 +60,18 @@ function login ($username, $password, $DB_LINK){ //verificacion de user y passwo
 }
 
 function isLoggedIn(){ //verifica que esté logueado el user y que posea la ip y user agent del navegador instanciados al realizar el login correcto para evitar robo de sesiones
-    $inactividad = 120; //en segundos
-    // Comprobar si $_SESSION["timeout"] está establecida
-    if(isset($_SESSION["timeout"])){
-        // Calcular el tiempo de vida de la sesión (TTL = Time To Live)
-        $sessionTTL = time() - $_SESSION["timeout"];
-        if($sessionTTL > $inactividad){
-            session_destroy();
-            header("location:index.php?logout=inactivity");  //cerramos sesion por inactividad
-        }
-    }
     if (isset($_SESSION['userAgent']) && isset($_SESSION['IPaddress'])){
         if (($_SESSION['userAgent'] == $_SERVER['HTTP_USER_AGENT']) && ($_SESSION['IPaddress'] == getClientIp())){
-            $_SESSION["timeout"] = time(); // la siguiente key se crea cuando se inicia sesion
-            return isset($_SESSION["username"]);
+            return true;
+        }
+        else{
+            return false;
         }
     }
+    else{
+        return false;
+    }
+    
 }
 
 function generateHash($password){ //hasheamos la contrasena
@@ -95,6 +91,40 @@ function passwordCheck($DB_LINK, $username, $password, $hash){ //comprobamos que
         return true; //habremos accedido
     }
     else{
+        return false;
+    }
+}
+
+function generateToken(){
+    return md5(uniqid(rand(), true));
+}
+
+function ResetPassword(){
+    if (!$DB_LINK = connectDB()){
+        return false;
+    }
+    
+    $email=$_POST["email"];
+    $query="SELECT * FROM usuarios WHERE email = '$email'";
+    $res=mysqli_query($DB_LINK, $query);
+    
+    //Solo es válido si tiene una coincidencia en la base de datos
+    if (mysqli_num_rows($res) == 1){
+        $token = generateToken();
+        $query2="UPDATE usuarios SET token='$token' WHERE email = '$email'";
+        $resultado=mysqli_query($DB_LINK, $query2);
+        ?>
+
+        Hola, un cambio de contraseña ha sido solicitado. Si has sido tú, entra al siguiente enlace:
+
+        <a href="reset-password.php?token=<?php echo $token; ?>">Cambiar contraseña</a>
+
+        Si no has sido tú, ignora este correo.
+
+        <?php
+        exit;
+    }
+    else {
         return false;
     }
 }
@@ -120,18 +150,19 @@ function getClientIp() {
 
 function showError($id_error){
     $id_error = clear($id_error);
+    echo "<b><div class='error-box'>";
     switch($id_error){
 
         case 1:
-        echo "Error " . $id_error . ": Usuario y/o contraseña erróneos";		
+        echo "Error " . $id_error . ": Usuario y/o contraseña erróneos</b></div>";		
         break;
 
         case 2:				
-        echo "Error " . $id_error . ": ola";				
+        echo "Error " . $id_error . ": ola</b></div>";				
         break;
 
         default:
-        echo "Error desconocido";
+        echo "Error desconocido</b></div>";
         break;
     }
 }
@@ -155,7 +186,6 @@ function repeated($mail, $user, $DB_LINK){
 }
 
 function checks($nombre, $email, $usuario, $contraseña){ //checks de tipos y longitudes de datos introducidos
-    $response = 100; //cuando devuelva 100 está todo ok
     $allowed = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ- "; //caracteres permitidos para nombre y apellido
     $email = filter_var($email, FILTER_SANITIZE_EMAIL); //elimina caracteres ilegales
     $flag = false;
@@ -165,12 +195,14 @@ function checks($nombre, $email, $usuario, $contraseña){ //checks de tipos y lo
         }
     }
     if ($flag)
-        return 0;
-    if (strlen($nombre)>25) // longitud nombre y apellido correctas
-        return 1;
+        header("Location:register.php?error=4"); //caracteres nombre no permitidos
+    if (strlen($nombre)>35) // longitud nombre y apellido correctas
+        header("Location:register.php?error=5"); //longitud nombre excedido
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) //si no es un email valido falla
-        return 4;
-    
-    return $response;
+        header("Location:register.php?error=6"); //email no valido
+    if (strlen($usuario)>20) 
+        header("Location:register.php?error=7"); //longitud nombre usuario excedido
+    if (strlen($contraseña<=6))
+        header("Location:register.php?error=8"); //la contraseña tiene que ser mayor de 6 caracteres
 }
 ?>
