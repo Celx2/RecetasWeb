@@ -1,6 +1,6 @@
 <?php
 include_once ("functions.php");
-    if (isset($_GET["logout"]) && $_GET["logout"]=="yes") logout();
+    
     if (isset($_POST["username"]) && isset($_POST["password"])){
 
         if (!empty($_POST["soyUnCeboBroder"])) exit;
@@ -11,7 +11,6 @@ include_once ("functions.php");
             header("Location: index.php?error=1");
         }
     }
-    
 
 
 ?>
@@ -28,6 +27,7 @@ include_once ("functions.php");
 </head>
 <body>
 
+
 <div class="container" id="c1">
 
     <div class="login-box">       
@@ -38,7 +38,11 @@ include_once ("functions.php");
 
         <div class="error-box">
             <b>
-                Error 1: Usuario y/o contraseña incorrectos  
+                <?php
+                    if(isset($_GET["error"])){
+                        showError($_GET["error"]);
+                    }
+                ?>
             </b>
         </div>
 
@@ -67,6 +71,21 @@ include_once ("functions.php");
         </div>
 
     </div>
+
+    <?php
+    
+        if((isset($_GET["logout"])) && $_GET["logout"] == "yes"){
+
+            ?>
+            <div class="logout-confirm-box">
+                <b>Cierre de sesión exitoso.</b>
+            </div>
+            <?php
+
+        }
+    
+    ?>
+    
 
     <div class="register-sug">
 

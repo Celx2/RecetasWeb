@@ -31,7 +31,7 @@
     <nav>
 
         <div class="nav-user">
-            <user>titopepe777</user> | <a class="logout" href="index.php?logout=yes">Cerrar sesión</a>
+            <user>titopepe777</user> | <a class="logout" href="index.php">Cerrar sesión</a>
         </div>
 
         <div class="nav-recipe">
