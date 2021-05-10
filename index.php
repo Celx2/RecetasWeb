@@ -1,3 +1,19 @@
+<?php
+include_once ("functions.php");
+    
+    if (isset($_POST["username"]) && isset($_POST["password"])){
+
+        if (!empty($_POST["soyUnCeboBroder"])) exit;
+        if (login($_POST["username"],$_POST["password"], connectDB())){
+            header("Location: main-menu.php");
+        }
+        else{
+            header("Location: index.php?error=1");
+        }
+    }
+
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,7 +27,7 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container" id="c1">
 
     <div class="login-box">       
         
@@ -19,7 +35,7 @@
             <h1 class="title">El Título</h1>
         </div>
 
-        <form action="" method="POST">
+        <form action="index.php" method="POST">
 
             <div class="div-login-input" id="user-input">
                 <input type="text" class="login-input" placeholder="Nombre de usuario" name="username" required/>
@@ -29,11 +45,11 @@
                 <input type="password" class="login-input" placeholder="Contraseña" name="password" required/>
             </div>
 
-            <!-- Este input es un honey pot, una trampa de seguridad para evitar posibles ataques automatizados
-            <div class="honey-pot">
+            <!-- Este input es un honey pot, una trampa de seguridad para evitar posibles ataques automatizados-->
+            <div class="soyUnCeboBroder">
                 <input type="text" name="soyUnCeboBroder" value=""/>
             </div>
-            -->
+            
             <div class="">
                 <button class="btn" type="submit" id="login-btn">Iniciar sesión</button>
             </div>
@@ -48,7 +64,7 @@
     <div class="register-sug">
 
         <div class="register-box-text">
-            ¿No tienes cuenta? <a href="register.html">Regístrate</a>
+            ¿No tienes cuenta? <a href="register.php">Regístrate</a>
         </div>
 
     </div>

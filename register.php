@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container" id="c1">
 
     <div class="register-box">       
         
@@ -23,7 +23,7 @@
             <h2 class="text">¡Empieza ahora a descubrir miles de recetas!</h2>
         </div>
 
-        <form action="" method="POST">
+        <form action="register.php" method="POST">
 
             <div class="div-login-input">
                 <input type="text" class="login-input" placeholder="Nombre completo" name="name" required/>
@@ -59,7 +59,7 @@
     <div class="register-sug">
 
         <div class="register-box-text">
-            ¿Tienes cuenta? <a href="index.html">Inicia sesión</a>
+            ¿Tienes cuenta? <a href="index.php">Inicia sesión</a>
         </div>
 
     </div>
