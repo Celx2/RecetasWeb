@@ -152,18 +152,33 @@ function showError($id_error){
     $id_error = clear($id_error);
     echo "<b><div class='error-box'>";
     switch($id_error){
-
         case 1:
-        echo "Error " . $id_error . ": Usuario y/o contraseña erróneos</b></div>";		
-        break;
-
+            echo "Error " . $id_error . ": Usuario y/o contraseña erróneos</b></div>";		
+            break;
         case 2:				
-        echo "Error " . $id_error . ": ola</b></div>";				
-        break;
-
+            echo "Error " . $id_error . ": No estás logeado</b></div>";				
+            break;
+        case 3:				
+            echo "Error " . $id_error . ": El registro ha fallado</b></div>";				
+            break;
+        case 4:				
+            echo "Error " . $id_error . ": caracteres nombre no permitidos</b></div>";				
+            break;
+        case 5:				
+            echo "Error " . $id_error . ": longitud nombre excedido</b></div>";				
+            break;
+        case 6:				
+            echo "Error " . $id_error . ": email no valido</b></div>";				
+            break;
+        case 7:				
+            echo "Error " . $id_error . ": longitud nombre usuario excedido</b></div>";				
+            break;
+        case 8:				
+            echo "Error " . $id_error . ": la contraseña tiene que ser mayor de 6 caracteres</b></div>";				
+            break;
         default:
-        echo "Error desconocido</b></div>";
-        break;
+            echo "Error desconocido</b></div>";
+            break;
     }
 }
 
