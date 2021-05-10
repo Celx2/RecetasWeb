@@ -26,12 +26,12 @@
 
 <body>
 
-<div class="container" id="c2">
+<div class="container">
 
     <nav>
 
         <div class="nav-user">
-            <b class="nav-title"> Título</b> | <user>titopepe777</user>
+            <user>titopepe777</user> | <a class="logout" href="index.php">Cerrar sesión</a>
         </div>
 
         <div class="nav-recipe">
@@ -39,11 +39,13 @@
         </div>
 
         <div class="nav-search">
-            <input type="text"/>
-        </div>
 
-        <div class="nav-magnifyingglass">
-            <img src="./pictures/magnifyingglass.png" />
+            <input id="search-input" type="text" placeholder="Buscar receta"/>
+
+            <div class="search-icon-box">
+                <i id="search-icon" class="fas fa-search"></i>
+            </div>
+
         </div>
 
     </nav>

@@ -124,10 +124,12 @@ input{
 }
 
 
+
+
 nav{
     position: fixed;
     display: grid;
-    grid-template-columns: 25% 50% 20% 5%;
+    grid-template-columns: 25% 50% 25%;
     grid-template-rows: 80px;
     width: 100%;
     background-color: rgb(131, 177, 79);
@@ -149,8 +151,8 @@ user:hover{
     cursor: pointer;
 }
 
-.nav-title{
-    font-style: normal; 
+.logout{
+    font-size: 0.65em;
 }
 
 .nav-recipe{
@@ -168,22 +170,34 @@ user:hover{
 .nav-search{
     grid-column: 3/4;
     justify-self: end;
+    display: flex;
+    align-items: center;
 }
 
 .nav-search input{
+    font-size: 1.2em;
+    padding: 20px;
     height: 45px;
-    width: 225px;
+    width: 250px;
 }
 
-.nav-magnifyingglass{
-    grid-column: 4/5;
+.search-icon-box{
+    margin-left: 3px;
+    width: 45px;
+    height: 45px;
+    border: 1px solid black;
+    border-radius: 15%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
-.nav-magnifyingglass img{
-    margin: 2px 0 0 6px;    
-    width: 20px;
+.search-icon-box i{
+    color:black;
+    font-size: 1.5em;
 }
-
 
 .recipes-box{
     width: 80%;
@@ -204,11 +218,11 @@ user:hover{
     border: 2px solid black;
     border-radius: .75rem;
     margin: 30px auto 30px auto;
+    transition: .5s all;
 }
 
 .recipe-card:hover{
     background-color: rgb(240, 255, 217);
-    transition: .5s;
     cursor: pointer;
 }
 
@@ -234,16 +248,18 @@ user:hover{
 
 .recipe-title{
     font-size: 1.65em;
-    margin-left: 10px;
+    margin-left: 25px;
     grid-column: 2/3;
     grid-row: 1/2;
+    justify-self: start;
 }
 
 .recipe-type{
     font-size: 1.4em;
-    margin-left: 10px;
+    margin-left: 25px;
     grid-column: 2/3;
     grid-row: 2/3;
+    justify-self: start;
 }
 
 .recipe-author{
@@ -277,7 +293,7 @@ user:hover{
 
 .like-btn i{
     font-size: 1.5rem;
-    transition: .3s;
+    transition: .3s all;
 }
 
 .like-btn:hover{
@@ -286,7 +302,6 @@ user:hover{
 
 .fas{
     color:#f50057;
-    transition: .3s;
 }
 
 .like-counter{
@@ -297,7 +312,6 @@ user:hover{
 
 .on{
     color:#f50057;
-    transition: .3s;
 }
 
 

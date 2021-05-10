@@ -1,4 +1,6 @@
-window.addEventListener("load",function(){
+"use strict"
+
+$(document).ready(function(){
 
     var like_btn = document.getElementById("heart-btn");
     var div_like = document.querySelector(".like-btn");
@@ -29,6 +31,13 @@ window.addEventListener("load",function(){
             like_counter.classList.remove("on");
             like_counter.classList.add("off");
         }
-    })
+    });
+
+    $(".search-icon-box").hover(function(){
+        $(".search-icon-box i").css("color", "rgb(131, 177, 79)");
+    },
+    function(){
+        $(".search-icon-box i").css("color", "rgb(0, 0, 0)")
+    });
 
 });
