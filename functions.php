@@ -67,7 +67,7 @@ function isLoggedIn(){ //verifica que esté logueado el user y que posea la ip y
         $sessionTTL = time() - $_SESSION["timeout"];
         if($sessionTTL > $inactividad){
             session_destroy();
-            header("location:index.php?cerrarSesion=inactivity");  //cerramos sesion por inactividad
+            header("location:index.php?logout=inactivity");  //cerramos sesion por inactividad
         }
     }
     if (isset($_SESSION['userAgent']) && isset($_SESSION['IPaddress'])){
@@ -136,4 +136,41 @@ function showError($id_error){
     }
 }
 
+function logout(){ //cierre de sesion
+    unset($_SESSION);
+    session_destroy();
+    session_start();
+    session_regenerate_id(true);
+}
+
+function repeated($mail, $user, $DB_LINK){
+    $consulta = "SELECT * FROM usuarios WHERE Correo='$mail'";
+    $consulta2 = "SELECT * FROM usuarios WHERE Usuario='$user'";
+    $resultado=mysqli_query($DB_LINK, $consulta);
+    $resultado2=mysqli_query($DB_LINK, $consulta2);
+    if(mysqli_num_rows($resultado) || mysqli_num_rows($resultado2)){
+        return true;
+    }
+    
+}
+
+function checks($nombre, $email, $usuario, $contraseña){ //checks de tipos y longitudes de datos introducidos
+    $response = 100; //cuando devuelva 100 está todo ok
+    $allowed = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ- "; //caracteres permitidos para nombre y apellido
+    $email = filter_var($email, FILTER_SANITIZE_EMAIL); //elimina caracteres ilegales
+    $flag = false;
+    for ($i=0; $i<strlen($nombre); $i++){ //comprobamos que el nombre esté entre los caracteres permitidos
+        if (strpos($allowed, substr($nombre, $i, 1))===false){
+            $flag = true;
+        }
+    }
+    if ($flag)
+        return 0;
+    if (strlen($nombre)>25) // longitud nombre y apellido correctas
+        return 1;
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) //si no es un email valido falla
+        return 4;
+    
+    return $response;
+}
 ?>
