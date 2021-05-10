@@ -36,6 +36,12 @@ include_once ("functions.php");
             <h1 class="title">El Título</h1>
         </div>
 
+        <div class="error-box">
+            <b>
+                Error 1: Usuario y/o contraseña incorrectos  
+            </b>
+        </div>
+
         <form action="index.php" method="POST">
 
             <div class="div-login-input" id="user-input">
