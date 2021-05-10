@@ -1,6 +1,6 @@
 <?php
 include_once ("functions.php");
-    
+    if (isset($_GET["logout"]) && $_GET["logout"]=="yes") logout();
     if (isset($_POST["username"]) && isset($_POST["password"])){
 
         if (!empty($_POST["soyUnCeboBroder"])) exit;
@@ -11,6 +11,7 @@ include_once ("functions.php");
             header("Location: index.php?error=1");
         }
     }
+    
 
 
 ?>
