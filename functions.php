@@ -1,11 +1,11 @@
 <?php
 session_start();
-function connectDB(){
-    define("DB_HOST","localhost");
-    define("DB_USER","admin"); 
-    define("DB_PASS","admin");
-    define("DB_DB","proyectofinal");
+define("DB_HOST","localhost");
+define("DB_USER","admin"); 
+define("DB_PASS","admin");
+define("DB_DB","proyectofinal");
 
+function connectDB(){
     $DB_LINK = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_DB);
     return $DB_LINK;
 }
@@ -153,7 +153,7 @@ function showError($id_error){
     echo "<b><div class='error-box'>";
     switch($id_error){
         case 0:
-            echo "Error " . $id_error . ": Usuario o email repetidos</b></div>";		
+            echo "Error " . $id_error . ": Usuario y/o email repetidos</b></div>";		
             break;
         case 1:
             echo "Error " . $id_error . ": Usuario y/o contraseña erróneos</b></div>";		
@@ -177,7 +177,7 @@ function showError($id_error){
             echo "Error " . $id_error . ": Longitud del nombre usuario excedido o no alcanza el mínimo de caracteres</b></div>";				
             break;
         case 8:				
-            echo "Error " . $id_error . ": La contraseña tiene que ser mayor de 6 caracteres</b></div>";				
+            echo "Error " . $id_error . ": La contraseña tiene que ser al menos de 6 caracteres</b></div>";				
             break;
         default:
             echo "Error desconocido</b></div>";
@@ -220,7 +220,7 @@ function checks($nombre, $email, $usuario, $contraseña){ //checks de tipos y lo
         header("Location:register.php?error=6"); //email no valido
     if (strlen($usuario)>20 || strlen($usuario)<5) 
         header("Location:register.php?error=7"); //longitud nombre usuario excedido o no llega minimo
-    if (strlen($contraseña<=6))
-        header("Location:register.php?error=8"); //la contraseña tiene que ser mayor de 6 caracteres
+    if (strlen($contraseña)<6)
+        header("Location:register.php?error=8"); //la contraseña tiene que ser al menos de 6 caracteres
 }
 ?>

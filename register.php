@@ -11,19 +11,17 @@ if (isset($_POST["name"]) && isset ($_POST["email"]) && isset($_POST["username"]
     $password = generateHash(clear($_POST["password"]));
 
     //se comprueba que no existe otro mail igual en la base de datos y el resto de checks
+    if (!$DB_LINK=connectDB()) return false;
     repeated($email, $username, $DB_LINK);
     checks($name, $email, $username, $password);
     
-
-    if (!$DB_LINK=connectDB()) return false;
     $query="INSERT INTO usuarios (Usuario, Nombre_completo, Correo, Contraseña) VALUES ('$username', '$name', '$email','$password')";
     $res = mysqli_query($DB_LINK, $query);
-
     if($res){
         header("location:index.php?registered=yes");
     }
     else{
-        header("location:index.php?error=3");
+        header("location:register.php?error=3");
     }
 }
 ?>
@@ -67,7 +65,7 @@ if (isset($_POST["name"]) && isset ($_POST["email"]) && isset($_POST["username"]
         <form action="register.php" method="POST">
 
             <div class="div-login-input">
-                <input type="text" class="login-input" placeholder="Nombre completo" name="name" required="required" pattern="[a-zA-Z ]+" minlength="15" maxlength="40"/>
+                <input type="text" class="login-input" placeholder="Nombre completo" name="name" required="required" pattern="[a-zA-Z ]+" minlength="10" maxlength="40"/>
             </div>
 
             <div class="div-login-input">
@@ -75,7 +73,7 @@ if (isset($_POST["name"]) && isset ($_POST["email"]) && isset($_POST["username"]
             </div>
 
             <div class="div-login-input">
-                <input type="text" class="login-input" placeholder="Nombre de usuario" name="username" required="required" minlength="5" maxlength="20" pattern="/^[a-z\d]+$/i"/>
+                <input type="text" class="login-input" placeholder="Nombre de usuario" name="username" required="required" minlength="5" maxlength="20"/>
             </div>
 
             <div class="div-login-input">

@@ -32,6 +32,7 @@ CREATE TABLE `usuarios` (
   `Nombre completo` text DEFAULT NULL,
   `Correo` varchar(100) DEFAULT NULL,
   `Contraseña` varchar(255) DEFAULT NULL
+  `token` varchar(255) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
