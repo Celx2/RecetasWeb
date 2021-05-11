@@ -198,9 +198,8 @@ function repeated($mail, $user, $DB_LINK){
     $resultado=mysqli_query($DB_LINK, $consulta);
     $resultado2=mysqli_query($DB_LINK, $consulta2);
     if(mysqli_num_rows($resultado) || mysqli_num_rows($resultado2)){
-        return true;
+        header("Location: register.php?error=0");
     }
-    else header("Location: register.php?error=0"); exit;
     
 }
 
