@@ -12,7 +12,7 @@ if (isset($_POST["name"]) && isset ($_POST["email"]) && isset($_POST["username"]
 
     //se comprueba que no existe otro mail igual en la base de datos y el resto de checks
     repeated($email, $username, $DB_LINK);
-    checks($name,$email,$username,$password);
+    checks($name, $email, $username, $password);
     
 
     if (!$DB_LINK=connectDB()) return false;
