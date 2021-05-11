@@ -152,6 +152,9 @@ function showError($id_error){
     $id_error = clear($id_error);
     echo "<b><div class='error-box'>";
     switch($id_error){
+        case 0:
+            echo "Error " . $id_error . ": Usuario o email repetidos</b></div>";		
+            break;
         case 1:
             echo "Error " . $id_error . ": Usuario y/o contraseña erróneos</b></div>";		
             break;
@@ -159,22 +162,22 @@ function showError($id_error){
             echo "Error " . $id_error . ": No estás logeado</b></div>";				
             break;
         case 3:				
-            echo "Error " . $id_error . ": El registro ha fallado</b></div>";				
+            echo "Error " . $id_error . ": El registro ha fallado, revisa los datos que has introducido</b></div>";				
             break;
         case 4:				
-            echo "Error " . $id_error . ": caracteres nombre no permitidos</b></div>";				
+            echo "Error " . $id_error . ": Uso de caracteres no permitidos en el nombre</b></div>";				
             break;
         case 5:				
-            echo "Error " . $id_error . ": longitud nombre excedido</b></div>";				
+            echo "Error " . $id_error . ": Longitud nombre excedido o no alcanza el mínimo de caracteres</b></div>";				
             break;
         case 6:				
-            echo "Error " . $id_error . ": email no valido</b></div>";				
+            echo "Error " . $id_error . ": Email no valido</b></div>";				
             break;
         case 7:				
-            echo "Error " . $id_error . ": longitud nombre usuario excedido</b></div>";				
+            echo "Error " . $id_error . ": Longitud del nombre usuario excedido o no alcanza el mínimo de caracteres</b></div>";				
             break;
         case 8:				
-            echo "Error " . $id_error . ": la contraseña tiene que ser mayor de 6 caracteres</b></div>";				
+            echo "Error " . $id_error . ": La contraseña tiene que ser mayor de 6 caracteres</b></div>";				
             break;
         default:
             echo "Error desconocido</b></div>";
@@ -197,6 +200,7 @@ function repeated($mail, $user, $DB_LINK){
     if(mysqli_num_rows($resultado) || mysqli_num_rows($resultado2)){
         return true;
     }
+    else header("Location: register.php?error=0"); exit;
     
 }
 
@@ -211,12 +215,12 @@ function checks($nombre, $email, $usuario, $contraseña){ //checks de tipos y lo
     }
     if ($flag)
         header("Location:register.php?error=4"); //caracteres nombre no permitidos
-    if (strlen($nombre)>35) // longitud nombre y apellido correctas
+    if (strlen($nombre)>40 || strlen($nombre)<15) // longitud nombre y apellido excedido o no llega minimo
         header("Location:register.php?error=5"); //longitud nombre excedido
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) //si no es un email valido falla
         header("Location:register.php?error=6"); //email no valido
-    if (strlen($usuario)>20) 
-        header("Location:register.php?error=7"); //longitud nombre usuario excedido
+    if (strlen($usuario)>20 || strlen($usuario)<5) 
+        header("Location:register.php?error=7"); //longitud nombre usuario excedido o no llega minimo
     if (strlen($contraseña<=6))
         header("Location:register.php?error=8"); //la contraseña tiene que ser mayor de 6 caracteres
 }
