@@ -1,3 +1,11 @@
+<?php
+    include_once ("functions.php");
+    if (!isLoggedIn()){
+        header("Location: index.php?error=2");
+        exit;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,11 +26,11 @@
     <nav>   
 
         <div class="nav-user">
-            <user>titopepe777</user> | <a class="logout" href="index.php?logout=yes">Cerrar sesión</a>
+            <user><?php echo $_SESSION["username"]; ?></user> | <a class="logout" href="index.php?logout=yes">Cerrar sesión</a>
         </div>
 
         <div class="nav-recipe">
-            <b>¡NUEVA RECETA!</b>
+            <a href="new-recipe.php">¡NUEVA RECETA!</a>
         </div>
 
         <div class="nav-search">

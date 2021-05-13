@@ -37,8 +37,9 @@
         </div>
 
         <div class="nav-recipe">
-            <b>Nueva receta</b>
+            <a href="new-recipe.php">¡NUEVA RECETA!</a>
         </div>
+        
         <form action="main-menu.php" method="POST">
             <div class="nav-search">
                 <input id="search-input" type="text" name="recipe" placeholder="Buscar receta"/>
