@@ -112,7 +112,7 @@ function ResetPassword(){
     if (mysqli_num_rows($res) == 1){
         $token = generateToken();
         $query2="UPDATE usuarios SET token='$token' WHERE email = '$email'";
-        $resultado=mysqli_query($DB_LINK, $query2);
+        $res=mysqli_query($DB_LINK, $query2);
         ?>
 
         Hola, un cambio de contraseña ha sido solicitado. Si has sido tú, entra al siguiente enlace:
@@ -193,11 +193,11 @@ function logout(){ //cierre de sesion
 }
 
 function repeated($mail, $user, $DB_LINK){
-    $consulta = "SELECT * FROM usuarios WHERE Correo='$mail'";
-    $consulta2 = "SELECT * FROM usuarios WHERE Usuario='$user'";
-    $resultado=mysqli_query($DB_LINK, $consulta);
-    $resultado2=mysqli_query($DB_LINK, $consulta2);
-    if(mysqli_num_rows($resultado) || mysqli_num_rows($resultado2)){
+    $query = "SELECT * FROM usuarios WHERE Correo='$mail'";
+    $query2 = "SELECT * FROM usuarios WHERE Usuario='$user'";
+    $res=mysqli_query($DB_LINK, $query);
+    $res2=mysqli_query($DB_LINK, $query2);
+    if(mysqli_num_rows($res) || mysqli_num_rows($res2)){
         header("Location: register.php?error=0"); exit;
     }
     
@@ -223,4 +223,27 @@ function checks($nombre, $email, $usuario, $contraseña){ //checks de tipos y lo
     if (strlen($contraseña)<6)
         header("Location:register.php?error=8"); //la contraseña tiene que ser al menos de 6 caracteres
 }
+
+function search($recipe, $DB_LINK){
+    $query = "SELECT * FROM recetas WHERE Nombre LIKE '%$recipe%'";
+    $res = mysqli_query($DB_LINK, $query);
+    if (!mysqli_num_rows($res)){
+        echo "No existe ninguna receta que contenga $recipe";
+    }
+    else{
+        while ($row = mysqli_fetch_array($res)) {
+            echo "<tr>";
+            echo "<th scope=row>$row[ID]</th><br/>";
+            echo "<td>$row[Usuario]</td><br/>";
+            echo "<td>$row[Nombre]</td><br/>";
+            echo "<td>$row[Categoría]</td><br/>";
+            echo "<td>$row[Me_gusta]</td><br/>";
+            echo "<td>$row[Imagen]</td><br/>";
+            echo "<td>$row[Ingredientes]</td><br/>";
+            echo "<td>$row[Preparación]</td><br/>";
+            echo "</tr><br/>";
+        }
+    }
+}
+
 ?>

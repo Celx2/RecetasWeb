@@ -39,16 +39,11 @@
         <div class="nav-recipe">
             <b>Nueva receta</b>
         </div>
-
-        <div class="nav-search">
-
-            <input id="search-input" type="text" placeholder="Buscar receta"/>
-
-            <div class="search-icon-box">
-                <i id="search-icon" class="fas fa-search"></i>
+        <form action="main-menu.php" method="POST">
+            <div class="nav-search">
+                <input id="search-input" type="text" name="recipe" placeholder="Buscar receta"/>
             </div>
-
-        </div>
+        </form>
 
     </nav>
 
@@ -57,7 +52,13 @@
     
         <div class="recipe-card">
         <div class="recipe-card-body">
-
+        <?php 
+            if (isset($_POST["recipe"]) && $_POST["recipe"]!=""){
+                $recipe = clear($_POST["recipe"]);
+                search($recipe,connectDB());
+            }
+            else{
+        ?>
             <div class="recipe-picture">
                 <img class="recipeUwU" src="./pictures/brownie.jpg"/>
             </div>
@@ -218,7 +219,7 @@
     
             </div>
             </div>
-
+                <?php }?>
     </div>
 </div>
 
