@@ -26,13 +26,7 @@
         </div>
 
         <div class="nav-search">
-
             <input id="search-input" type="text" placeholder="Buscar receta"/>
-
-            <div class="search-icon-box">
-                <i id="search-icon" class="fas fa-search"></i>
-            </div>
-
         </div>
 
     </nav>
