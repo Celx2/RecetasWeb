@@ -224,7 +224,7 @@ function checks($nombre, $email, $usuario, $contraseña){ //checks de tipos y lo
         header("Location:register.php?error=8"); //la contraseña tiene que ser al menos de 6 caracteres
 }
 
-function search($recipe, $DB_LINK){
+function search($recipe, $DB_LINK){ //busca recetas que contengan el nombre buscado en main-menu.php
     $query = "SELECT * FROM recetas WHERE Nombre LIKE '%$recipe%'";
     $res = mysqli_query($DB_LINK, $query);
     if (!mysqli_num_rows($res)){
