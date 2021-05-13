@@ -22,14 +22,14 @@ body {
 }
 
 .login-box{
-    width: 30%;
-    margin-top: 8%;
+    width: 80%;
+    margin-top: 20%;
     position: relative;
     vertical-align: middle;
     display: inline-block;
     flex-direction: column;
     background-color: rgb(255, 255, 255);
-    padding: 0 60px;
+    padding: 0 50px;
     border: 1px solid rgb(112, 112, 112);
     border-radius: 4%;
     opacity: 90%;
@@ -50,7 +50,7 @@ body {
 }
 
 .login-input{
-    font-size: 1.1em;
+    font-size: 1em;
     height: 45px;
     width: 100%;
     padding-left: 10px;
@@ -90,7 +90,7 @@ body {
 
 .confirm-box{
     color:white;
-    width: 30%;
+    width: 80%;
     margin-top: 20px;
     position: relative;
     display: inline-block;
@@ -103,14 +103,14 @@ body {
 }
 
 .register-sug{
-    width: 30%;
+    width: 80%;
     margin-top: 20px;
     position: relative;
     vertical-align: middle;
     display: inline-block;
     flex-direction: column;
     background-color: rgb(255, 255, 255);
-    padding: 15px 60px;
+    padding: 15px 50px;
     border: 1px solid rgb(112, 112, 112);
     border-radius: .75rem;
     opacity: 90%;
@@ -118,13 +118,13 @@ body {
 }
 
 .register-box{    
-    width: 30%;
+    width: 80%;
     margin-top: 4%;
     position: relative;
     display: inline-block;
     flex-direction: column;
     background-color: rgb(255, 255, 255);
-    padding: 0 60px;
+    padding: 0 50px;
     border: 1px solid rgb(112, 112, 112);
     border-radius: .75rem;
     opacity: 90%;
@@ -137,7 +137,7 @@ input{
 }
 
 .politics-text{
-    font-size: 0.9em;
+    font-size: 0.75em;
     margin-bottom: 15px;
     color: rgb(83, 83, 83);
 }
@@ -149,20 +149,24 @@ nav{
     position: fixed;
     display: grid;
     grid-template-columns: 25% 50% 25%;
-    grid-template-rows: 80px;
+    grid-template-rows: 60px;
     width: 100%;
     background-color: rgb(131, 177, 79);
     border-bottom: 1px solid rgb(31, 31, 31);
     z-index: 1;
-    padding: 0 150px;
+    padding: 0 20px;
     align-items: center;
 }
 
 .nav-user{
     grid-column: 1/2;
     text-align: start;
-    font-size: 1.8em;
-    font-weight: bold ;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.nav-user user, .nav-user b{
+    display: none;
 }
 
 user:hover{
@@ -177,7 +181,7 @@ user:hover{
 .nav-recipe{
     grid-column: 2/3;
     text-align: center;   
-    font-size: 2.7em;
+    font-size: 1.1em;
     font-weight: bold ;
 }
 
@@ -194,18 +198,18 @@ user:hover{
 }
 
 .nav-search input{
-    font-size: 1.2em;
-    padding: 20px;
-    height: 45px;
-    width: 250px;
+    font-size: 0.7em;
+    padding: 5px;
+    height: 24px;
+    width: 70px;
 }
 
 .search-icon-box{
-    margin-left: 3px;
-    width: 45px;
-    height: 45px;
+    margin-left: 1px;
+    width: 24px;
+    height: 24px;
     border: 1px solid black;
-    border-radius: 15%;
+    border-radius: 25%;
     background-color: rgb(255, 255, 255);
     display: flex;
     align-items: center;
@@ -215,19 +219,18 @@ user:hover{
 
 .search-icon-box i{
     color:black;
-    font-size: 1.5em;
+    font-size: 0.8em;
 }
 
 .recipes-box{
-    width: 80%;
-    margin-top: 90px;
+    width: 90%;
+    margin-top: 80px;
     height: auto;
     position: relative;
-    vertical-align: middle;
     display: inline-block;
     flex-direction: column;
     background-color: rgba(197, 197, 197, 0.5);
-    padding: 0 150px;
+    padding: 0 30px;
     border-radius: .75rem;
 }
 
@@ -247,47 +250,46 @@ user:hover{
 
 .recipe-card-body{
     display: grid;
-    grid-template-columns: 20% 50% 30%;
-    grid-template-rows: 80px 60px;
+    grid-template-columns: 25% 50% 25%;
+    grid-template-rows: 35px 25px 40px;
     align-items: center;
 }
 
 .recipe-picture{
     grid-column: 1/2;
-    grid-row: 1/3;
+    grid-row: 1/4;
     justify-self: center;
 }
 
 .recipe-picture img{
     border: 2px solid rgb(42, 42, 42);
     border-radius: 50%;
-    width: 120px;
-    height: 120px;
+    width: 70px;
+    height: 70px;
 }
 
 .recipe-title{
-    font-size: 1.65em;
-    margin-left: 25px;
-    grid-column: 2/3;
+    font-size: 0.9em;
+    margin-left: 10px;
+    grid-column: 2/4;
     grid-row: 1/2;
     justify-self: start;
 }
 
 .recipe-type{
-    font-size: 1.4em;
-    margin-left: 25px;
-    grid-column: 2/3;
+    font-size: 0.85em;
+    margin-left: 10px;
+    grid-column: 2/4;
     grid-row: 2/3;
     justify-self: start;
 }
 
 .recipe-author{
-    font-size: 1.3em;
+    font-size: 0.7em;
     margin-left: 10px;
-    grid-column: 3/4;
-    grid-row: 1/2;
-    justify-self: end;
-    margin-right: 40px;
+    grid-column: 2/3;
+    grid-row: 3/4;
+    justify-self: start;
 }
 
 .recipe-author a{
@@ -297,21 +299,21 @@ user:hover{
 
 .recipe-likes{
     grid-column: 3/4;
-    grid-row: 2/3;
+    grid-row: 3/4;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-right: 35px;
+    margin-right: 4px;
 }
 
 .like-btn{
-    padding: 8px 10px;
+    padding: 4px 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 1);
     border-radius: 50%;
 }
 
 .like-btn i{
-    font-size: 1.5rem;
+    font-size: 1rem;
     transition: .3s all;
 }
 
@@ -325,8 +327,8 @@ user:hover{
 
 .like-counter{
     font-weight: bold;
-    font-size: 1.5em;
-    margin-right: 10px;
+    font-size: 1em;
+    margin-right: 7px;
 }
 
 .on{
