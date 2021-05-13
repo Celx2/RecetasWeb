@@ -16,23 +16,6 @@ function clear ($value){
 
 }
 
-function register($DB_LINK, $email, $password, $nombre, $apellidos, $telefono){
-    $name = clear($_POST["name"]); 
-    $user = clear($_POST["username"]); 
-    $email = clear($_POST["email"]);
-    $password = generateHash(clear($_POST["password"]));
-    if(!$DB_LINK = connectDB()) return false;
-    $query = "INSERT INTO usuarios (Usuario, Nombre completo, Correo, Contraseña) VALUES ('$user','$name', '$email', '$password')";
-    $res = mysqli_query($DB_LINK, $query);
-    if ($res) {
-        return true;
-    }
-    else{
-        return false;
-    }
-    
-}
-
 function login ($username, $password, $DB_LINK){ //verificacion de user y password en login
     $username = clear($username);
     $password = clear($password);
