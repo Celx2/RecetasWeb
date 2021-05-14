@@ -1,12 +1,19 @@
 <?php
 session_start();
-function connectDB(){
-    define("DB_HOST","localhost");
-    define("DB_USER","admin"); 
-    define("DB_PASS","admin");
-    define("DB_DB","proyectofinal");
+define("DB_HOST","localhost");
+//define("DB_HOST","localhost");
 
-    $DB_LINK = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_DB);
+define("DB_USER","admin"); 
+//define("DB_USER","id16810550_admin");
+
+define("DB_PASS","admin");
+//define("DB_PASS","8P&H9bru&zePv");
+
+define("DB_NAME","proyectofinal");
+//define("DB_NAME","id16810550_proyectofinal");
+
+function connectDB(){
+    $DB_LINK = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
     return $DB_LINK;
 }
 
@@ -14,23 +21,6 @@ function clear ($value){
     $link = connectDB();
     return mysqli_real_escape_string($link, htmlspecialchars($value));
 
-}
-
-function register($DB_LINK, $email, $password, $nombre, $apellidos, $telefono){
-    $name = clear($_POST["name"]); 
-    $user = clear($_POST["username"]); 
-    $email = clear($_POST["email"]);
-    $password = generateHash(clear($_POST["password"]));
-    if(!$DB_LINK = connectDB()) return false;
-    $query = "INSERT INTO usuarios (Usuario, Nombre completo, Correo, Contraseña) VALUES ('$user','$name', '$email', '$password')";
-    $res = mysqli_query($DB_LINK, $query);
-    if ($res) {
-        return true;
-    }
-    else{
-        return false;
-    }
-    
 }
 
 function login ($username, $password, $DB_LINK){ //verificacion de user y password en login
@@ -60,22 +50,18 @@ function login ($username, $password, $DB_LINK){ //verificacion de user y passwo
 }
 
 function isLoggedIn(){ //verifica que esté logueado el user y que posea la ip y user agent del navegador instanciados al realizar el login correcto para evitar robo de sesiones
-    $inactividad = 120; //en segundos
-    // Comprobar si $_SESSION["timeout"] está establecida
-    if(isset($_SESSION["timeout"])){
-        // Calcular el tiempo de vida de la sesión (TTL = Time To Live)
-        $sessionTTL = time() - $_SESSION["timeout"];
-        if($sessionTTL > $inactividad){
-            session_destroy();
-            header("location:index.php?logout=inactivity");  //cerramos sesion por inactividad
-        }
-    }
     if (isset($_SESSION['userAgent']) && isset($_SESSION['IPaddress'])){
         if (($_SESSION['userAgent'] == $_SERVER['HTTP_USER_AGENT']) && ($_SESSION['IPaddress'] == getClientIp())){
-            $_SESSION["timeout"] = time(); // la siguiente key se crea cuando se inicia sesion
-            return isset($_SESSION["username"]);
+            return true;
+        }
+        else{
+            return false;
         }
     }
+    else{
+        return false;
+    }
+    
 }
 
 function generateHash($password){ //hasheamos la contrasena
@@ -95,6 +81,74 @@ function passwordCheck($DB_LINK, $username, $password, $hash){ //comprobamos que
         return true; //habremos accedido
     }
     else{
+        return false;
+    }
+}
+
+function generateToken(){
+    return md5(uniqid(rand(), true));
+}
+
+//Extraer extensión
+function extraerExtension($imagensubida, $lista_blanca_extension=array("image/x.png", "image/gif", "image/jpeg", "image/jpg")){
+    $extension=$imagensubida;
+    $extraccion=".notValid";
+    if(in_array($extension, $lista_blanca_extension)){
+        switch($extension){
+            case "image/x.png":
+                $extraccion=".png";
+            break;
+            case "image/gif":
+                $extraccion=".gif";
+            break;
+            case "image/jpeg":
+                $extraccion= ".jpeg";
+            break;
+            case "image/jpg":
+                $extraccion=".jpg";
+            break;
+        }
+    }
+    return $extraccion;
+}
+
+function moverImagen($imagen, $nombreImagen){
+    $ruta="imagenes/$nombreImagen";
+    rename($imagen, "$ruta");
+}
+
+//Comprobación de extensión de la imagen de perfil
+function checkExtension($extension, $lista_blanca_extension = array(".png", ".gif", ".jpeg", ".jpg")){
+    if(!in_array($extension, $lista_blanca_extension)){
+        header("Location: insert.php?error=8");
+    }
+}
+function ResetPassword(){
+    if (!$DB_LINK = connectDB()){
+        return false;
+    }
+    
+    $email=$_POST["email"];
+    $query="SELECT * FROM usuarios WHERE email = '$email'";
+    $res=mysqli_query($DB_LINK, $query);
+    
+    //Solo es válido si tiene una coincidencia en la base de datos
+    if (mysqli_num_rows($res) == 1){
+        $token = generateToken();
+        $query2="UPDATE usuarios SET token='$token' WHERE email = '$email'";
+        $res=mysqli_query($DB_LINK, $query2);
+        ?>
+
+        Hola, un cambio de contraseña ha sido solicitado. Si has sido tú, entra al siguiente enlace:
+
+        <a href="reset-password.php?token=<?php echo $token; ?>">Cambiar contraseña</a>
+
+        Si no has sido tú, ignora este correo.
+
+        <?php
+        exit;
+    }
+    else {
         return false;
     }
 }
@@ -120,19 +174,38 @@ function getClientIp() {
 
 function showError($id_error){
     $id_error = clear($id_error);
+    echo "<b><div class='error-box'>";
     switch($id_error){
-
+        case 0:
+            echo "Error " . $id_error . ": Usuario y/o email repetidos</b></div>";		
+            break;
         case 1:
-        echo "Error " . $id_error . ": Usuario y/o contraseña erróneos";		
-        break;
-
+            echo "Error " . $id_error . ": Usuario y/o contraseña erróneos</b></div>";		
+            break;
         case 2:				
-        echo "Error " . $id_error . ": ola";				
-        break;
-
+            echo "Error " . $id_error . ": No estás logeado</b></div>";				
+            break;
+        case 3:				
+            echo "Error " . $id_error . ": El registro ha fallado, revisa los datos que has introducido</b></div>";				
+            break;
+        case 4:				
+            echo "Error " . $id_error . ": Uso de caracteres no permitidos en el nombre</b></div>";				
+            break;
+        case 5:				
+            echo "Error " . $id_error . ": Longitud nombre excedido o no alcanza el mínimo de caracteres</b></div>";				
+            break;
+        case 6:				
+            echo "Error " . $id_error . ": Email no valido</b></div>";				
+            break;
+        case 7:				
+            echo "Error " . $id_error . ": Longitud del nombre usuario excedido o no alcanza el mínimo de caracteres</b></div>";				
+            break;
+        case 8:				
+            echo "Error " . $id_error . ": La contraseña tiene que ser al menos de 6 caracteres</b></div>";				
+            break;
         default:
-        echo "Error desconocido";
-        break;
+            echo "Error desconocido</b></div>";
+            break;
     }
 }
 
@@ -144,18 +217,17 @@ function logout(){ //cierre de sesion
 }
 
 function repeated($mail, $user, $DB_LINK){
-    $consulta = "SELECT * FROM usuarios WHERE Correo='$mail'";
-    $consulta2 = "SELECT * FROM usuarios WHERE Usuario='$user'";
-    $resultado=mysqli_query($DB_LINK, $consulta);
-    $resultado2=mysqli_query($DB_LINK, $consulta2);
-    if(mysqli_num_rows($resultado) || mysqli_num_rows($resultado2)){
-        return true;
+    $query = "SELECT * FROM usuarios WHERE Correo='$mail'";
+    $query2 = "SELECT * FROM usuarios WHERE Usuario='$user'";
+    $res=mysqli_query($DB_LINK, $query);
+    $res2=mysqli_query($DB_LINK, $query2);
+    if(mysqli_num_rows($res) || mysqli_num_rows($res2)){
+        header("Location: register.php?error=0"); exit;
     }
     
 }
 
 function checks($nombre, $email, $usuario, $contraseña){ //checks de tipos y longitudes de datos introducidos
-    $response = 100; //cuando devuelva 100 está todo ok
     $allowed = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ- "; //caracteres permitidos para nombre y apellido
     $email = filter_var($email, FILTER_SANITIZE_EMAIL); //elimina caracteres ilegales
     $flag = false;
@@ -165,12 +237,62 @@ function checks($nombre, $email, $usuario, $contraseña){ //checks de tipos y lo
         }
     }
     if ($flag)
-        return 0;
-    if (strlen($nombre)>25) // longitud nombre y apellido correctas
-        return 1;
+        header("Location:register.php?error=4"); //caracteres nombre no permitidos
+    if (strlen($nombre)>40 || strlen($nombre)<15) // longitud nombre y apellido excedido o no llega minimo
+        header("Location:register.php?error=5"); //longitud nombre excedido
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) //si no es un email valido falla
-        return 4;
-    
-    return $response;
+        header("Location:register.php?error=6"); //email no valido
+    if (strlen($usuario)>20 || strlen($usuario)<5) 
+        header("Location:register.php?error=7"); //longitud nombre usuario excedido o no llega minimo
+    if (strlen($contraseña)<6)
+        header("Location:register.php?error=8"); //la contraseña tiene que ser al menos de 6 caracteres
 }
+
+function search($recipe, $DB_LINK){ //busca recetas que contengan el nombre buscado en main-menu.php
+    $query = "SELECT * FROM recetas WHERE Nombre LIKE '%$recipe%'";
+    $res = mysqli_query($DB_LINK, $query);
+    if (!mysqli_num_rows($res)){
+        echo "No existe ninguna receta que contenga $recipe";
+    }
+    else{
+        while ($row = mysqli_fetch_array($res)) {
+            ?>
+    
+            <div class="recipe-card">
+            <div class="recipe-card-body">
+        
+                <div class="recipe-picture">
+                    <img class="recipeUwU" src="./pictures/brownie.jpg"/>
+                </div>
+    
+                <div class="recipe-title">
+                    <h3> <?php echo $row["Nombre"] ?> </h3>
+                </div>
+    
+                <div class="recipe-type">
+                    <h4> <?php echo $row["Categoría"] ?> </h4>
+                </div>
+    
+                <div class="recipe-likes">
+                    <div class="off like-counter">
+                        <?php echo $row["Me_gusta"] ?>
+                    </div>
+    
+                    <div class="like-btn">
+                        <i id="heart-btn" class="far fa-heart"></i>
+                    </div>
+                </div>
+    
+                <div class="recipe-author">
+                    Por: <a> <?php echo $row["Usuario"] ?> </a>
+                </div>
+    
+            </div>
+            </div>
+    
+            <?php
+        }
+    }
+}
+
 ?>

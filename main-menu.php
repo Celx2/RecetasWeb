@@ -12,7 +12,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./css/ordenadores.css">
+    <link rel="stylesheet" type="text/css" media="(max-width: 576px)"  href="./css/celulares.css">
+    <link rel="stylesheet" type="text/css" media="(min-width: 576px)"  href="./css/ordenadores.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/11e0b18f8c.js" crossorigin="anonymous"></script>
@@ -31,27 +32,32 @@
     <nav>
 
         <div class="nav-user">
-            <user>titopepe777</user> | <a class="logout" href="index.php?logout=yes">Cerrar sesión</a>
+        <!-- arreglar nombre usuario logeado -->
+            <user><?php echo $_SESSION["username"]; ?></user> | <a class="logout" href="index.php?logout=yes">Cerrar sesión</a>
         </div>
 
         <div class="nav-recipe">
-            <b>¡NUEVA RECETA!</b>
+            <a href="new-recipe.php">¡NUEVA RECETA!</a>
         </div>
-
-        <div class="nav-search">
-
-            <input id="search-input" type="text" placeholder="Buscar receta"/>
-
-            <div class="search-icon-box">
-                <i id="search-icon" class="fas fa-search"></i>
+        
+        <form action="main-menu.php" method="POST">
+            <div class="nav-search">
+                <input id="search-input" type="text" name="recipe" placeholder="Buscar receta"/>
             </div>
-
-        </div>
+        </form>
 
     </nav>
 
 
     <div class="recipes-box">
+
+	<?php 
+            if (isset($_POST["recipe"]) && $_POST["recipe"]!=""){
+                $recipe = clear($_POST["recipe"]);
+                search($recipe,connectDB());
+            }
+            else{
+        ?>
     
         <div class="recipe-card">
         <div class="recipe-card-body">
@@ -216,7 +222,7 @@
     
             </div>
             </div>
-
+                <?php }?>
     </div>
 </div>
 

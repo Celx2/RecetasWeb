@@ -32,21 +32,22 @@ CREATE TABLE `usuarios` (
   `Nombre completo` text DEFAULT NULL,
   `Correo` varchar(100) DEFAULT NULL,
   `Contraseña` varchar(255) DEFAULT NULL
+  `token` varchar(255) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`Usuario`, `Nombre completo`, `Correo`, `Contraseña`) VALUES
-('Celx2', 'Celeste Laura', 'celeste@correo.com', 'hola'),
-('Javat00', 'Aarón Espinosa', 'aaron@correo.com', 'hola'),
-('Kaarel', 'Carlos Marín', 'carlos@correo.com', 'hola'),
-('Menkord', 'Antonio Fernández', 'antonio@correo.com', 'hola');
+INSERT INTO `usuarios` (`Usuario`, `Nombre completo`, `Correo`, `Contraseña`, `token`) VALUES
+('Celx2', 'Celeste Laura', 'celeste@correo.com', '$2y$10$MO4130M7uRtadsYhvBZbvusMOAO0IxfpCizMLJcUnOYwtAoF1puhW', '0'),
+('Javat00', 'Aarón Espinosa', 'aaron@correo.com', '$2y$10$MO4130M7uRtadsYhvBZbvusMOAO0IxfpCizMLJcUnOYwtAoF1puhW', '0'),
+('Kaarel', 'Carlos Marín', 'carlos@correo.com', '$2y$10$MO4130M7uRtadsYhvBZbvusMOAO0IxfpCizMLJcUnOYwtAoF1puhW', '0'),
+('Menkord', 'Antonio Fernández', 'antonio@correo.com', '$2y$10$MO4130M7uRtadsYhvBZbvusMOAO0IxfpCizMLJcUnOYwtAoF1puhW', '0');
 
 --
 -- Índices para tablas volcadas
---
+--s
 
 --
 -- Indices de la tabla `usuarios`

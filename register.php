@@ -10,19 +10,18 @@ if (isset($_POST["name"]) && isset ($_POST["email"]) && isset($_POST["username"]
     $username = clear($_POST["username"]);
     $password = generateHash(clear($_POST["password"]));
 
-    //se comprueba que no existe otro mail igual en la base de datos
-    if (repeated($email, $username, $DB_LINK)){
-        header("location:register.php?error=2");
-    }
-
+    //se comprueba que no existe otro mail igual en la base de datos y el resto de checks
     if (!$DB_LINK=connectDB()) return false;
+    repeated($email, $username, $DB_LINK);
+    checks($name, $email, $username, $password);
+    
     $query="INSERT INTO usuarios (Usuario, Nombre_completo, Correo, Contraseña) VALUES ('$username', '$name', '$email','$password')";
     $res = mysqli_query($DB_LINK, $query);
-
     if($res){
-        header("location:index.php?saved=yes");
-    }else{
-        header("location:index.php?error=1234"); //CARLOS
+        header("location:index.php?registered=yes");
+    }
+    else{
+        header("location:register.php?error=3");
     }
 }
 ?>
@@ -34,7 +33,8 @@ if (isset($_POST["name"]) && isset ($_POST["email"]) && isset($_POST["username"]
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./css/ordenadores.css">
+    <link rel="stylesheet" type="text/css" media="(max-width: 576px)"  href="./css/celulares.css">
+    <link rel="stylesheet" type="text/css" media="(min-width: 576px)"  href="./css/ordenadores.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap" rel="stylesheet">    
     <title>Login</title>
@@ -49,26 +49,36 @@ if (isset($_POST["name"]) && isset ($_POST["email"]) && isset($_POST["username"]
             <h1 class="title">El Título</h1>
         </div>
 
+
+        <?php
+        if(isset($_GET["error"])){
+            showError($_GET["error"]);
+        }
+        else{
+        ?>
         <div class="text-box">
             <h2 class="text">¡Empieza ahora a descubrir miles de recetas!</h2>
         </div>
+        <?php
+        }
+        ?>
 
         <form action="register.php" method="POST">
 
             <div class="div-login-input">
-                <input type="text" class="login-input" placeholder="Nombre completo" name="name" required/>
+                <input type="text" class="login-input" placeholder="Nombre completo" name="name" required="required" pattern="[a-zA-Z ]+" minlength="10" maxlength="40"/>
             </div>
 
             <div class="div-login-input">
-                <input type="text" class="login-input" placeholder="Correo electrónico" name="email" required/>
+                <input type="text" class="login-input" placeholder="Correo electrónico" name="email" required="required" pattern="^[^ ]+@[^ ]+\.[a-z]{2,6}$"/>
             </div>
 
             <div class="div-login-input">
-                <input type="text" class="login-input" placeholder="Nombre de usuario" name="username" required/>
+                <input type="text" class="login-input" placeholder="Nombre de usuario" name="username" required="required" minlength="5" maxlength="20"/>
             </div>
 
             <div class="div-login-input">
-                <input type="password" class="login-input" placeholder="Contraseña" name="password" required/>
+                <input type="password" class="login-input" placeholder="Contraseña" name="password" required="required" minlength="6" maxlength="30"/>
             </div>
 
             <div class="">

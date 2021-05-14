@@ -4,15 +4,24 @@ include_once ("functions.php");
     if (isset($_POST["username"]) && isset($_POST["password"])){
 
         if (!empty($_POST["soyUnCeboBroder"])) exit;
-        if (login($_POST["username"],$_POST["password"], connectDB())){
-            header("Location: main-menu.php");
+        //obtenemos los datos del captcha automatico
+        $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify'; 
+        $recaptcha_secret = '6Lce_4EaAAAAALHYHP81uNqrfXRFIOkx_MaWsfGA'; 
+        $recaptcha_response = $_POST['recaptcha_response']; 
+        $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response); 
+        $recaptcha = json_decode($recaptcha); 
+        if($recaptcha->score >= 0.7){ //si el captcha determina que obtienes una puntuacion cercana a 1 ergo eres un humano...
+            if (login($_POST["username"],$_POST["password"], connectDB())){
+                header("Location: main-menu.php");
+            }
+            else{
+                header("Location: index.php?error=1");
+            }
         }
         else{
-            header("Location: index.php?error=1");
+            header("Location:index.php?invalidCaptcha=yes");
         }
     }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -20,10 +29,20 @@ include_once ("functions.php");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./css/ordenadores.css">
+    <link rel="stylesheet" type="text/css" media="(max-width: 576px)"  href="./css/celulares.css">
+    <link rel="stylesheet" type="text/css" media="(min-width: 576px)"  href="./css/ordenadores.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap" rel="stylesheet">    
     <title>Login</title>
+    <script src='https://www.google.com/recaptcha/api.js?render=6Lce_4EaAAAAAADlrj62E7V1gUXTY6wzrvniDtoL'> </script>
+		<script>
+			grecaptcha.ready(function() {
+			grecaptcha.execute('6Lce_4EaAAAAAADlrj62E7V1gUXTY6wzrvniDtoL', {action: 'formulario'})
+			.then(function(token) {
+			var recaptchaResponse = document.getElementById('recaptchaResponse');
+			recaptchaResponse.value = token;
+			});});
+		</script>
 </head>
 <body>
 
@@ -64,6 +83,7 @@ include_once ("functions.php");
             <div class="">
                 <button class="btn" type="submit" id="login-btn">Iniciar sesión</button>
             </div>
+            <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
         </form>
 
         <div class="remember-box">
@@ -75,10 +95,20 @@ include_once ("functions.php");
     <?php
     
         if((isset($_GET["logout"])) && $_GET["logout"] == "yes"){
-
+            logout();
             ?>
-            <div class="logout-confirm-box">
+            <div class="confirm-box">
                 <b>Cierre de sesión exitoso.</b>
+            </div>
+            <?php
+
+        }
+
+        if((isset($_GET["registered"])) && $_GET["registered"] == "yes"){
+            logout();
+            ?>
+            <div class="confirm-box">
+                <b>Usuario registrado exitosamente.</b>
             </div>
             <?php
 

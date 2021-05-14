@@ -32,7 +32,7 @@ CREATE TABLE `recetas` (
   `Usuario` varchar(255) NOT NULL,
   `Nombre` text DEFAULT NULL,
   `Categoría` text DEFAULT NULL,
-  `Me gusta` int(11) DEFAULT 0,
+  `Me_gusta` int(11) DEFAULT 0,
   `Imagen` varchar(255) DEFAULT NULL,
   `Ingredientes` text DEFAULT NULL,
   `Preparación` text DEFAULT NULL
