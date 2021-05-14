@@ -12,16 +12,27 @@
     $recipe_ingredients=clear($_POST["recipe-ingredients"]);
     $recipe_preparation=clear($_POST["recipe-preparation"]);
 }
+    $id=$_SESSION["id"];
+    
+    $query = "INSERT INTO recetas (Usuario, Nombre, Categoría, Me_gusta, Imagen, Ingredientes, Preparación) VALUES (0, '$recipe_name', '$recipe_type', 0, 0, 0, 0)";
+    $res = mysqli_query($DB_LINK, $query);
+
+    $query2 = "SELECT ID FROM usuarios WHERE Usuario = '$id' AND Nombre = '$recipe_name'";
+    $recipe_id = mysqli_query($DB_LINK, $query2);
+
     //Introducir una imagen
 		if($_FILES["picture"]["name"]!=""){
 			$extension=extraerExtension($_FILES["picture"]["type"]);
-			$nombreImagen=md5(time()).$extension;
+			$nombreImagen=md5($recipe_id).$extension;
 			moverImagen($_FILES["picture"]["tmp_name"],$nombreImagen);
 			$picture=$nombreImagen;
 			checkExtension($extension);
 		}
-    $query="INSERT INTO recetas (Usuario, Nombre, Categoría, Me_gusta, Imagen, Ingredientes, Preparación) VALUES (0, '$recipe_name', '$recipe_type', 0, 0, 0, 0)";
-    $res = mysqli_query($DB_LINK, $query);
+    //Guardar datos en los archivos
+    
+
+
+
 
 
 ?>
