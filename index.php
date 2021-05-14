@@ -36,10 +36,10 @@ include_once ("functions.php");
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap" rel="stylesheet">    
     <title>Login</title>
-    <script src='https://www.google.com/recaptcha/api.js?render=6Le04NQaAAAAAFdIcpnNUcmINu-ZcOGNOBxFjrc0'> </script>
+    <script src='https://www.google.com/recaptcha/api.js?render=6Lce_4EaAAAAAADlrj62E7V1gUXTY6wzrvniDtoL'> </script>
 		<script>
 			grecaptcha.ready(function() {
-			grecaptcha.execute('6Le04NQaAAAAAFdIcpnNUcmINu-ZcOGNOBxFjrc0', {action: 'formulario'})
+			grecaptcha.execute('6Lce_4EaAAAAAADlrj62E7V1gUXTY6wzrvniDtoL', {action: 'formulario'})
 			.then(function(token) {
 			var recaptchaResponse = document.getElementById('recaptchaResponse');
 			recaptchaResponse.value = token;
