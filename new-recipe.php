@@ -37,6 +37,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/11e0b18f8c.js" crossorigin="anonymous"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./scripts/new-recipe.js"></script>
     <title>Nueva receta</title>
 </head>
 <body>

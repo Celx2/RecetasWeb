@@ -429,8 +429,20 @@ user:hover{
     width: 220px;
 }
 
-.new-recipe-btns input:hover{
+.new-recipe-btns input:hover, .new-recipe-btns button:hover{
     cursor: pointer;
+}
+
+.new-recipe-btns button{    
+    background-color:#419f00;
+    color:aliceblue;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    font-size: 1.5em;
+    border-radius: .75rem;
+    margin: 0 10px 0 10px;
+    padding: 10px;
+    width: 220px;
 }
 
 

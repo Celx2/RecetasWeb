@@ -50,16 +50,18 @@
 
 
     <div class="recipes-box">
-    
-        <div class="recipe-card">
-        <div class="recipe-card-body">
-        <?php 
+
+	<?php 
             if (isset($_POST["recipe"]) && $_POST["recipe"]!=""){
                 $recipe = clear($_POST["recipe"]);
                 search($recipe,connectDB());
             }
             else{
         ?>
+    
+        <div class="recipe-card">
+        <div class="recipe-card-body">
+
             <div class="recipe-picture">
                 <img class="recipeUwU" src="./pictures/brownie.jpg"/>
             </div>
