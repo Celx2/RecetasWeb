@@ -256,16 +256,41 @@ function search($recipe, $DB_LINK){ //busca recetas que contengan el nombre busc
     }
     else{
         while ($row = mysqli_fetch_array($res)) {
-            echo "<tr>";
-            echo "<th scope=row>$row[ID]</th><br/>";
-            echo "<td>$row[Usuario]</td><br/>";
-            echo "<td>$row[Nombre]</td><br/>";
-            echo "<td>$row[Categoría]</td><br/>";
-            echo "<td>$row[Me_gusta]</td><br/>";
-            echo "<td>$row[Imagen]</td><br/>";
-            echo "<td>$row[Ingredientes]</td><br/>";
-            echo "<td>$row[Preparación]</td><br/>";
-            echo "</tr><br/>";
+            ?>
+    
+            <div class="recipe-card">
+            <div class="recipe-card-body">
+        
+                <div class="recipe-picture">
+                    <img class="recipeUwU" src="./pictures/brownie.jpg"/>
+                </div>
+    
+                <div class="recipe-title">
+                    <h3> <?php echo $row["Nombre"] ?> </h3>
+                </div>
+    
+                <div class="recipe-type">
+                    <h4> <?php echo $row["Categoría"] ?> </h4>
+                </div>
+    
+                <div class="recipe-likes">
+                    <div class="off like-counter">
+                        <?php echo $row["Me_gusta"] ?>
+                    </div>
+    
+                    <div class="like-btn">
+                        <i id="heart-btn" class="far fa-heart"></i>
+                    </div>
+                </div>
+    
+                <div class="recipe-author">
+                    Por: <a> <?php echo $row["Usuario"] ?> </a>
+                </div>
+    
+            </div>
+            </div>
+    
+            <?php
         }
     }
 }

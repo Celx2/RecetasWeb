@@ -71,14 +71,14 @@
         </div>
 
         <div class="nav-search">
-            <input id="search-input" type="text" placeholder="Buscar receta"/>
+            <input disabled id="search-input" type="text" placeholder="Buscar receta"/>
         </div>
 
     </nav>
 
     <div class="new-recipe-box">
 
-        <form action="" method="">
+        <form name="form1" action="" method="">
 
         <div class="new-recipe-name">
             <label for="name">Nombre: </label>
@@ -111,7 +111,7 @@
         </div>
 
         <div class="new-recipe-btns">
-            <input id="new-recipe-submit" type="submit" name="uploadBtn" class="btn" value="Volver">
+            <a href="main-menu.php"><button type="button" id="new-recipe-return" class="btn">Volver</button></a>
             <input id="new-recipe-submit" type="submit" name="uploadBtn" class="btn" value="Guardar">
         </div>
 
