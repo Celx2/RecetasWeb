@@ -4,6 +4,14 @@
         header("Location: index.php?error=2");
         exit;
     }
+    $recipe_name=clear($_POST["recipe-name"]);
+    $recipe_type=clear($_POST["recipe-type"]);
+    $recipe_ingredients=clear($_POST["recipe-ingredients"]);
+    $recipe_preparation=clear($_POST["recipe-preparation"]);
+    $query="INSERT INTO recetas (Usuario, Nombre_completo, Correo, Contraseña) VALUES ('$username', '$name', '$email','$password')";
+    $res = mysqli_query($DB_LINK, $query);
+
+
 ?>
 
 <!DOCTYPE html>
