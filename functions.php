@@ -3,10 +3,10 @@ session_start();
 define("DB_HOST","localhost");
 define("DB_USER","admin"); 
 define("DB_PASS","admin");
-define("DB_DB","proyectofinal");
+define("DB_NAME","proyectofinal");
 
 function connectDB(){
-    $DB_LINK = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_DB);
+    $DB_LINK = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
     return $DB_LINK;
 }
 
