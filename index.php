@@ -6,7 +6,7 @@ include_once ("functions.php");
         if (!empty($_POST["soyUnCeboBroder"])) exit;
         //obtenemos los datos del captcha automatico
         $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify'; 
-        $recaptcha_secret = '6Le04NQaAAAAAN0NHzKabQlW-h6IVWpOAxjBeOQe'; 
+        $recaptcha_secret = '6Lce_4EaAAAAALHYHP81uNqrfXRFIOkx_MaWsfGA'; 
         $recaptcha_response = $_POST['recaptcha_response']; 
         $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response); 
         $recaptcha = json_decode($recaptcha); 
