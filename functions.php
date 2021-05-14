@@ -16,23 +16,6 @@ function clear ($value){
 
 }
 
-function register($DB_LINK, $email, $password, $nombre, $apellidos, $telefono){
-    $name = clear($_POST["name"]); 
-    $user = clear($_POST["username"]); 
-    $email = clear($_POST["email"]);
-    $password = generateHash(clear($_POST["password"]));
-    if(!$DB_LINK = connectDB()) return false;
-    $query = "INSERT INTO usuarios (Usuario, Nombre completo, Correo, Contraseña) VALUES ('$user','$name', '$email', '$password')";
-    $res = mysqli_query($DB_LINK, $query);
-    if ($res) {
-        return true;
-    }
-    else{
-        return false;
-    }
-    
-}
-
 function login ($username, $password, $DB_LINK){ //verificacion de user y password en login
     $username = clear($username);
     $password = clear($password);
@@ -99,6 +82,40 @@ function generateToken(){
     return md5(uniqid(rand(), true));
 }
 
+//Extraer extensión
+function extraerExtension($imagensubida, $lista_blanca_extension=array("image/x.png", "image/gif", "image/jpeg", "image/jpg")){
+    $extension=$imagensubida;
+    $extraccion=".notValid";
+    if(in_array($extension, $lista_blanca_extension)){
+        switch($extension){
+            case "image/x.png":
+                $extraccion=".png";
+            break;
+            case "image/gif":
+                $extraccion=".gif";
+            break;
+            case "image/jpeg":
+                $extraccion= ".jpeg";
+            break;
+            case "image/jpg":
+                $extraccion=".jpg";
+            break;
+        }
+    }
+    return $extraccion;
+}
+
+function moverImagen($imagen, $nombreImagen){
+    $ruta="imagenes/$nombreImagen";
+    rename($imagen, "$ruta");
+}
+
+//Comprobación de extensión de la imagen de perfil
+function checkExtension($extension, $lista_blanca_extension = array(".png", ".gif", ".jpeg", ".jpg")){
+    if(!in_array($extension, $lista_blanca_extension)){
+        header("Location: insert.php?error=8");
+    }
+}
 function ResetPassword(){
     if (!$DB_LINK = connectDB()){
         return false;

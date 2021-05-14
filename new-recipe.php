@@ -8,7 +8,15 @@
     $recipe_type=clear($_POST["recipe-type"]);
     $recipe_ingredients=clear($_POST["recipe-ingredients"]);
     $recipe_preparation=clear($_POST["recipe-preparation"]);
-    $query="INSERT INTO recetas (Usuario, Nombre_completo, Correo, Contraseña) VALUES ('$username', '$name', '$email','$password')";
+    //Introducir una imagen
+		if($_FILES["picture"]["name"]!=""){
+			$extension=extraerExtension($_FILES["picture"]["type"]);
+			$nombreImagen=md5(time()).$extension;
+			moverImagen($_FILES["picture"]["tmp_name"],$nombreImagen);
+			$picture=$nombreImagen;
+			checkExtension($extension);
+		}
+    $query="INSERT INTO recetas (Usuario, Nombre, Categoría, Me_gusta, Imagen, Ingredientes, Preparación) VALUES (0, '$recipe_name', '$recipe_type', 0, 0, 0, 0)";
     $res = mysqli_query($DB_LINK, $query);
 
 
