@@ -1,9 +1,16 @@
 <?php
 session_start();
 define("DB_HOST","localhost");
+//define("DB_HOST","localhost");
+
 define("DB_USER","admin"); 
+//define("DB_USER","id16810550_admin");
+
 define("DB_PASS","admin");
+//define("DB_PASS","8P&H9bru&zePv");
+
 define("DB_NAME","proyectofinal");
+//define("DB_NAME","id16810550_proyectofinal");
 
 function connectDB(){
     $DB_LINK = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);

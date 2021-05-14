@@ -6,7 +6,7 @@ include_once ("functions.php");
         if (!empty($_POST["soyUnCeboBroder"])) exit;
         //obtenemos los datos del captcha automatico
         $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify'; 
-        $recaptcha_secret = '6Lce_4EaAAAAALHYHP81uNqrfXRFIOkx_MaWsfGA'; 
+        $recaptcha_secret = '6Le04NQaAAAAAN0NHzKabQlW-h6IVWpOAxjBeOQe'; 
         $recaptcha_response = $_POST['recaptcha_response']; 
         $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response); 
         $recaptcha = json_decode($recaptcha); 
@@ -22,8 +22,6 @@ include_once ("functions.php");
             header("Location:index.php?invalidCaptcha=yes");
         }
     }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -36,10 +34,10 @@ include_once ("functions.php");
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap" rel="stylesheet">    
     <title>Login</title>
-    <script src='https://www.google.com/recaptcha/api.js?render=6Lce_4EaAAAAAADlrj62E7V1gUXTY6wzrvniDtoL'> </script>
+    <script src='https://www.google.com/recaptcha/api.js?render=6Le04NQaAAAAAFdIcpnNUcmINu-ZcOGNOBxFjrc0'> </script>
 		<script>
 			grecaptcha.ready(function() {
-			grecaptcha.execute('6Lce_4EaAAAAAADlrj62E7V1gUXTY6wzrvniDtoL', {action: 'formulario'})
+			grecaptcha.execute('6Le04NQaAAAAAFdIcpnNUcmINu-ZcOGNOBxFjrc0', {action: 'formulario'})
 			.then(function(token) {
 			var recaptchaResponse = document.getElementById('recaptchaResponse');
 			recaptchaResponse.value = token;

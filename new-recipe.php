@@ -4,10 +4,14 @@
         header("Location: index.php?error=2");
         exit;
     }
+    if(isset($_POST["recipe-name"]) && isset($_POST["recipe-name"]) && isset($_POST["recipe-name"]) && isset($_POST["recipe-name"])){
+
+    
     $recipe_name=clear($_POST["recipe-name"]);
     $recipe_type=clear($_POST["recipe-type"]);
     $recipe_ingredients=clear($_POST["recipe-ingredients"]);
     $recipe_preparation=clear($_POST["recipe-preparation"]);
+}
     //Introducir una imagen
 		if($_FILES["picture"]["name"]!=""){
 			$extension=extraerExtension($_FILES["picture"]["type"]);
