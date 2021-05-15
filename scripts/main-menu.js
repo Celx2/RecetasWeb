@@ -33,4 +33,12 @@ $(document).ready(function(){
         }
     });
 
+    $("nav").hover(function(){
+        $(".sub-nav").fadeToggle("slow");        
+        $(".sub-nav").css("display", "flex");
+    },
+                   function(){
+        $(".sub-nav").css("display", "none");
+    });
+
 });

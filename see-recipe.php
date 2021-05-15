@@ -36,14 +36,22 @@
         </div>
 
         <div class="nav-recipe">
-            <a href="new-recipe.php">¡NUEVA RECETA!</a>
+            <h1>HappyApple!</h1>
         </div>
         
         <form action="main-menu.php" method="POST">
             <div class="nav-search">
-                <input id="search-input" type="text" name="recipe" placeholder="Buscar receta" disabled/>
+                <input id="search-input" type="text" name="recipe" placeholder="Buscar receta"/>
             </div>
         </form>
+
+        <div class="sub-nav">
+            <b>Recetas más amadas</b>
+        
+            <b><a href="./new-recipe.php">Nueva receta</a></b>
+        
+            <b>Recetas más recientes</b>
+        </div>
 
     </nav>
 
