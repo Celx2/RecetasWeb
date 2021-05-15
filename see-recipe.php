@@ -57,6 +57,14 @@
 
     <div class="recipe-box">
 
+        <div class="return-btn">
+            <a href="main-menu.php"><button type="button" id="new-recipe-return" class="btn">Volver</button></a>            
+        </div>
+
+        <div class="recipe-box-line">
+            <hr>
+        </div>
+
         <div id="title">
             <h1>Brownie saludable</h1>
         </div>
