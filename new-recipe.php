@@ -1,4 +1,5 @@
 <?php
+    
     include_once ("functions.php");
     if (!isLoggedIn()){
         header("Location: index.php?error=2");
@@ -9,29 +10,36 @@
         $recipe_type=clear($_POST["recipe-type"]);
         $recipe_ingredients=clear($_POST["recipe-ingredients"]);
         $recipe_preparation=clear($_POST["recipe-preparation"]);
-        $id=$_SESSION["id"];
+        $username=$_SESSION["username"];
     
-        $query = "INSERT INTO recetas (Usuario, Nombre, Categoría, Me_gusta, Imagen, Ingredientes, Preparación) VALUES (0, '$recipe_name', '$recipe_type', 0, 0, 0, 0)";
-        $res = mysqli_query($DB_LINK, $query);
+        $query = "INSERT INTO recetas (Usuario, Nombre, Categoría, Me_gusta, Imagen, Ingredientes, Preparación) VALUES ('$username', '$recipe_name', '$recipe_type', 0, 0, 0, 0)";
+        $res = mysqli_query(connectDB(), $query);
     
-        $query2 = "SELECT ID FROM usuarios WHERE Usuario = '$id' AND Nombre = '$recipe_name'";
-        $recipe_id = mysqli_query($DB_LINK, $query2);
+        $query2 = "SELECT * FROM recetas WHERE Usuario = '$username' AND Nombre = '$recipe_name'";
+        $res2 = mysqli_query(connectDB(), $query2);
+        $row = mysqli_fetch_array($res2);
+        
+        
             //Introducir una imagen
 		if($_FILES["picture"]["name"]!=""){
 			$extension=extraerExtension($_FILES["picture"]["type"]);
             checkExtension($extension);
-			$nombreImagen=md5($recipe_id).$extension;
-			 $ruta = moverImagen($_FILES["picture"]["tmp_name"],$nombreImagen);
+			$nombreImagen=md5($row["ID"]).$extension;
+	    	$ruta = moverImagen($_FILES["picture"]["tmp_name"],$nombreImagen);
 			$picture=$nombreImagen;
 		}
         //Guardar datos en los archivos
-        $fichero = "recourses/'$recipe_id'_ingredients.txt";
+        $ext = "$row[ID]_ingredients";
+        $ext2 = "$row[ID]_preparation";
+        $fichero = "resources/$ext.txt";
         file_put_contents($fichero, $recipe_ingredients, FILE_APPEND | LOCK_EX);
-        $fichero2 = "recourses/'$recipe_id'_preparation.txt";
-        file_put_contents($fichero, $recipe_ingredients, FILE_APPEND | LOCK_EX);
+        $fichero2 = "resources/$ext2.txt";
+        file_put_contents($fichero2, $recipe_preparation, FILE_APPEND | LOCK_EX);
         //Encriptar rutas archivos
-        $query3 = "UPDATE recetas SET Imagen = '$ruta', Ingredientes = '$fichero', Preparación = '$fichero2' WHERE ID = '$recipe_id'";
-        $res2 = mysqli_query($DB_LINK, $query3);
+        $query3 = "UPDATE recetas SET Imagen = '$ruta', Ingredientes = '$fichero', Preparación = '$fichero2' WHERE ID = '$row[ID]'";
+        $res3 = mysqli_query(connectDB(), $query3);
+       
+        header("Location: new-recipe.php?saved=yes");
 }
 
 
@@ -84,7 +92,7 @@
 
     <div class="new-recipe-box">
 
-        <form name="form1" action="" method="">
+        <form name="form1" action="new-recipe.php" method="POST" enctype="multipart/form-data">
 
         <div class="new-recipe-name">
             <label for="name">Nombre: </label>
@@ -94,10 +102,10 @@
         <div class="new-recipe-type">
             <label for="type">Tipo de receta: </label>
             <select name="recipe-type">
-                <option>Uno</option>
-                <option>Dos</option>
-                <option>Tres</option>
-                <option>Cuatro</option>
+                <option>Fitness</option>
+                <option>Snack</option>
+                <option>Postres</option>
+                <option>Italiana</option>
             </select>
         </div>
 

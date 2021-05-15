@@ -33,7 +33,7 @@ include_once ("functions.php");
     <link rel="stylesheet" type="text/css" media="(min-width: 576px)"  href="./css/ordenadores.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap" rel="stylesheet">    
-    <title>Login</title>
+    <title>HappyApple</title>
     <script src='https://www.google.com/recaptcha/api.js?render=6Lce_4EaAAAAAADlrj62E7V1gUXTY6wzrvniDtoL'> </script>
 		<script>
 			grecaptcha.ready(function() {
@@ -52,7 +52,7 @@ include_once ("functions.php");
     <div class="login-box">       
         
         <div class="title-box">
-            <h1 class="title">El Título</h1>
+            <h1 class="title">HappyApple</h1>
         </div>
 
         <div class="error-box">

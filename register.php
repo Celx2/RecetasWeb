@@ -37,7 +37,7 @@ if (isset($_POST["name"]) && isset ($_POST["email"]) && isset($_POST["username"]
     <link rel="stylesheet" type="text/css" media="(min-width: 576px)"  href="./css/ordenadores.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap" rel="stylesheet">    
-    <title>Login</title>
+    <title>HappyApple</title>
 </head>
 <body>
 
@@ -46,7 +46,7 @@ if (isset($_POST["name"]) && isset ($_POST["email"]) && isset($_POST["username"]
     <div class="register-box">       
         
         <div class="title-box">
-            <h1 class="title">El Título</h1>
+            <h1 class="title">Crear un nuevo usuario</h1>
         </div>
 
 
