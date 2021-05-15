@@ -113,8 +113,9 @@ function extraerExtension($imagensubida, $lista_blanca_extension=array("image/x.
 }
 
 function moverImagen($imagen, $nombreImagen){
-    $ruta="imagenes/$nombreImagen";
+    $ruta="pictures/$nombreImagen";
     rename($imagen, "$ruta");
+    return $ruta;
 }
 
 //Comprobación de extensión de la imagen de perfil

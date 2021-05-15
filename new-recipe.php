@@ -19,13 +19,19 @@
             //Introducir una imagen
 		if($_FILES["picture"]["name"]!=""){
 			$extension=extraerExtension($_FILES["picture"]["type"]);
+            checkExtension($extension);
 			$nombreImagen=md5($recipe_id).$extension;
-			moverImagen($_FILES["picture"]["tmp_name"],$nombreImagen);
+			 $ruta = moverImagen($_FILES["picture"]["tmp_name"],$nombreImagen);
 			$picture=$nombreImagen;
-			checkExtension($extension);
-            //Guardar datos en los archivos
 		}
-    
+        //Guardar datos en los archivos
+        $fichero = "recourses/'$recipe_id'_ingredients.txt";
+        file_put_contents($fichero, $recipe_ingredients, FILE_APPEND | LOCK_EX);
+        $fichero2 = "recourses/'$recipe_id'_preparation.txt";
+        file_put_contents($fichero, $recipe_ingredients, FILE_APPEND | LOCK_EX);
+        //Encriptar rutas archivos
+        $query3 = "UPDATE recetas SET Imagen = '$ruta', Ingredientes = '$fichero', Preparación = '$fichero2' WHERE ID = '$recipe_id'";
+        $res2 = mysqli_query($DB_LINK, $query3);
 }
 
 
