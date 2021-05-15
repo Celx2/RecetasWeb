@@ -278,7 +278,7 @@ function search($recipe, $DB_LINK){ //busca recetas que contengan el nombre busc
                         <?php echo $row["Me_gusta"] ?>
                     </div>
     
-                    <div class="like-btn">
+                    <div id="<?php echo $row["ID"] ?>" class="like-btn">
                         <i id="heart-btn" class="far fa-heart"></i>
                     </div>
                 </div>

@@ -74,13 +74,13 @@
                 <h4>Postre</h4>
             </div>
 
-            <div class="recipe-likes">
+            <div id="likes-main-menu" class="recipe-likes">
 
                 <div class="off like-counter">
                     16
                 </div>
 
-                <div class="like-btn">
+                <div id="1" class="like-btn">
                     <i id="heart-btn" class="far fa-heart"></i>
                 </div>
 
