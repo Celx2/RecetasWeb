@@ -80,11 +80,6 @@ body {
     margin-bottom: 10px;
 }
 
-.remember-box a{
-    color:black;
-    margin-bottom: 10px;
-}
-
 .soyUnCeboBroder{
     display: none;
 }
@@ -134,10 +129,6 @@ body {
     border-radius: .75rem;
     opacity: 90%;
     box-shadow: 0px 0px 3px #3a3a3a;
-}
-
-.register-sug a{
-    color: black;
 }
 
 input{
