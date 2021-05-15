@@ -298,13 +298,14 @@ function search($recipe, $DB_LINK){ //busca recetas que contengan el nombre busc
 function mainMenu($DB_LINK){ //busca recetas que contengan el nombre buscado en main-menu.php
     $query = "SELECT * FROM recetas ORDER BY ID DESC LIMIT 10";
     $res = mysqli_query($DB_LINK, $query);
+    
     while ($row = mysqli_fetch_array($res)) {
         ?>
         <div class="recipe-card">
         <div class="recipe-card-body">
     
             <div class="recipe-picture">
-                <img class="recipeUwU" src="./pictures/brownie.jpg"/>
+                <img class="recipeUwU" src="<?php if ($row['Imagen']=="Futura ruta") echo "pictures/brownie.jpg"; else echo $row['Imagen'];?>"/>
             </div>
 
             <div class="recipe-title">
