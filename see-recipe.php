@@ -4,7 +4,8 @@
         header("Location: index.php?error=2");
         exit;
     }
-    $query = "SELECT * from recetas WHERE ID=$_GET[ID]";
+    $id = $_GET["ID"];
+    $query = "SELECT * from recetas WHERE ID='$id'";
     $res = mysqli_query(connectDB(),$query);
     $row = mysqli_fetch_array($res)
 ?>
@@ -52,7 +53,7 @@
         <div class="sub-nav">
             <b>Recetas más amadas</b>
         
-            <b><a href="./new-recipe.php">Nueva receta</a></b>
+            <b><a href="/new-recipe.php">Nueva receta</a></b>
         
             <b>Recetas más recientes</b>
         </div>
@@ -74,7 +75,7 @@
         </div>
 
         <div id="picture">
-            <img src=<<?php echo $row["Imagen"] ?>/>
+            <img src="<?php echo $row['Imagen'] ?>"/>
         </div>
 
         <div id="type">
