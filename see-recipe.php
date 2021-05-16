@@ -71,7 +71,7 @@
         </div>
 
         <div id="title">
-            <h1><?php echo $row["Nombre"] ?></h1>
+            Receta<h1><?php echo $row["Nombre"] ?></h1>
         </div>
 
         <div id="picture">
@@ -79,11 +79,11 @@
         </div>
 
         <div id="type">
-            <h2><?php echo $row["Categoría"] ?></h2>
+            Categoría<h2><?php echo $row["Categoría"] ?></h2>
         </div>
 
         <div id="author">
-            Receta de: <a><?php echo $row["Usuario"] ?></a>
+            Autor<br/><a><?php echo $row["Usuario"] ?></a>
         </div>
 
         <div id="likes-see-recipe" class="recipe-likes">
@@ -99,6 +99,7 @@
         </div>
 
         <div id="ingredients">
+        Ingredientes
             <h3>
             <?php
             $file = fopen($row["Ingredientes"], "r");
@@ -115,6 +116,7 @@
         </div>
 
         <div id="preparation">
+        Preparación
         <h4>
         <?php
             $file = fopen($row["Preparación"], "r");
