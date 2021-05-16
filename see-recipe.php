@@ -4,6 +4,9 @@
         header("Location: index.php?error=2");
         exit;
     }
+    $query = "SELECT * from recetas WHERE ID=$_GET[ID]";
+    $res = mysqli_query(connectDB(),$query);
+    $row = mysqli_fetch_array($res)
 ?>
 
 <!DOCTYPE html>
@@ -67,19 +70,19 @@
         </div>
 
         <div id="title">
-            <h1>Brownie saludable</h1>
+            <h1><?php echo $row["Nombre"] ?></h1>
         </div>
 
         <div id="picture">
-            <img src="./pictures/brownie.jpg"/>
+            <img src=<<?php echo $row["Imagen"] ?>/>
         </div>
 
         <div id="type">
-            <h2>Postre</h2>
+            <h2><?php echo $row["Categoría"] ?></h2>
         </div>
 
         <div id="author">
-            Receta de: <a>francis_moreno777</a>
+            Receta de: <a><?php echo $row["Usuario"] ?></a>
         </div>
 
         <div id="likes-see-recipe" class="recipe-likes">
@@ -96,27 +99,33 @@
 
         <div id="ingredients">
             <h3>
-            Plátano maduro: 180g<br/>
-            Huevos L: 2<br/>
-            Esencia de vainilla: 5ml<br/>
-            Cacao puro: 50g<br/>
-            Chocolate negro picado: 80g<br/>
-            Bicarbonato sódico: 6g<br/>
-            Leche o bebida vegetal: 10ml<br/>
-            Sal: 1g
+            <?php
+            $file = fopen($row["Ingredientes"], "r");
+
+            while(!feof($file)) {
+
+            echo fgets($file). "<br />";
+
+            }
+
+            fclose($file);
+            ?>
             </h3>
         </div>
 
         <div id="preparation">
         <h4>
-        Precalentar el horno a 175ºC y cubrir con papel sulfurizado -de hornear- un molde cuadrado de unos 20 cm de lado. Si es más pequeño, las piezas de brownie saldrán más gruesas y algo más difíciles de cortar, pero también más jugosas.
-        <br/><br/>
-        Pelar los plátanos y cortarlos en trozos. Colocar en un cuenco con los huevos y batir con un tenedor, machacándolos bien, o usar una batidora. También se puede emplear un procesador de alimentos o batidora de vaso. Incorporar el resto de ingredientes, salvo el chocolate, y batir un poco más hasta que no queden grumos secos.
-        <br/><br/>
-        Añadir el chocolate negro picado o troceado y remover con suavidad. Llenar el molde y hornear durante unos 20 minutos. Al pinchar el centro con un palillo debe salir ligeramente manchado, pero no mojado. Dejar enfriar fuera del horno unos 10 minutos antes de desmoldar y trasladar con el propio papel a una rejilla.
-        <br/><br/>
-        Esperar a que se enfríe por completo antes de cortar en piezas. Se cortará mejor si lo dejamos una o dos horas en la nevera, para que se asiente la miga. Guardar en un recipiente hermético en la nevera, sobre todo si hace mucho calor.
-        </div>
+        <?php
+            $file = fopen($row["Preparación"], "r");
+
+            while(!feof($file)) {
+
+            echo fgets($file). "<br />";
+
+            }
+
+            fclose($file);
+            ?>
         </h4>
 
     </div>
