@@ -33,11 +33,12 @@ if (isset($_POST["name"]) && isset ($_POST["email"]) && isset($_POST["username"]
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" media="(max-width: 576px)"  href="./css/celulares.css">
-    <link rel="stylesheet" type="text/css" media="(min-width: 576px)"  href="./css/ordenadores.css">
+    <link rel="stylesheet" type="text/css" media="(max-width: 576px) and (max-width: 992px)"  href="./css/celulares.css">
+    <link rel="stylesheet" type="text/css" media="(min-width: 576px) and (max-width: 992px)"  href="./css/tablets.css">
+    <link rel="stylesheet" type="text/css" media="(min-width: 992px)"  href="./css/ordenadores.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap" rel="stylesheet">    
-    <title>Login</title>
+    <title>HappyApple!</title>
 </head>
 <body>
 
@@ -46,7 +47,7 @@ if (isset($_POST["name"]) && isset ($_POST["email"]) && isset($_POST["username"]
     <div class="register-box">       
         
         <div class="title-box">
-            <h1 class="title">El Título</h1>
+            <h1 class="title">HappyApple!</h1>
         </div>
 
 

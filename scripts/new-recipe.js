@@ -24,9 +24,12 @@ $(document).ready(function(){
           
     }, 400);
 
-
-
-
-
+    $("nav").hover(function(){
+        $(".sub-nav").fadeToggle("slow");        
+        $(".sub-nav").css("display", "flex");
+    },
+                   function(){
+        $(".sub-nav").css("display", "none");
+    });
 
 });

@@ -12,8 +12,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" media="(max-width: 576px)"  href="./css/celulares.css">
-    <link rel="stylesheet" type="text/css" media="(min-width: 576px)"  href="./css/ordenadores.css">
+    <link rel="stylesheet" type="text/css" media="(max-width: 576px) and (max-width: 992px)"  href="./css/celulares.css">
+    <link rel="stylesheet" type="text/css" media="(min-width: 576px) and (max-width: 992px)"  href="./css/tablets.css">
+    <link rel="stylesheet" type="text/css" media="(min-width: 992px)"  href="./css/ordenadores.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/11e0b18f8c.js" crossorigin="anonymous"></script>
@@ -31,20 +32,28 @@
 
     <nav>
 
-        <div class="nav-user">
+    <div class="nav-user">
         <!-- arreglar nombre usuario logeado -->
             <user><?php echo $_SESSION["username"]; ?></user> | <a class="logout" href="index.php?logout=yes">Cerrar sesión</a>
         </div>
 
         <div class="nav-recipe">
-            <a href="new-recipe.php">¡NUEVA RECETA!</a>
+            <h1>HappyApple!</h1>
         </div>
         
-        <form action="main-menu.php" method="POST">
+        <form action="main-menu.php" method="GET">
             <div class="nav-search">
                 <input id="search-input" type="text" name="recipe" placeholder="Buscar receta"/>
             </div>
         </form>
+
+        <div class="sub-nav">
+            <b>Recetas más amadas</b>
+        
+            <b><a href="./new-recipe.php">Nueva receta</a></b>
+        
+            <b>Recetas más recientes</b>
+    </div>
 
     </nav>
 
@@ -52,177 +61,15 @@
     <div class="recipes-box">
 
 	<?php 
-            if (isset($_POST["recipe"]) && $_POST["recipe"]!=""){
-                $recipe = clear($_POST["recipe"]);
+            if (isset($_GET["recipe"]) && $_GET["recipe"]!=""){
+                $recipe = clear($_GET["recipe"]);
                 search($recipe,connectDB());
             }
             else{
-        ?>
-    
-        <div class="recipe-card">
-        <div class="recipe-card-body">
+                mainMenu(connectDB());
+            } 
+    ?>
 
-            <div class="recipe-picture">
-                <img class="recipeUwU" src="./pictures/brownie.jpg"/>
-            </div>
-
-            <div class="recipe-title">
-                <h3>Brownie saludable</h3>
-            </div>
-
-            <div class="recipe-type">
-                <h4>Postre</h4>
-            </div>
-
-            <div class="recipe-likes">
-
-                <div class="off like-counter">
-                    16
-                </div>
-
-                <div class="like-btn">
-                    <i id="heart-btn" class="far fa-heart"></i>
-                </div>
-
-            </div>
-
-            <div class="recipe-author">
-                Por: <a>francis_moreno777</a>
-            </div>
-
-        </div>
-        </div>
-        
-
-        <div class="recipe-card">
-        <div class="recipe-card-body">
-
-            <div class="recipe-picture">
-                <img class="recipeUwU" src="./pictures/brownie.jpg"/>
-            </div>
-
-            <div class="recipe-title">
-                <h3>Brownie saludable</h3>
-            </div>
-
-            <div class="recipe-type">
-                <h4>Postre</h4>
-            </div>
-
-            <div class="recipe-likes">
-                <div class="off like-counter">
-                    2
-                </div>
-
-                <div class="like-btn">
-                    <i id="heart-btn" class="far fa-heart"></i>
-                </div>
-            </div>
-
-            <div class="recipe-author">
-                Por: <a>francis_moreno777</a>
-            </div>
-
-        </div>
-        </div>
-
-
-        <div class="recipe-card">
-        <div class="recipe-card-body">
-    
-            <div class="recipe-picture">
-                <img class="recipeUwU" src="./pictures/brownie.jpg"/>
-            </div>
-
-            <div class="recipe-title">
-                <h3>Brownie saludable</h3>
-            </div>
-
-            <div class="recipe-type">
-                <h4>Postre</h4>
-            </div>
-
-            <div class="recipe-likes">
-                <div class="off like-counter">
-                    11
-                </div>
-
-                <div class="like-btn">
-                    <i id="heart-btn" class="far fa-heart"></i>
-                </div>
-            </div>
-
-            <div class="recipe-author">
-                Por: <a>francis_moreno777</a>
-            </div>
-
-        </div>
-        </div>
-
-        <div class="recipe-card">
-        <div class="recipe-card-body">
-    
-            <div class="recipe-picture">
-                <img class="recipeUwU" src="./pictures/brownie.jpg"/>
-            </div>
-
-            <div class="recipe-title">
-                <h3>Brownie saludable</h3>
-            </div>
-
-            <div class="recipe-type">
-                <h4>Postre</h4>
-            </div>
-
-            <div class="recipe-likes">
-                <div class="off like-counter">
-                    26
-                </div>
-
-                <div class="like-btn">
-                    <i id="heart-btn" class="far fa-heart"></i>
-                </div>
-            </div>
-
-            <div class="recipe-author">
-                Por: <a>francis_moreno777</a>
-            </div>
-
-        </div>
-        </div>
-
-        <div class="recipe-card">
-            <div class="recipe-card-body">
-        
-                <div class="recipe-picture">
-                    <img class="recipeUwU" src="./pictures/brownie.jpg"/>
-                </div>
-    
-                <div class="recipe-title">
-                    <h3>Brownie saludable</h3>
-                </div>
-    
-                <div class="recipe-type">
-                    <h4>Postre</h4>
-                </div>
-    
-                <div class="recipe-likes">
-                    <div class="off like-counter">
-                        16
-                    </div>
-    
-                    <div class="like-btn">
-                        <i id="heart-btn" class="far fa-heart"></i>
-                    </div>
-                </div>
-    
-                <div class="recipe-author">
-                    Por: <a>francis_moreno777</a>
-                </div>
-    
-            </div>
-            </div>
-                <?php }?>
     </div>
 </div>
 

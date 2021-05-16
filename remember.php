@@ -7,7 +7,7 @@ if ($DB_LINK=connectDB()){
     if (isset($_POST["email"])){
         $email=clear($_POST["email"]);
 
-        if(ResetPassword()){
+        if(resetPassword()){
             header("location: index.php?changed=yes");
         }
         else{

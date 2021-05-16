@@ -1,7 +1,6 @@
 <?php
 session_start();
 define("DB_HOST","localhost");
-//define("DB_HOST","localhost");
 
 define("DB_USER","admin"); 
 //define("DB_USER","id16810550_admin");
@@ -113,8 +112,9 @@ function extraerExtension($imagensubida, $lista_blanca_extension=array("image/x.
 }
 
 function moverImagen($imagen, $nombreImagen){
-    $ruta="imagenes/$nombreImagen";
-    rename($imagen, "$ruta");
+    $ruta="pictures/$nombreImagen";
+    rename($imagen, $ruta);
+    return $ruta;
 }
 
 //Comprobación de extensión de la imagen de perfil
@@ -123,7 +123,7 @@ function checkExtension($extension, $lista_blanca_extension = array(".png", ".gi
         header("Location: insert.php?error=8");
     }
 }
-function ResetPassword(){
+function resetPassword(){
     if (!$DB_LINK = connectDB()){
         return false;
     }
@@ -262,7 +262,7 @@ function search($recipe, $DB_LINK){ //busca recetas que contengan el nombre busc
             <div class="recipe-card-body">
         
                 <div class="recipe-picture">
-                    <img class="recipeUwU" src="./pictures/brownie.jpg"/>
+                    <img class="recipeUwU" src="<?php if ($row['Imagen']=="Futura ruta") echo "pictures/brownie.jpg"; else echo $row['Imagen'];?>"/>
                 </div>
     
                 <div class="recipe-title">
@@ -274,12 +274,18 @@ function search($recipe, $DB_LINK){ //busca recetas que contengan el nombre busc
                 </div>
     
                 <div class="recipe-likes">
-                    <div class="off like-counter">
+                <div class="off like-counter">
                         <?php echo $row["Me_gusta"] ?>
                     </div>
     
-                    <div class="like-btn">
+                    <div id="<?php echo $row["ID"] ?>" class="like-btn">
                         <i id="heart-btn" class="far fa-heart"></i>
+                    </div>
+                
+                    <div id="" class="see-btn">
+                        <a href="./see-recipe.php?ID=<?php echo $row["ID"] ?>">
+                            <i id="eye-btn" class="fas fa-eye"></i>
+                        </a>
                     </div>
                 </div>
     
@@ -292,6 +298,54 @@ function search($recipe, $DB_LINK){ //busca recetas que contengan el nombre busc
     
             <?php
         }
+    }
+}
+
+function mainMenu($DB_LINK){ //busca recetas que contengan el nombre buscado en main-menu.php
+    $query = "SELECT * FROM recetas ORDER BY ID DESC LIMIT 10";
+    $res = mysqli_query($DB_LINK, $query);
+    
+    while ($row = mysqli_fetch_array($res)) {
+        ?>
+        <div class="recipe-card">
+        <div class="recipe-card-body">
+    
+            <div class="recipe-picture">
+                <img class="recipeUwU" src="<?php if ($row['Imagen']=="Futura ruta") echo "pictures/brownie.jpg"; else echo $row['Imagen'];?>"/>
+            </div>
+
+            <div class="recipe-title">
+                <h3> <?php echo $row["Nombre"] ?> </h3>
+            </div>
+
+            <div class="recipe-type">
+                <h4> <?php echo $row["Categoría"] ?> </h4>
+            </div>
+
+            <div class="recipe-likes">
+                    <div class="off like-counter">
+                        <?php echo $row["Me_gusta"] ?>
+                    </div>
+    
+                    <div id="<?php echo $row["ID"] ?>" class="like-btn">
+                        <i id="heart-btn" class="far fa-heart"></i>
+                    </div>
+                
+                    <div id="" class="see-btn">
+                        <a href="./see-recipe.php?ID=<?php echo $row["ID"] ?>">
+                            <i id="eye-btn" class="fas fa-eye"></i>
+                        </a>
+                    </div>
+            </div>
+
+            <div class="recipe-author">
+                Por: <a> <?php echo $row["Usuario"] ?> </a>
+            </div>
+
+        </div>
+        </div>
+
+        <?php
     }
 }
 
