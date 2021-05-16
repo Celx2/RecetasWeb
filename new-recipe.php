@@ -8,8 +8,9 @@
     if(isset($_POST["recipe-name"]) && isset($_POST["recipe-name"]) && isset($_POST["recipe-name"]) && isset($_POST["recipe-name"])){    
         $recipe_name=clear($_POST["recipe-name"]);
         $recipe_type=clear($_POST["recipe-type"]);
-        $recipe_ingredients=clear($_POST["recipe-ingredients"]);
-        $recipe_preparation=clear($_POST["recipe-preparation"]);
+        $recipe_ingredients=htmlspecialchars($_POST["recipe-ingredients"]);
+        $recipe_preparation=htmlspecialchars($_POST["recipe-preparation"]);
+
         $username=$_SESSION["username"];
     
         $query = "INSERT INTO recetas (Usuario, Nombre, Categoría, Me_gusta, Imagen, Ingredientes, Preparación) VALUES ('$username', '$recipe_name', '$recipe_type', 0, 0, 0, 0)";
@@ -93,11 +94,11 @@
         </form>
 
         <div class="sub-nav">
-            <b>Recetas más amadas</b>
+            <b><a href="./main-menu.php?liked=true">Recetas más amadas</a></b>
         
             <b><a href="./new-recipe.php">Nueva receta</a></b>
         
-            <b>Recetas más recientes</b>
+            <b><a href="./main-menu.php">Recetas más recientes</a></b>
         </div>
 
     </nav>

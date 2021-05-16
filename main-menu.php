@@ -48,11 +48,11 @@
         </form>
 
         <div class="sub-nav">
-            <b>Recetas más amadas</b>
+            <b><a href="./main-menu.php?liked=true">Recetas más amadas</a></b>
         
             <b><a href="./new-recipe.php">Nueva receta</a></b>
         
-            <b>Recetas más recientes</b>
+            <b><a href="./main-menu.php">Recetas más recientes</a></b>
     </div>
 
     </nav>
@@ -64,6 +64,9 @@
             if (isset($_GET["recipe"]) && $_GET["recipe"]!=""){
                 $recipe = clear($_GET["recipe"]);
                 search($recipe,connectDB());
+            }
+            elseif (isset($_GET["liked"]) && $_GET["liked"]==true){
+                liked(connectDB());
             }
             else{
                 mainMenu(connectDB());

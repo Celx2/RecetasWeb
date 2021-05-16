@@ -27,7 +27,7 @@
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
     crossorigin="anonymous"></script>
     <script type="text/javascript" src="./scripts/see-recipe.js"></script>
-    <title> - </title>
+    <title> <?php echo $row["Nombre"] ?> </title>
 </head>
 <body>
 
@@ -51,11 +51,11 @@
         </form>
 
         <div class="sub-nav">
-            <b>Recetas más amadas</b>
+            <b><a href="./main-menu.php?liked=true">Recetas más amadas</a></b>
         
             <b><a href="/new-recipe.php">Nueva receta</a></b>
         
-            <b>Recetas más recientes</b>
+            <b><a href="./main-menu.php">Recetas más recientes</a></b>
         </div>
 
     </nav>
