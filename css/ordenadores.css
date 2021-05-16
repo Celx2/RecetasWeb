@@ -509,12 +509,16 @@ user:hover{
     align-self: flex-start;
 }
 
+.return-btn button:hover{
+    cursor: pointer;
+}
+
 .return-btn button{
     background-color:#419f00;
     color:aliceblue;
     font-family: 'Nunito', sans-serif;
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1.9em;
     border-radius: .75rem;
     margin: 0 10px 0 10px;
     padding: 10px;
@@ -538,6 +542,9 @@ user:hover{
 .recipe-box #title{
     grid-column: 2/4;
     grid-row: 3/4;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     font-size: 1.35em;
     margin-left: 10px;
     justify-self: flex-start;
@@ -560,6 +567,9 @@ user:hover{
 .recipe-box #type{
     grid-column: 2/4;
     grid-row: 4/5;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     font-size: 1.3em;
     margin-left: 10px;
     justify-self: flex-start;
@@ -569,13 +579,17 @@ user:hover{
 .recipe-box #author{
     grid-column: 2/4;
     grid-row: 5/6;
-    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     font-size: 1.5em;
+    margin-left: 10px;
     justify-self: flex-start;
+    align-self: flex-start;
 }
 
-.recipe-box a{
-    font-weight: bold;
+#author label, #type label, #title label{
+    font-size: 30px;
 }
 
 .recipe-box a:hover{

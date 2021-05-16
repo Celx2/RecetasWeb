@@ -71,7 +71,8 @@
         </div>
 
         <div id="title">
-            Receta<h1><?php echo $row["Nombre"] ?></h1>
+        <label>Receta:</label>
+            <h1><?php echo $row["Nombre"] ?></h1>
         </div>
 
         <div id="picture">
@@ -79,11 +80,13 @@
         </div>
 
         <div id="type">
-            Categoría<h2><?php echo $row["Categoría"] ?></h2>
+        <label>Categoría:</label>
+        <h2><?php echo $row["Categoría"] ?></h2>
         </div>
 
         <div id="author">
-            Autor<br/><a><?php echo $row["Usuario"] ?></a>
+        <label>Autor:</label>
+        <h3><?php echo $row["Usuario"] ?></h3>
         </div>
 
         <div id="likes-see-recipe" class="recipe-likes">
