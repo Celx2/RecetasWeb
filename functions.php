@@ -123,7 +123,7 @@ function checkExtension($extension, $lista_blanca_extension = array(".png", ".gi
         header("Location: insert.php?error=8");
     }
 }
-function ResetPassword(){
+function resetPassword(){
     if (!$DB_LINK = connectDB()){
         return false;
     }
