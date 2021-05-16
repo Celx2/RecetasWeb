@@ -29,11 +29,12 @@ include_once ("functions.php");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" media="(max-width: 576px)"  href="./css/celulares.css">
-    <link rel="stylesheet" type="text/css" media="(min-width: 576px)"  href="./css/ordenadores.css">
+    <link rel="stylesheet" type="text/css" media="(max-width: 576px) and (max-width: 992px)"  href="./css/celulares.css">
+    <link rel="stylesheet" type="text/css" media="(min-width: 576px) and (max-width: 992px)"  href="./css/tablets.css">
+    <link rel="stylesheet" type="text/css" media="(min-width: 992px)"  href="./css/ordenadores.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap" rel="stylesheet">    
-    <title>HappyApple</title>
+    <title>HappyApple!</title>
     <script src='https://www.google.com/recaptcha/api.js?render=6Lce_4EaAAAAAADlrj62E7V1gUXTY6wzrvniDtoL'> </script>
 		<script>
 			grecaptcha.ready(function() {
