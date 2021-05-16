@@ -262,7 +262,7 @@ function search($recipe, $DB_LINK){ //busca recetas que contengan el nombre busc
             <div class="recipe-card-body">
         
                 <div class="recipe-picture">
-                    <img class="recipeUwU" src="./pictures/brownie.jpg"/>
+                    <img class="recipeUwU" src="<?php if ($row['Imagen']=="Futura ruta") echo "pictures/brownie.jpg"; else echo $row['Imagen'];?>"/>
                 </div>
     
                 <div class="recipe-title">
