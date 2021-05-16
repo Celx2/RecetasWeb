@@ -336,9 +336,24 @@ user:hover{
     border-radius: 50%;
 }
 
+.see-btn{
+    margin-left: 14px;
+    padding: 11px 13px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 1);
+    border-radius: 50%;
+}
+
+#eye-btn{
+    transition: .3s all;
+}
+
 .like-btn i{
     font-size: 1.5rem;
     transition: .3s all;
+}
+
+.see-btn a:visited, .see-btn a:link{
+    color:black
 }
 
 .like-btn:hover{
@@ -346,7 +361,12 @@ user:hover{
     cursor: pointer;
 }
 
-.fas{
+.see-btn a:hover{
+    color:#00af2c;
+    cursor: pointer;
+}
+
+.like-btn .fas{
     color:#f50057;
 }
 
