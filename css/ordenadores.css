@@ -330,12 +330,6 @@ user:hover{
     margin-right: 35px;
 }
 
-.like-btn{
-    padding: 8px 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 1);
-    border-radius: 50%;
-}
-
 .see-btn{
     margin-left: 14px;
     padding: 11px 13px;
@@ -346,19 +340,8 @@ user:hover{
 #eye-btn{
     transition: .3s all;
 }
-
-.like-btn i{
-    font-size: 1.5rem;
-    transition: .3s all;
-}
-
 .see-btn a:visited, .see-btn a:link{
     color:black
-}
-
-.like-btn:hover{
-    color: #f50057;
-    cursor: pointer;
 }
 
 .see-btn a:hover{
@@ -366,14 +349,14 @@ user:hover{
     cursor: pointer;
 }
 
-.like-btn .fas{
-    color:#f50057;
-}
-
 .like-counter{
     font-weight: bold;
     font-size: 1.5em;
     margin-right: 10px;
+}
+
+.like-counter b{
+    color:rgb(236, 0, 0);
 }
 
 .on{

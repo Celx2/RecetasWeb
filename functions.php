@@ -328,13 +328,9 @@ function mainMenu($DB_LINK){ //busca recetas que contengan el nombre buscado en 
 
             <div class="recipe-likes">
                     <div class="off like-counter">
-                        <?php echo $row["Me_gusta"] ?>
+                        <b><?php echo $row["Me_gusta"] ?></b> Me gusta
                     </div>
-    
-                    <div id="<?php echo $row["ID"] ?>" class="like-btn">
-                        <i id="heart-btn" class="far fa-heart"></i>
-                    </div>
-                
+
                     <div class="see-btn">
                         <a href="./see-recipe.php?ID=<?php echo $row["ID"] ?>">
                             <i id="eye-btn" class="fas fa-eye"></i>

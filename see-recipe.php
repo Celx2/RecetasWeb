@@ -92,7 +92,7 @@
         <div id="likes-see-recipe" class="recipe-likes">
 
             <div class="off like-counter">
-                16
+                <?php echo $row["Me_gusta"]; ?>
             </div>
 
             <div id="1" class="like-btn">
