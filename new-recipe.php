@@ -93,11 +93,11 @@
         </form>
 
         <div class="sub-nav">
-            <b><a href="./main-menu.php?liked=true">Recetas más amadas</a></b>
+            <b><a href="./main-menu.php?order=liked">Recetas más amadas</a></b>
         
             <b><a href="./new-recipe.php">Nueva receta</a></b>
         
-            <b><a href="./main-menu.php">Recetas más recientes</a></b>
+            <b><a href="./main-menu.php?order=recent">Recetas más recientes</a></b>
         </div>
 
     </nav>

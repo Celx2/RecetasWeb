@@ -397,4 +397,18 @@ function liked($DB_LINK){ //muestra recetas ordenadas por likes descendente
     }
 }
 
+function hasLiked($recipeID, $username){    
+    $query = "SELECT * FROM likes WHERE IDReceta='$recipeID' AND Nombre_usuario='$username'";
+    $res = mysqli_query(connectDB(), $query);
+    $row = mysqli_num_rows($res);
+    if ($row==0){
+        $query2="INSERT INTO likes (Nombre_usuario, IDReceta) VALUES ('$username', '$recipeID')";
+        $res2=mysqli_query(connectDB(), $query2);
+    }
+    else{
+        $query3="DELETE FROM likes WHERE IDReceta='$recipeID' AND Nombre_usuario='$username'";
+        $res3=mysqli_query(connectDB(), $query3);
+    }
+}
+
 ?>

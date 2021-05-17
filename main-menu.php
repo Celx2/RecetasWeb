@@ -4,6 +4,10 @@
         header("Location: index.php?error=2");
         exit;
     }
+
+    if (isset($_GET["liked"]) && is_numeric($_GET["liked"])){
+        hasLiked($_GET["liked"], $_SESSION["username"]);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -48,11 +52,11 @@
         </form>
 
         <div class="sub-nav">
-            <b><a href="./main-menu.php?liked=true">Recetas más amadas</a></b>
+            <b><a href="./main-menu.php?order=liked">Recetas más amadas</a></b>
         
             <b><a href="./new-recipe.php">Nueva receta</a></b>
         
-            <b><a href="./main-menu.php">Recetas más recientes</a></b>
+            <b><a href="./main-menu.php?order=recent">Recetas más recientes</a></b>
     </div>
 
     </nav>
@@ -65,7 +69,7 @@
                 $recipe = clear($_GET["recipe"]);
                 search($recipe,connectDB());
             }
-            elseif (isset($_GET["liked"]) && $_GET["liked"]==true){
+            elseif (isset($_GET["order"]) && $_GET["order"]=="liked"){
                 liked(connectDB());
             }
             else{
