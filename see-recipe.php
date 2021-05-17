@@ -1,13 +1,30 @@
 <?php
     include_once ("functions.php");
+    
     if (!isLoggedIn()){
         header("Location: index.php?error=2");
         exit;
     }
-    $id = $_GET["ID"];
-    $query = "SELECT * from recetas WHERE ID='$id'";
-    $res = mysqli_query(connectDB(),$query);
-    $row = mysqli_fetch_array($res)
+    if (isset($_GET["ID"]) && $_GET["ID"]==""){
+        
+        $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $new_link = $actual_link . $_SESSION['id'];
+        header("Location: $new_link");
+        
+    }
+
+    if (isset($_GET["ID"]) || ($_GET["liked"]==true)){ 
+        $_SESSION['id'] = $_GET["ID"];
+        $id = $_SESSION['id'];
+        $query = "SELECT * from recetas WHERE ID = '$id'";
+        $res = mysqli_query(connectDB(),$query);
+        $row = mysqli_fetch_array($res);
+    }
+
+    if (isset($_GET["liked"]) && $id!=null){
+        
+        hasLiked($id, $_SESSION["username"]);
+    }
 ?>
 
 <!DOCTYPE html>

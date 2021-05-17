@@ -408,7 +408,6 @@ function hasLiked($recipeID, $username){
     else{
         $query3="DELETE FROM likes WHERE IDReceta='$recipeID' AND Nombre_usuario='$username'";
         $res3=mysqli_query(connectDB(), $query3);
+        }
     }
-}
-
 ?>

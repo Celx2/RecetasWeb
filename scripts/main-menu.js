@@ -27,8 +27,8 @@ $(document).ready(function(){
             like_counter.textContent = like_number + 1;
             like_counter.classList.remove("off");
             like_counter.classList.add("on");
+           
 
-            window.location.replace("./main-menu.php?liked="+div_like);
 
         }
         else{
@@ -42,7 +42,7 @@ $(document).ready(function(){
             like_counter.classList.remove("on");
             like_counter.classList.add("off");
 
-            window.location.replace("./main-menu.php?liked="+div_like);
+            
         }
     });
 

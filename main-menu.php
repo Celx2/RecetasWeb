@@ -4,10 +4,7 @@
         header("Location: index.php?error=2");
         exit;
     }
-
-    if (isset($_GET["liked"]) && is_numeric($_GET["liked"])){
-        hasLiked($_GET["liked"], $_SESSION["username"]);
-    }
+   
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +54,7 @@
             <b><a href="./new-recipe.php">Nueva receta</a></b>
         
             <b><a href="./main-menu.php?order=recent">Recetas más recientes</a></b>
-    </div>
+        </div>
 
     </nav>
 
