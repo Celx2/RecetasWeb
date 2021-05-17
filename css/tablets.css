@@ -341,9 +341,24 @@ user:hover{
     border-radius: 50%;
 }
 
+.see-btn{
+    margin-left: 14px;
+    padding: 9px 11px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 1);
+    border-radius: 50%;
+}
+
+#eye-btn{
+    transition: .3s all;
+}
+
 .like-btn i{
     font-size: 1.3rem;
     transition: .3s all;
+}
+
+.see-btn a:visited, .see-btn a:link{
+    color:black
 }
 
 .like-btn:hover{
@@ -351,7 +366,12 @@ user:hover{
     cursor: pointer;
 }
 
-.fas{
+.see-btn a:hover{
+    color:#00af2c;
+    cursor: pointer;
+}
+
+.like-btn .fas{
     color:#f50057;
 }
 
@@ -493,6 +513,7 @@ user:hover{
 
 
 
+
 .recipe-box{
     width: 80%;
     height: auto;
@@ -514,16 +535,20 @@ user:hover{
     align-self: flex-start;
 }
 
+.return-btn button:hover{
+    cursor: pointer;
+}
+
 .return-btn button{
     background-color:#419f00;
     color:aliceblue;
     font-family: 'Nunito', sans-serif;
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1.9em;
     border-radius: .75rem;
     margin: 0 10px 0 10px;
     padding: 10px;
-    width: 400px;
+    width: 300px;
 }
 
 .recipe-box-line{
@@ -535,7 +560,7 @@ user:hover{
 
 .recipe-box-line hr{
     margin-top: 30px;
-    width: 1000px;
+    width: 500px;
     border-style: inset;
     border-width: 1px;
 }
@@ -543,8 +568,11 @@ user:hover{
 .recipe-box #title{
     grid-column: 2/4;
     grid-row: 3/4;
-    font-size: 1.35em;
-    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1.15em;
+    margin-left: 15px;
     justify-self: flex-start;
     align-self: flex-start;
 }
@@ -558,15 +586,18 @@ user:hover{
     border: 1px solid black;
     border-radius: 0.75rem;
     width: 100%;
-    max-width: 300px;
+    max-width: 250px;
     height: auto;
 }
 
 .recipe-box #type{
     grid-column: 2/4;
     grid-row: 4/5;
-    font-size: 1.3em;
-    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1.15em;
+    margin-left: 15px;
     justify-self: flex-start;
     align-self: flex-start;
 }
@@ -574,13 +605,17 @@ user:hover{
 .recipe-box #author{
     grid-column: 2/4;
     grid-row: 5/6;
-    margin-left: 10px;
-    font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1.30em;
+    margin-left: 15px;
     justify-self: flex-start;
+    align-self: flex-start;
 }
 
-.recipe-box a{
-    font-weight: bold;
+#author label, #type label, #title label{
+    font-size: 25px;
 }
 
 .recipe-box a:hover{
@@ -595,7 +630,7 @@ user:hover{
 .recipe-box #ingredients{
     grid-column: 1/4;
     grid-row: 6/7;
-    font-size: 1.2em;
+    font-size: 1.1em;
     margin: 150px 0 80px 0;
     width: 100%;
     height: auto;
@@ -606,7 +641,7 @@ user:hover{
 }
 
 .recipe-box #preparation{
-    font-size: 1.2em;
+    font-size: 1.1em;
     grid-column: 1/4;
     grid-row: 7/8;
     width: 100%;

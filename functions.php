@@ -282,7 +282,7 @@ function search($recipe, $DB_LINK){ //busca recetas que contengan el nombre busc
                         <i id="heart-btn" class="far fa-heart"></i>
                     </div>
                 
-                    <div id="" class="see-btn">
+                    <div class="see-btn">
                         <a href="./see-recipe.php?ID=<?php echo $row["ID"] ?>">
                             <i id="eye-btn" class="fas fa-eye"></i>
                         </a>
@@ -331,7 +331,7 @@ function mainMenu($DB_LINK){ //busca recetas que contengan el nombre buscado en 
                         <i id="heart-btn" class="far fa-heart"></i>
                     </div>
                 
-                    <div id="" class="see-btn">
+                    <div class="see-btn">
                         <a href="./see-recipe.php?ID=<?php echo $row["ID"] ?>">
                             <i id="eye-btn" class="fas fa-eye"></i>
                         </a>
@@ -379,7 +379,7 @@ function liked($DB_LINK){ //busca recetas que contengan el nombre buscado en mai
                         <i id="heart-btn" class="far fa-heart"></i>
                     </div>
                 
-                    <div id="" class="see-btn">
+                    <div class="see-btn">
                         <a href="./see-recipe.php?ID=<?php echo $row["ID"] ?>">
                             <i id="eye-btn" class="fas fa-eye"></i>
                         </a>
