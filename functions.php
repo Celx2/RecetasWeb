@@ -349,7 +349,7 @@ function mainMenu($DB_LINK){ //busca recetas que contengan el nombre buscado en 
     }
 }
 
-function liked($DB_LINK){ //busca recetas que contengan el nombre buscado en main-menu.php
+function liked($DB_LINK){ //muestra recetas ordenadas por likes descendente
     $query = "SELECT * FROM recetas ORDER BY Me_gusta DESC";
     $res = mysqli_query($DB_LINK, $query);
     

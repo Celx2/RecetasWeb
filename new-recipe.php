@@ -5,6 +5,7 @@
         header("Location: index.php?error=2");
         exit;
     }
+
     if(isset($_POST["recipe-name"]) && isset($_POST["recipe-name"]) && isset($_POST["recipe-name"]) && isset($_POST["recipe-name"])){    
         $recipe_name=clear($_POST["recipe-name"]);
         $recipe_type=clear($_POST["recipe-type"]);
@@ -36,10 +37,8 @@
         file_put_contents($fichero, $recipe_ingredients, FILE_APPEND | LOCK_EX);
         $fichero2 = "resources/$ext2.txt";
         file_put_contents($fichero2, $recipe_preparation, FILE_APPEND | LOCK_EX);
-        //Encriptar rutas archivos
         $query3 = "UPDATE recetas SET Imagen = '$ruta', Ingredientes = '$fichero', Preparación = '$fichero2' WHERE ID = '$row[ID]'";
         $res3 = mysqli_query(connectDB(), $query3);
-       
         header("Location: new-recipe.php?saved=yes");
 }
 
@@ -104,6 +103,14 @@
     </nav>
 
     <div class="new-recipe-box">
+    <?php
+            if((isset($_GET["saved"])) && $_GET["saved"] == "yes"){
+        ?>
+            <div class="confirm-box">
+                <b>Receta añadida correctamente.</b>
+            </div>
+            <?php
+            } ?>
 
         <form name="form1" action="new-recipe.php" method="POST" enctype="multipart/form-data">
 
@@ -145,6 +152,8 @@
         </form>
 
     </div>
+
+
 
 </div>
     
