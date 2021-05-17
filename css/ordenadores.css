@@ -266,7 +266,7 @@ user:hover{
 
 .recipe-card-body{
     display: grid;
-    grid-template-columns: 20% 50% 30%;
+    grid-template-columns: 20% 45% 35%;
     grid-template-rows: 80px 60px;
     align-items: center;
 }
@@ -286,7 +286,7 @@ user:hover{
 }
 
 .recipe-title{
-    font-size: 1.65em;
+    font-size: 1.55em;
     margin-left: 25px;
     grid-column: 2/3;
     grid-row: 1/2;
@@ -330,6 +330,13 @@ user:hover{
     margin-right: 35px;
 }
 
+
+.like-btn{
+    padding: 8px 9px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 1);
+    border-radius: 50%;
+}
+
 .see-btn{
     margin-left: 14px;
     padding: 11px 13px;
@@ -340,8 +347,23 @@ user:hover{
 #eye-btn{
     transition: .3s all;
 }
+
+.like-btn i{
+    font-size: 1.3rem;
+    transition: .3s all;
+}
+
 .see-btn a:visited, .see-btn a:link{
     color:black
+}
+
+.like-btn:hover{
+    color: #f50057;
+    cursor: pointer;
+}
+
+.like-btn .fas{
+    color:#f50057;
 }
 
 .see-btn a:hover{
@@ -351,7 +373,7 @@ user:hover{
 
 .like-counter{
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1.3em;
     margin-right: 10px;
 }
 

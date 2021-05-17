@@ -271,7 +271,7 @@ user:hover{
 
 .recipe-card-body{
     display: grid;
-    grid-template-columns: 20% 50% 30%;
+    grid-template-columns: 20% 45% 35%;
     grid-template-rows: 80px 60px;
     align-items: center;
 }
@@ -299,7 +299,7 @@ user:hover{
 }
 
 .recipe-type{
-    font-size: 1.15em;
+    font-size: 1.25em;
     margin-left: 15px;
     grid-column: 2/3;
     grid-row: 2/3;
@@ -312,7 +312,7 @@ user:hover{
     grid-column: 3/4;
     grid-row: 1/2;
     justify-self: end;
-    margin-right: 40px;
+    margin-right: 20px;
 }
 
 .recipe-author a{
@@ -332,7 +332,7 @@ user:hover{
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-right: 35px;
+    margin-right: 20px;
 }
 
 .like-btn{
@@ -378,7 +378,11 @@ user:hover{
 .like-counter{
     font-weight: bold;
     font-size: 1.3em;
-    margin-right: 10px;
+    margin-right: 7px;
+}
+
+.like-counter b{
+    color:rgb(236, 0, 0);
 }
 
 .on{

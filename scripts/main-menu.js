@@ -6,6 +6,15 @@ $(document).ready(function(){
     var div_like = document.querySelector(".like-btn");
     var like_counter = document.querySelector(".like-counter");
 
+
+    $("nav").hover(function(){
+        $(".sub-nav").fadeToggle("slow");        
+        $(".sub-nav").css("display", "flex");
+    },
+                   function(){
+        $(".sub-nav").css("display", "none");
+    });
+    
     div_like.addEventListener("click", function(){
         if(like_btn.classList.contains("far")){
 
@@ -35,14 +44,6 @@ $(document).ready(function(){
 
             window.location.replace("./main-menu.php?liked="+div_like);
         }
-    });
-
-    $("nav").hover(function(){
-        $(".sub-nav").fadeToggle("slow");        
-        $(".sub-nav").css("display", "flex");
-    },
-                   function(){
-        $(".sub-nav").css("display", "none");
     });
 
 });

@@ -254,8 +254,8 @@ user:hover{
 
 .recipe-card-body{
     display: grid;
-    grid-template-columns: 25% 50% 25%;
-    grid-template-rows: 35px 25px 40px;
+    grid-template-columns: 20% 45% 35%;
+    grid-template-rows: 60px 45px;
     align-items: center;
 }
 
@@ -268,13 +268,13 @@ user:hover{
 .recipe-picture img{
     border: 2px solid rgb(42, 42, 42);
     border-radius: 50%;
-    max-width: 70px;
+    max-width: 80px;
     width: 100%;
     height: auto;
 }
 
 .recipe-title{
-    font-size: 0.9em;
+    font-size: 1.05em;
     margin-left: 10px;
     grid-column: 2/4;
     grid-row: 1/2;
@@ -282,7 +282,7 @@ user:hover{
 }
 
 .recipe-type{
-    font-size: 0.85em;
+    font-size: 0.95em;
     margin-left: 10px;
     grid-column: 2/4;
     grid-row: 2/3;
@@ -290,11 +290,11 @@ user:hover{
 }
 
 .recipe-author{
-    font-size: 0.7em;
-    margin-left: 10px;
-    grid-column: 2/3;
-    grid-row: 3/4;
-    justify-self: start;
+    font-size: 0.9em;
+    margin-right: 10px;
+    grid-column: 3/4;
+    grid-row: 1/2;
+    justify-self: flex-end;
 }
 
 .recipe-author a{
@@ -304,7 +304,7 @@ user:hover{
 
 .recipe-likes{
     grid-column: 3/4;
-    grid-row: 3/4;
+    grid-row: 2/3;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -358,6 +358,10 @@ user:hover{
     font-weight: bold;
     font-size: 1em;
     margin-right: 7px;
+}
+
+.like-counter b{
+    color:rgb(236, 0, 0);
 }
 
 .on{
@@ -502,22 +506,22 @@ user:hover{
 
 
 .recipe-box{
-    width: 80%;
+    width: 90%;
     height: auto;
-    padding: 70px 90px;
+    padding: 40px 25px;
     background-color: rgb(248, 255, 245);
     border: 2px solid black;
     border-radius: .75rem;
     margin: 100px auto 30px auto;
     display: grid;
-    grid-template-columns: 40% 35% 25%;
-    grid-template-rows: 50px 140px 170px 140px 80px auto auto;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50px 80px auto 140px 100px 140px auto auto;
     align-items: center;
     justify-items: center;
 }
 
 .return-btn{
-    grid-column: 1/4;
+    grid-column: 1/3;
     grid-row: 1/2;
     align-self: flex-start;
 }
@@ -531,61 +535,58 @@ user:hover{
     color:aliceblue;
     font-family: 'Nunito', sans-serif;
     font-weight: bold;
-    font-size: 1.9em;
+    font-size: 1.5em;
     border-radius: .75rem;
     margin: 0 10px 0 10px;
-    padding: 10px;
-    width: 300px;
+    padding: 7px;
+    width: 200px;
 }
 
 .recipe-box-line{
-    grid-column: 1/4;
+    grid-column: 1/3;
     grid-row: 2/3;
-    align-self: flex-start;
     display: block;
+    align-self: flex-start;
 }
 
 .recipe-box-line hr{
     margin-top: 30px;
-    width: 500px;
+    width: 300px;
     border-style: inset;
     border-width: 1px;
 }
 
-.recipe-box #title{
-    grid-column: 2/4;
-    grid-row: 3/4;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-size: 1.15em;
-    margin-left: 15px;
-    justify-self: flex-start;
-    align-self: flex-start;
-}
-
 .recipe-box #picture{
-    grid-column: 1/2;
-    grid-row: 3/5;
+    grid-column: 1/4;
+    grid-row: 3/4;
+    align-self: flex-start;
+    margin-bottom: 45px;
 }
 
 .recipe-box img{
     border: 1px solid black;
     border-radius: 0.75rem;
     width: 100%;
-    max-width: 250px;
+    max-width: 450px;
     height: auto;
 }
 
-.recipe-box #type{
-    grid-column: 2/4;
+.recipe-box #title{
+    grid-column: 1/3;
     grid-row: 4/5;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    font-size: 1.15em;
-    margin-left: 15px;
-    justify-self: flex-start;
+    font-size: 16px;
+    align-self: flex-start;
+}
+
+
+.recipe-box #type{
+    grid-column: 1/2;
+    grid-row: 5/6;
+    display: flex;
+    flex-direction: column;
+    font-size: 17px;
     align-self: flex-start;
 }
 
@@ -594,15 +595,13 @@ user:hover{
     grid-row: 5/6;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     font-size: 1.30em;
     margin-left: 15px;
-    justify-self: flex-start;
     align-self: flex-start;
 }
 
 #author label, #type label, #title label{
-    font-size: 25px;
+    font-size: 27px;
 }
 
 .recipe-box a:hover{
@@ -610,15 +609,30 @@ user:hover{
 }
 
 #likes-see-recipe{
-    grid-column: 1/2;
-    grid-row: 5/6;
+    grid-column: 1/3;
+    grid-row: 6/7;
+}
+
+#likes-see-recipe i{
+    font-size: 2.3rem;
+}
+
+#likes-see-recipe .like-btn{    
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 1);
+    border-radius: 50%;
+    margin-left: 15px;
+}
+
+#likes-see-recipe .like-counter{
+    font-size: 2.6em;
 }
 
 .recipe-box #ingredients{
     grid-column: 1/4;
-    grid-row: 6/7;
+    grid-row: 7/8;
     font-size: 1.1em;
-    margin: 150px 0 80px 0;
+    margin: 60px 0 50px 0;
     width: 100%;
     height: auto;
     padding: 30px 30px;
@@ -630,7 +644,7 @@ user:hover{
 .recipe-box #preparation{
     font-size: 1.1em;
     grid-column: 1/4;
-    grid-row: 7/8;
+    grid-row: 8/9;
     width: 100%;
     height: auto;
     padding: 30px 100px;
