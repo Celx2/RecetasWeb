@@ -380,6 +380,11 @@ user:hover{
     color:#f50057;
 }
 
+.recipe-not-found{
+    padding: 60px;
+    font-size: 2em;
+}
+
 .new-recipe-box{
     width: 70%;
     height: auto;

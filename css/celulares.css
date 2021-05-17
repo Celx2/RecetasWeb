@@ -364,6 +364,10 @@ user:hover{
     color:#f50057;
 }
 
+.recipe-not-found{
+    padding: 25px;
+    font-size: 1.15em;
+}
 
 
 

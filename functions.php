@@ -252,7 +252,11 @@ function search($recipe, $DB_LINK){ //busca recetas que contengan el nombre busc
     $query = "SELECT * FROM recetas WHERE Nombre LIKE '%$recipe%'";
     $res = mysqli_query($DB_LINK, $query);
     if (!mysqli_num_rows($res)){
-        echo "No existe ninguna receta que contenga $recipe";
+        ?>
+        <div class="recipe-not-found">
+            <b>No existe ninguna receta que contenga <?php echo $recipe?>.</b>
+        </div>
+        <?php
     }
     else{
         while ($row = mysqli_fetch_array($res)) {
