@@ -203,6 +203,9 @@ function showError($id_error){
         case 8:				
             echo "Error " . $id_error . ": La contraseña tiene que ser al menos de 6 caracteres</b></div>";				
             break;
+        case 9:				
+            echo "Error " . $id_error . ": Error al buscar el correo electrónico</b></div>";				
+            break;
         default:
             echo "Error desconocido</b></div>";
             break;

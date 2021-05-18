@@ -31,7 +31,7 @@ body {
     background-color: rgb(255, 255, 255);
     padding: 0 60px;
     border: 1px solid rgb(112, 112, 112);
-    border-radius: 4%;
+    border-radius: 0.75rem;
     opacity: 90%;
     box-shadow: 0px 0px 3px #3a3a3a;
 }
@@ -149,6 +149,48 @@ input{
     margin-bottom: 15px;
     color: rgb(83, 83, 83);
 }
+
+.remember-box-2{
+    width: 33%;
+    margin-top: 8%;
+    position: relative;
+    vertical-align: middle;
+    display: inline-block;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    padding: 0 60px;
+    border: 1px solid rgb(112, 112, 112);
+    border-radius: 0.75rem;
+    opacity: 90%;
+    box-shadow: 0px 0px 3px #3a3a3a;
+}
+
+.remember-box-2 form{
+    padding: 30px 10px;
+}
+
+.remember-box-2 form label{
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.remember-box-2 form input{
+    width: 80%;
+    height: 40px;
+    padding: 11px;
+    margin: 20px 0;
+    font-size: 18px;
+    font-family: 'Nunito', sans-serif;
+}
+
+#remember-btn{
+    margin: 30px 0 10px 0;
+    height: 40px;
+    width: 70%;
+}
+
+
+
 
 
 

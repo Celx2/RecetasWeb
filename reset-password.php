@@ -19,7 +19,43 @@ if ($DB_LINK=connectDB()){
         }
 
     }
+    ?>
 
-}//deja este cierre debajo del todo, debajo del html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="(max-width: 676px)" href="./css/celulares.css">
+    <link rel="stylesheet" type="text/css" media="(min-width: 676px) and (max-width: 1100px)"  href="./css/tablets.css">
+    <link rel="stylesheet" type="text/css" media="(min-width: 1100px)"  href="./css/ordenadores.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap" rel="stylesheet">    
+    <title>HappyApple!</title>
+</head>
+<body>
+    
+<div class="container">
+
+    <div class="remember-box-2">
+        
+        <form action="" method="">
+
+            <label>¡Ya estás más cerca!</label>
+            <input type="password" placeholder="Nueva contraseña" name="password" required/>    
+            <button class="btn" type="submit" id="remember-btn">Enviar</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<?php 
+}
 ?>
+</body>
+</html>
 

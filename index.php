@@ -88,7 +88,7 @@ include_once ("functions.php");
         </form>
 
         <div class="remember-box">
-            <a href="">Recordar contraseña</a>
+            <a href="./remember.php">Recordar contraseña</a>
         </div>
 
     </div>
