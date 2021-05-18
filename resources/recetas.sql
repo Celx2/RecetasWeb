@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-05-2021 a las 14:54:35
+-- Tiempo de generación: 18-05-2021 a las 15:09:06
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 7.3.28
 
@@ -52,7 +52,6 @@ INSERT INTO `recetas` (`ID`, `Usuario`, `Nombre`, `Categoría`, `Me_gusta`, `Ima
 (71, 'Kaarel', 'Sopa de cebolla', 'Sopas', 0, 'pictures/e2c420d928d4bf8ce0ff2ec19b371514.jpeg', 'resources/71_ingredients.txt', 'resources/71_preparation.txt'),
 (72, 'Javat00', 'Arroz con leche', 'Postres', 0, 'pictures/32bb90e8976aab5298d5da10fe66f21d.jpeg', 'resources/72_ingredients.txt', 'resources/72_preparation.txt'),
 (74, 'Javat00', 'Batido de frutos rojos', 'Desayunos', 0, 'pictures/ad61ab143223efbc24c7d2583be69251.jpeg', 'resources/74_ingredients.txt', 'resources/74_preparation.txt'),
-(75, 'Javat00', 'Smoothie de fresa y plátano', 'Bebidas', 0, 'pictures/d09bf41544a3365a46c9077ebb5e35c3.notValid', 'resources/75_ingredients.txt', 'resources/75_preparation.txt'),
 (76, 'Menkord', 'Tortilla de patatas vegana', 'Vegano', 0, 'pictures/fbd7939d674997cdb4692d34de8633c4.jpeg', 'resources/76_ingredients.txt', 'resources/76_preparation.txt'),
 (77, 'Menkord', 'Mantequilla de anacardos', 'Vegano', 0, 'pictures/28dd2c7955ce926456240b2ff0100bde.jpeg', 'resources/77_ingredients.txt', 'resources/77_preparation.txt'),
 (78, 'Menkord', 'Bowl vegetariano', 'Vegetariano', 0, 'pictures/35f4a8d465e6e1edc05f3d8ab658c551.jpeg', 'resources/78_ingredients.txt', 'resources/78_preparation.txt'),
