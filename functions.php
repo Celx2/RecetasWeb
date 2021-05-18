@@ -91,7 +91,6 @@ function generateToken(){
 //Extraer extensión
 function extraerExtension($imagensubida, $lista_blanca_extension=array("image/x.png", "image/gif", "image/jpeg", "image/jpg")){
     $extension=$imagensubida;
-    $extraccion=".notValid";
     if(in_array($extension, $lista_blanca_extension)){
         switch($extension){
             case "image/x.png":
@@ -108,6 +107,7 @@ function extraerExtension($imagensubida, $lista_blanca_extension=array("image/x.
             break;
         }
     }
+    else $extraccion=".notvalid";
     return $extraccion;
 }
 
@@ -117,12 +117,13 @@ function moverImagen($imagen, $nombreImagen){
     return $ruta;
 }
 
-//Comprobación de extensión de la imagen de perfil
+//Comprobación de extensión de la imagen de la receta
 function checkExtension($extension, $lista_blanca_extension = array(".png", ".gif", ".jpeg", ".jpg")){
     if(!in_array($extension, $lista_blanca_extension)){
-        header("Location: insert.php?error=8");
+        header("Location: new-recipe.php?error=10");
     }
 }
+
 function resetPassword(){
     if (!$DB_LINK = connectDB()){
         return false;
@@ -206,6 +207,9 @@ function showError($id_error){
         case 9:				
             echo "Error " . $id_error . ": Error al buscar el correo electrónico</b></div>";				
             break;
+        case 10:				
+            echo "Error " . $id_error . ": La extensión no es valida, por favor, introduce una imagen</b></div>";				
+            break;
         default:
             echo "Error desconocido</b></div>";
             break;
@@ -231,7 +235,7 @@ function repeated($mail, $user, $DB_LINK){
 }
 
 function checks($nombre, $email, $usuario, $contraseña){ //checks de tipos y longitudes de datos introducidos
-    $allowed = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ- "; //caracteres permitidos para nombre y apellido
+    $allowed = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ- "; //caracteres permitidos para nombre y apellido 
     $email = filter_var($email, FILTER_SANITIZE_EMAIL); //elimina caracteres ilegales
     $flag = false;
     for ($i=0; $i<strlen($nombre); $i++){ //comprobamos que el nombre esté entre los caracteres permitidos

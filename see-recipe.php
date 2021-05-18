@@ -5,6 +5,12 @@
         header("Location: index.php?error=2");
         exit;
     }
+
+    $IDComprobar=$_GET["ID"];
+    $UsuarioActual=$_SESSION["username"];
+    $query2 = "SELECT * FROM likes WHERE IDReceta='$IDComprobar' AND Nombre_usuario='$UsuarioActual'";
+    $res2 = mysqli_query(connectDB(), $query2);
+    $numrows = mysqli_num_rows($res2);
     
     if (isset($_GET["ID"]) && $_GET["ID"]==""){
         
@@ -26,8 +32,18 @@
         hasLiked($id, $_SESSION["username"]);
     }
 
+    
     if(isset($_GET["liked"]) && ($_GET["liked"])==true) $heart_class = "fas";
     else $heart_class = "far";
+    /*
+    if ($numrows!=0){
+        $heart_class = "fas";
+    }
+    else{
+        $heart_class = "far";
+    }
+    */
+
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +69,6 @@
 <body>
 
     <div class="container">
-
     <nav>
 
         <div class="nav-user">

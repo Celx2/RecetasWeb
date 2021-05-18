@@ -5,8 +5,13 @@
         header("Location: index.php?error=2");
         exit;
     }
-
-    if(isset($_POST["recipe-name"]) && isset($_POST["recipe-name"]) && isset($_POST["recipe-name"]) && isset($_POST["recipe-name"])){    
+    //comprobaciones errores
+    if (isset($_GET["error"])){
+        showError($_GET["error"]);
+    }
+    if (isset($_FILES["picture"]) && !isset($_GET["error"]))checkExtension(extraerExtension($_FILES["picture"]["type"]));
+    ////////////////////////
+    if(isset($_POST["recipe-name"]) && isset($_POST["recipe-type"]) && isset($_POST["recipe-ingredients"]) && isset($_POST["recipe-preparation"]) && !isset($_GET["error"])){    
         $recipe_name=clear($_POST["recipe-name"]);
         $recipe_type=clear($_POST["recipe-type"]);
         $recipe_ingredients=htmlspecialchars($_POST["recipe-ingredients"]);
@@ -22,7 +27,7 @@
         $row = mysqli_fetch_array($res2);
         
         
-            //Introducir una imagen
+        //Introducir una imagen
 		if($_FILES["picture"]["name"]!=""){
 			$extension=extraerExtension($_FILES["picture"]["type"]);
             checkExtension($extension);
@@ -30,6 +35,7 @@
 	    	$ruta = moverImagen($_FILES["picture"]["tmp_name"],$nombreImagen);
 			$picture=$nombreImagen;
 		}
+
         //Guardar datos en los archivos
         $ext = "$row[ID]_ingredients";
         $ext2 = "$row[ID]_preparation";
