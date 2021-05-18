@@ -113,7 +113,15 @@ include_once ("functions.php");
                 <b>Usuario registrado exitosamente.</b>
             </div>
             <?php
+        }
 
+        if((isset($_GET["saved"])) && $_GET["saved"] == "yes"){
+            logout();
+            ?>
+            <div class="confirm-box">
+                <b>Contraseña cambiada correctamente.</b>
+            </div>
+            <?php
         }
     
     ?>
