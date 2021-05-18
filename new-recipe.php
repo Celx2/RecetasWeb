@@ -147,7 +147,7 @@
 
         <div class="new-recipe-ingredients">
             <label for="ingredients">Ingredientes: </label>
-            <input type="text" name="recipe-ingredients" required/>
+            <textarea type="text" name="recipe-ingredients" required></textarea>
         </div>
 
         <div class="new-recipe-preparation">

@@ -119,7 +119,7 @@
         </div>
 
         <div id="ingredients">
-        <b>Ingredientes:</b>
+        <b>Ingredientes</b><hr/>
             <h3>
             <?php
             $file = fopen($row["Ingredientes"], "r");
@@ -136,7 +136,7 @@
         </div>
 
         <div id="preparation">
-        <b>Preparación:</b>
+        <b>Preparación</b><hr/>
         <h4>
         <?php
             $file = fopen($row["Preparación"], "r");
