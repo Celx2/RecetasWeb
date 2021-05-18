@@ -1,9 +1,1 @@
-1 berenjena
-2 calabacines
-2 tomates grandes
-1 pimiento verde
-1 pimiento rojo
-1 cebolla grande
-2 dientes de ajo
-Aceite de oliva virgen extra
-Sal y hierbas provenzales
+1 berenjena, 2 calabacines, 2 tomates grandes, 1 pimiento verde, 1 pimiento rojo, 1 cebolla grande, 2 dientes de ajo, aceite de oliva virgen extra, sal y hierbas provenzales

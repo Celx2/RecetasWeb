@@ -62,7 +62,7 @@
         </div>
 
         <div class="nav-recipe">
-            <h1>HappyApple!</h1>
+            <a href="./main-menu.php"><h1>HappyApple!</h1></a>
         </div>
         
         <form action="main-menu.php" method="GET">
