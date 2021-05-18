@@ -33,9 +33,9 @@
         //Guardar datos en los archivos
         $ext = "$row[ID]_ingredients";
         $ext2 = "$row[ID]_preparation";
-        $fichero = "resources/$ext.txt";
+        $fichero = "recipes/$ext.txt";
         file_put_contents($fichero, $recipe_ingredients, FILE_APPEND | LOCK_EX);
-        $fichero2 = "resources/$ext2.txt";
+        $fichero2 = "recipes/$ext2.txt";
         file_put_contents($fichero2, $recipe_preparation, FILE_APPEND | LOCK_EX);
         $query3 = "UPDATE recetas SET Imagen = '$ruta', Ingredientes = '$fichero', Preparación = '$fichero2' WHERE ID = '$row[ID]'";
         $res3 = mysqli_query(connectDB(), $query3);
