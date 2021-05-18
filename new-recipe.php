@@ -136,7 +136,7 @@
                 <option>Sopas</option>
                 <option>Pastas</option>
                 <option>Arroces</option>
-                <option>Legumbes</option>
+                <option>Legumbres</option>
                 <option>Ensaladas</option>
                 <option>Salsas</option>
                 <option>Postres</option>
