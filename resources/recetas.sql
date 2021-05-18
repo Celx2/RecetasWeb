@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-05-2021 a las 17:55:30
--- Versión del servidor: 10.4.14-MariaDB
--- Versión de PHP: 7.2.34
+-- Tiempo de generación: 18-05-2021 a las 15:09:06
+-- Versión del servidor: 10.4.19-MariaDB
+-- Versión de PHP: 7.3.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,21 +32,32 @@ CREATE TABLE `recetas` (
   `Usuario` varchar(255) NOT NULL,
   `Nombre` text DEFAULT NULL,
   `Categoría` text DEFAULT NULL,
-  `Me_gusta` int(11) DEFAULT 0,
+  `Me_gusta` int(11) NOT NULL DEFAULT 0,
   `Imagen` varchar(255) DEFAULT NULL,
-  `Ingredientes` text DEFAULT NULL,
-  `Preparación` text DEFAULT NULL
+  `Ingredientes` varchar(255) DEFAULT NULL,
+  `Preparación` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `recetas`
 --
 
-INSERT INTO `recetas` (`ID`, `Usuario`, `Nombre`, `Categoría`, `Me gusta`, `Imagen`, `Ingredientes`, `Preparación`) VALUES
-(3, 'Celx2', 'Fajitas de ternera', 'Picante', 0, 'Futura ruta', '500gr ternera bla bla', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nunc arcu, ultrices id consectetur ornare, feugiat et metus. Donec porta sapien eu nisi euismod tempor. Aenean dapibus pretium dui quis cursus. Nullam commodo at nisi eget bibendum. Ut dapibus sapien et tortor commodo elementum. Suspendisse ultrices, ante ut rhoncus rhoncus, mi diam convallis tellus, ultricies finibus lectus lorem et erat. Integer porttitor non nibh sed vulputate. Nullam in pellentesque enim. Ut accumsan justo tellus. Vestibulum vel nibh purus. Duis faucibus nunc vel lacinia faucibus. Ut nibh sem, consequat eget nulla vel, iaculis mollis tortor. Vestibulum augue erat, egestas sed lobortis in, pellentesque et erat. Mauris a magna eu est hendrerit imperdiet non eu lorem.\r\n\r\nMauris eleifend in nunc eu fermentum. Nulla nec molestie diam. Etiam rutrum elit ut tortor tempus rutrum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam quis rutrum leo. Aliquam erat volutpat. Nulla id dignissim sem, id ultrices nibh. Etiam ac ligula odio. Pellentesque consequat libero in faucibus congue. Curabitur quis lacus hendrerit, facilisis neque in, rhoncus lacus. Nam ut sapien felis.'),
-(4, 'Javat00', 'Pizza', 'Italiana', 0, 'Futura ruta', 'masa bla bla', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nunc arcu, ultrices id consectetur ornare, feugiat et metus. Donec porta sapien eu nisi euismod tempor. Aenean dapibus pretium dui quis cursus. Nullam commodo at nisi eget bibendum. Ut dapibus sapien et tortor commodo elementum. Suspendisse ultrices, ante ut rhoncus rhoncus, mi diam convallis tellus, ultricies finibus lectus lorem et erat. Integer porttitor non nibh sed vulputate. Nullam in pellentesque enim. Ut accumsan justo tellus. Vestibulum vel nibh purus. Duis faucibus nunc vel lacinia faucibus. Ut nibh sem, consequat eget nulla vel, iaculis mollis tortor. Vestibulum augue erat, egestas sed lobortis in, pellentesque et erat. Mauris a magna eu est hendrerit imperdiet non eu lorem.\r\n\r\nMauris eleifend in nunc eu fermentum. Nulla nec molestie diam. Etiam rutrum elit ut tortor tempus rutrum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam quis rutrum leo. Aliquam erat volutpat. Nulla id dignissim sem, id ultrices nibh. Etiam ac ligula odio. Pellentesque consequat libero in faucibus congue. Curabitur quis lacus hendrerit, facilisis neque in, rhoncus lacus. Nam ut sapien felis.'),
-(1, 'Kaarel', 'Arroz con pollo', 'Fitness', 0, 'Futura ruta', 'bla bla', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nunc arcu, ultrices id consectetur ornare, feugiat et metus. Donec porta sapien eu nisi euismod tempor. Aenean dapibus pretium dui quis cursus. Nullam commodo at nisi eget bibendum. Ut dapibus sapien et tortor commodo elementum. Suspendisse ultrices, ante ut rhoncus rhoncus, mi diam convallis tellus, ultricies finibus lectus lorem et erat. Integer porttitor non nibh sed vulputate. Nullam in pellentesque enim. Ut accumsan justo tellus. Vestibulum vel nibh purus. Duis faucibus nunc vel lacinia faucibus. Ut nibh sem, consequat eget nulla vel, iaculis mollis tortor. Vestibulum augue erat, egestas sed lobortis in, pellentesque et erat. Mauris a magna eu est hendrerit imperdiet non eu lorem.\r\n\r\nMauris eleifend in nunc eu fermentum. Nulla nec molestie diam. Etiam rutrum elit ut tortor tempus rutrum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam quis rutrum leo. Aliquam erat volutpat. Nulla id dignissim sem, id ultrices nibh. Etiam ac ligula odio. Pellentesque consequat libero in faucibus congue. Curabitur quis lacus hendrerit, facilisis neque in, rhoncus lacus. Nam ut sapien felis.'),
-(2, 'Menkord', 'Galletas con chocolate', 'Snacks', 0, 'Futura ruta', 'bla bla', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nunc arcu, ultrices id consectetur ornare, feugiat et metus. Donec porta sapien eu nisi euismod tempor. Aenean dapibus pretium dui quis cursus. Nullam commodo at nisi eget bibendum. Ut dapibus sapien et tortor commodo elementum. Suspendisse ultrices, ante ut rhoncus rhoncus, mi diam convallis tellus, ultricies finibus lectus lorem et erat. Integer porttitor non nibh sed vulputate. Nullam in pellentesque enim. Ut accumsan justo tellus. Vestibulum vel nibh purus. Duis faucibus nunc vel lacinia faucibus. Ut nibh sem, consequat eget nulla vel, iaculis mollis tortor. Vestibulum augue erat, egestas sed lobortis in, pellentesque et erat. Mauris a magna eu est hendrerit imperdiet non eu lorem.\r\n\r\nMauris eleifend in nunc eu fermentum. Nulla nec molestie diam. Etiam rutrum elit ut tortor tempus rutrum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam quis rutrum leo. Aliquam erat volutpat. Nulla id dignissim sem, id ultrices nibh. Etiam ac ligula odio. Pellentesque consequat libero in faucibus congue. Curabitur quis lacus hendrerit, facilisis neque in, rhoncus lacus. Nam ut sapien felis.');
+INSERT INTO `recetas` (`ID`, `Usuario`, `Nombre`, `Categoría`, `Me_gusta`, `Imagen`, `Ingredientes`, `Preparación`) VALUES
+(64, 'Celx2', 'Spaghetti a la boloñesa', 'Pastas', 0, 'pictures/ea5d2f1c4608232e07d3aa3d998e5135.jpeg', 'resources/64_ingredients.txt', 'resources/64_preparation.txt'),
+(65, 'Celx2', 'Galletas de avena y chocolate', 'Desayunos', 0, 'pictures/fc490ca45c00b1249bbe3554a4fdf6fb.jpeg', 'resources/65_ingredients.txt', 'resources/65_preparation.txt'),
+(66, 'Javat00', 'Solomillo a la pimienta', 'Carnes', 0, 'pictures/3295c76acbf4caaed33c36b1b5fc2cb1.jpeg', 'resources/66_ingredients.txt', 'resources/66_preparation.txt'),
+(67, 'Javat00', 'Pan de ajo', 'Aperitivos', 0, 'pictures/735b90b4568125ed6c3f678819b6e058.jpeg', 'resources/67_ingredients.txt', 'resources/67_preparation.txt'),
+(68, 'Javat00', 'Ensalada César', 'Ensaladas', 0, 'pictures/a3f390d88e4c41f2747bfa2f1b5f87db.jpeg', 'resources/68_ingredients.txt', 'resources/68_preparation.txt'),
+(69, 'Kaarel', 'Salmón al horno', 'Pescados', 0, 'pictures/14bfa6bb14875e45bba028a21ed38046.jpeg', 'resources/69_ingredients.txt', 'resources/69_preparation.txt'),
+(71, 'Kaarel', 'Sopa de cebolla', 'Sopas', 0, 'pictures/e2c420d928d4bf8ce0ff2ec19b371514.jpeg', 'resources/71_ingredients.txt', 'resources/71_preparation.txt'),
+(72, 'Javat00', 'Arroz con leche', 'Postres', 0, 'pictures/32bb90e8976aab5298d5da10fe66f21d.jpeg', 'resources/72_ingredients.txt', 'resources/72_preparation.txt'),
+(74, 'Javat00', 'Batido de frutos rojos', 'Desayunos', 0, 'pictures/ad61ab143223efbc24c7d2583be69251.jpeg', 'resources/74_ingredients.txt', 'resources/74_preparation.txt'),
+(76, 'Menkord', 'Tortilla de patatas vegana', 'Vegano', 0, 'pictures/fbd7939d674997cdb4692d34de8633c4.jpeg', 'resources/76_ingredients.txt', 'resources/76_preparation.txt'),
+(77, 'Menkord', 'Mantequilla de anacardos', 'Vegano', 0, 'pictures/28dd2c7955ce926456240b2ff0100bde.jpeg', 'resources/77_ingredients.txt', 'resources/77_preparation.txt'),
+(78, 'Menkord', 'Bowl vegetariano', 'Vegetariano', 0, 'pictures/35f4a8d465e6e1edc05f3d8ab658c551.jpeg', 'resources/78_ingredients.txt', 'resources/78_preparation.txt'),
+(79, 'Celx2', 'Risotto de setas', 'Arroces', 0, 'pictures/d1fe173d08e959397adf34b1d77e88d7.jpeg', 'resources/79_ingredients.txt', 'resources/79_preparation.txt'),
+(80, 'Menkord', 'Salsa verde', 'Salsas', 0, 'pictures/f033ab37c30201f73f142449d037028d.jpeg', 'resources/80_ingredients.txt', 'resources/80_preparation.txt'),
+(81, 'Celx2', 'Ratatouille', 'Vegano', 0, 'pictures/43ec517d68b6edd3015b3edc9a11367b.jpeg', 'resources/81_ingredients.txt', 'resources/81_preparation.txt');
 
 --
 -- Índices para tablas volcadas
@@ -56,8 +67,8 @@ INSERT INTO `recetas` (`ID`, `Usuario`, `Nombre`, `Categoría`, `Me gusta`, `Ima
 -- Indices de la tabla `recetas`
 --
 ALTER TABLE `recetas`
-  ADD PRIMARY KEY (`Usuario`),
-  ADD UNIQUE KEY `ID` (`ID`);
+  ADD UNIQUE KEY `ID` (`ID`),
+  ADD KEY `Usuario` (`Usuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -67,7 +78,7 @@ ALTER TABLE `recetas`
 -- AUTO_INCREMENT de la tabla `recetas`
 --
 ALTER TABLE `recetas`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- Restricciones para tablas volcadas
