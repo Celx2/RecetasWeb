@@ -357,6 +357,7 @@ user:hover{
 
 .recipe-author a{
     font-weight: bold;
+    color:black;
 }
 
 .recipe-author a:hover{
