@@ -22,7 +22,6 @@
     }
 
     if (isset($_GET["liked"]) && $id!=null){
-        
         hasLiked($id, $_SESSION["username"]);
     }
 ?>
@@ -110,7 +109,7 @@
         <div id="likes-see-recipe" class="recipe-likes">
 
             <div class="off like-counter">
-                <?php echo $row["Me_gusta"]; ?>
+                <?php echo howManyLikes($id); ?>
             </div>
 
             <div id="1" class="like-btn">
