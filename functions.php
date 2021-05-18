@@ -269,7 +269,7 @@ function search($recipe, $DB_LINK){ //busca recetas que contengan el nombre busc
             <div class="recipe-card-body">
         
                 <div class="recipe-picture">
-                    <img class="recipeUwU" src="<?php if ($row['Imagen']=="Futura ruta") echo "pictures/brownie.jpg"; else echo $row['Imagen'];?>"/>
+                    <img class="recipeUwU" src="<?php echo $row['Imagen'];?>"/>
                 </div>
     
                 <div class="recipe-title">
@@ -297,7 +297,7 @@ function search($recipe, $DB_LINK){ //busca recetas que contengan el nombre busc
                 </div>
     
                 <div class="recipe-author">
-                    Por: <a> <?php echo $row["Usuario"] ?> </a>
+                    Por: <a href="main-menu.php?author=<?php echo $row["Usuario"]?>"> <?php echo $row["Usuario"] ?> </a>
                 </div>
     
             </div>
@@ -318,7 +318,7 @@ function mainMenu($DB_LINK){ //busca recetas que contengan el nombre buscado en 
         <div class="recipe-card-body">
     
             <div class="recipe-picture">
-                <img class="recipeUwU" src="<?php if ($row['Imagen']=="Futura ruta") echo "pictures/brownie.jpg"; else echo $row['Imagen'];?>"/>
+                <img class="recipeUwU" src="<?php echo $row['Imagen'];?>"/>
             </div>
 
             <div class="recipe-title">
@@ -342,7 +342,7 @@ function mainMenu($DB_LINK){ //busca recetas que contengan el nombre buscado en 
             </div>
 
             <div class="recipe-author">
-                Por: <a> <?php echo $row["Usuario"] ?> </a>
+                Por: <a href="main-menu.php?author=<?php echo $row["Usuario"]?>"> <?php echo $row["Usuario"] ?> </a>
             </div>
 
         </div>
@@ -362,7 +362,7 @@ function liked($DB_LINK){ //muestra recetas ordenadas por likes descendente
         <div class="recipe-card-body">
     
             <div class="recipe-picture">
-                <img class="recipeUwU" src="<?php if ($row['Imagen']=="Futura ruta") echo "pictures/brownie.jpg"; else echo $row['Imagen'];?>"/>
+                <img class="recipeUwU" src="<?php echo $row['Imagen'];?>"/>
             </div>
 
             <div class="recipe-title">
@@ -386,7 +386,7 @@ function liked($DB_LINK){ //muestra recetas ordenadas por likes descendente
             </div>
 
             <div class="recipe-author">
-                Por: <a> <?php echo $row["Usuario"] ?> </a>
+                Por: <a href="main-menu.php?author=<?php echo $row["Usuario"]?>"> <?php echo $row["Usuario"] ?> </a>
             </div>
 
         </div>
@@ -418,4 +418,51 @@ function hasLiked($recipeID, $username){
         $res3=mysqli_query(connectDB(), $query3);
         }
     }
+
+function recipesAuthor($DB_LINK){
+    $author = clear($_GET["author"]);
+    $query = "SELECT * FROM recetas WHERE Usuario='$author'";
+    $res = mysqli_query($DB_LINK, $query);
+    while ($row = mysqli_fetch_array($res)) {
+        ?>
+        <div class="recipe-card">
+        <div class="recipe-card-body">
+    
+            <div class="recipe-picture">
+                <img class="recipeUwU" src="<?php echo $row['Imagen'];?>"/>
+            </div>
+
+            <div class="recipe-title">
+                <h3> <?php echo $row["Nombre"] ?> </h3>
+            </div>
+
+            <div class="recipe-type">
+                <h4> <?php echo $row["Categoría"] ?> </h4>
+            </div>
+
+            <div class="recipe-likes">
+                <div class="off like-counter">
+                    <b><?php echo howManyLikes($row["ID"]) ?></b> Me gusta
+                </div>
+
+                <div class="see-btn">
+                    <a href="./see-recipe.php?ID=<?php echo $row["ID"] ?>">
+                        <i id="eye-btn" class="fas fa-eye"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="recipe-author">
+                Por: <a href="main-menu.php?author=<?php echo $row["Usuario"]?>"> <?php echo $row["Usuario"] ?> </a>
+            </div>
+
+        </div>
+        </div>
+
+        <?php
+    }
+    
+
+}
+
 ?>

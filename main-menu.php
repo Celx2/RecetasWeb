@@ -33,9 +33,7 @@
 <div class="container">
 
     <nav>
-
-    <div class="nav-user">
-        <!-- arreglar nombre usuario logeado -->
+        <div class="nav-user">
             <user><?php echo $_SESSION["username"]; ?></user> | <a class="logout" href="index.php?logout=yes">Cerrar sesión</a>
         </div>
 
@@ -69,6 +67,9 @@
             }
             elseif (isset($_GET["order"]) && $_GET["order"]=="liked"){
                 liked(connectDB());
+            }
+            elseif (isset($_GET["author"])){
+                recipesAuthor(connectDB());
             }
             else{
                 mainMenu(connectDB());

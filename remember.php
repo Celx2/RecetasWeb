@@ -39,7 +39,7 @@ if ($DB_LINK=connectDB()){
         <form action="remember.php" method="POST">
             
             <label>Escriba su correo electrónico</label>
-            <input type="text" name="email" required/>
+            <input type="text" name="email" placeholder="correo@correo.com" required="required"/>
             <button class="btn" type="submit" id="remember-btn">Enviar</button>
 
         </form>
