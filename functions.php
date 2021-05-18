@@ -397,6 +397,13 @@ function liked($DB_LINK){ //muestra recetas ordenadas por likes descendente
     }
 }
 
+function howManyLikes ($recipeID){
+    $query="SELECT * FROM likes WHERE IDReceta='$recipeID";
+    $res=mysqli_query(connectDB(), $query);
+    $Likes = mysqli_num_rows($res);
+    return $Likes;
+}
+
 function hasLiked($recipeID, $username){    
     $query = "SELECT * FROM likes WHERE IDReceta='$recipeID' AND Nombre_usuario='$username'";
     $res = mysqli_query(connectDB(), $query);

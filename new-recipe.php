@@ -63,6 +63,7 @@
     <link rel="stylesheet" type="text/css" media="(min-width: 1100px)"  href="./css/ordenadores.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./pictures/GreenAppleLogo.ico" />
     <script src="https://kit.fontawesome.com/11e0b18f8c.js" crossorigin="anonymous"></script>
     <script
     src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -93,7 +94,7 @@
         </form>
 
         <div class="sub-nav">
-            <b><a href="./main-menu.php?order=liked">Recetas más amadas</a></b>
+            <b><a href="./main-menu.php?order=liked">Recetas con más likes</a></b>
         
             <b><a href="./new-recipe.php">Nueva receta</a></b>
         
@@ -122,10 +123,25 @@
         <div class="new-recipe-type">
             <label for="type">Tipo de receta: </label>
             <select name="recipe-type">
-                <option>Fitness</option>
-                <option>Snack</option>
+                <option>Desayunos</option>
+                <option>Aperitivos</option>
+                <option>Carnes</option>
+                <option>Pescados</option>
+                <option>Sopas</option>
+                <option>Pastas</option>
+                <option>Arroces</option>
+                <option>Legumbes</option>
+                <option>Ensaladas</option>
+                <option>Salsas</option>
                 <option>Postres</option>
-                <option>Italiana</option>
+                <option>Bebidas</option>
+                <option>Fitness</option>
+                <option>Vegetariano</option>
+                <option>Vegano</option>
+                <option>Otros</option>
+
+
+
             </select>
         </div>
 

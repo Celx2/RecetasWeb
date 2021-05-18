@@ -38,6 +38,7 @@ if (isset($_POST["name"]) && isset ($_POST["email"]) && isset($_POST["username"]
     <link rel="stylesheet" type="text/css" media="(min-width: 1100px)"  href="./css/ordenadores.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap" rel="stylesheet">    
+    <link rel="shortcut icon" href="./pictures/GreenAppleLogo.ico" />
     <title>HappyApple!</title>
 </head>
 <body>
