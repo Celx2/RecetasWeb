@@ -372,7 +372,6 @@ user:hover{
     margin-right: 35px;
 }
 
-
 .like-btn{
     padding: 8px 9px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 1);
@@ -381,7 +380,8 @@ user:hover{
 
 .see-btn{
     margin-left: 14px;
-    padding: 11px 13px;
+    padding: 11px 14px;
+    font-size: 1.4em;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 1);
     border-radius: 50%;
 }

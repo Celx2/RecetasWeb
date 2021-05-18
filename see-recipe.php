@@ -5,6 +5,7 @@
         header("Location: index.php?error=2");
         exit;
     }
+    
     if (isset($_GET["ID"]) && $_GET["ID"]==""){
         
         $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -24,6 +25,9 @@
     if (isset($_GET["liked"]) && $id!=null){
         hasLiked($id, $_SESSION["username"]);
     }
+
+    if(isset($_GET["liked"]) && ($_GET["liked"])==true) $heart_class = "fas";
+    else $heart_class = "far";
 ?>
 
 <!DOCTYPE html>
@@ -113,7 +117,7 @@
             </div>
 
             <div id="1" class="like-btn">
-                <i id="heart-btn" class="far fa-heart"></i>
+                <i id="heart-btn" class="<?php echo $heart_class; ?> fa-heart"></i>
             </div>
 
         </div>

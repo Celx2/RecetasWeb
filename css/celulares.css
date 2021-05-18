@@ -628,6 +628,12 @@ user:hover{
     font-size: 2.6em;
 }
 
+#ingredients b, #preparation b{
+    color: rgb(0, 0, 0);
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
 .recipe-box #ingredients{
     grid-column: 1/4;
     grid-row: 7/8;
@@ -641,13 +647,19 @@ user:hover{
     border-radius: .75rem;
 }
 
+.recipe-box hr{
+    margin: 20px 0;
+    border-style: inset;
+    border-width: 1px;
+}
+
 .recipe-box #preparation{
     font-size: 1.1em;
     grid-column: 1/4;
     grid-row: 8/9;
     width: 100%;
     height: auto;
-    padding: 30px 100px;
+    padding: 30px 40px;
     background-color: rgb(246, 246, 246);
     border: 1px solid black;
     border-radius: .75rem;
