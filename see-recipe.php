@@ -1,13 +1,49 @@
 <?php
     include_once ("functions.php");
+    
     if (!isLoggedIn()){
         header("Location: index.php?error=2");
         exit;
     }
-    $id = $_GET["ID"];
-    $query = "SELECT * from recetas WHERE ID='$id'";
-    $res = mysqli_query(connectDB(),$query);
-    $row = mysqli_fetch_array($res)
+
+    $IDComprobar=$_GET["ID"];
+    $UsuarioActual=$_SESSION["username"];
+    $query2 = "SELECT * FROM likes WHERE IDReceta='$IDComprobar' AND Nombre_usuario='$UsuarioActual'";
+    $res2 = mysqli_query(connectDB(), $query2);
+    $numrows = mysqli_num_rows($res2);
+    
+    if (isset($_GET["ID"]) && $_GET["ID"]==""){
+        
+        $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $new_link = $actual_link . $_SESSION['id'];
+        header("Location: $new_link");
+        
+    }
+
+    if (isset($_GET["ID"]) || ($_GET["liked"]==true)){ 
+        $_SESSION['id'] = $_GET["ID"];
+        $id = $_SESSION['id'];
+        $query = "SELECT * from recetas WHERE ID = '$id'";
+        $res = mysqli_query(connectDB(),$query);
+        $row = mysqli_fetch_array($res);
+    }
+
+    if (isset($_GET["liked"]) && $id!=null){
+        hasLiked($id, $_SESSION["username"]);
+    }
+
+    
+    if(isset($_GET["liked"]) && ($_GET["liked"])==true) $heart_class = "fas";
+    else $heart_class = "far";
+    /*
+    if ($numrows!=0){
+        $heart_class = "fas";
+    }
+    else{
+        $heart_class = "far";
+    }
+    */
+
 ?>
 
 <!DOCTYPE html>
@@ -16,23 +52,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" media="(max-width: 576px) and (max-width: 992px)"  href="./css/celulares.css">
-    <link rel="stylesheet" type="text/css" media="(min-width: 576px) and (max-width: 992px)"  href="./css/tablets.css">
-    <link rel="stylesheet" type="text/css" media="(min-width: 992px)"  href="./css/ordenadores.css">
+    <link rel="stylesheet" type="text/css" media="(max-width: 676px)" href="./css/celulares.css">
+    <link rel="stylesheet" type="text/css" media="(min-width: 676px) and (max-width: 1100px)"  href="./css/tablets.css">
+    <link rel="stylesheet" type="text/css" media="(min-width: 1100px)"  href="./css/ordenadores.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./pictures/GreenAppleLogo.ico" />
     <script src="https://kit.fontawesome.com/11e0b18f8c.js" crossorigin="anonymous"></script>
     <script
     src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
     crossorigin="anonymous"></script>
     <script type="text/javascript" src="./scripts/see-recipe.js"></script>
-    <title> - </title>
+    <title> <?php echo $row["Nombre"] ?> </title>
 </head>
 <body>
 
     <div class="container">
-
     <nav>
 
         <div class="nav-user">
@@ -41,7 +77,7 @@
         </div>
 
         <div class="nav-recipe">
-            <h1>HappyApple!</h1>
+            <a href="./main-menu.php"><h1>HappyApple!</h1></a>
         </div>
         
         <form action="main-menu.php" method="GET">
@@ -51,11 +87,11 @@
         </form>
 
         <div class="sub-nav">
-            <b>Recetas más amadas</b>
+            <b><a href="./main-menu.php?order=liked">Recetas con más likes</a></b>
         
-            <b><a href="/new-recipe.php">Nueva receta</a></b>
+            <b><a href="./new-recipe.php">Nueva receta</a></b>
         
-            <b>Recetas más recientes</b>
+            <b><a href="./main-menu.php?order=recent">Recetas más recientes</a></b>
         </div>
 
     </nav>
@@ -92,17 +128,17 @@
         <div id="likes-see-recipe" class="recipe-likes">
 
             <div class="off like-counter">
-                16
+                <?php echo howManyLikes($id); ?>
             </div>
 
             <div id="1" class="like-btn">
-                <i id="heart-btn" class="far fa-heart"></i>
+                <i id="heart-btn" class="<?php echo $heart_class; ?> fa-heart"></i>
             </div>
 
         </div>
 
         <div id="ingredients">
-        Ingredientes
+        <b>Ingredientes</b><hr/>
             <h3>
             <?php
             $file = fopen($row["Ingredientes"], "r");
@@ -119,7 +155,7 @@
         </div>
 
         <div id="preparation">
-        Preparación
+        <b>Preparación</b><hr/>
         <h4>
         <?php
             $file = fopen($row["Preparación"], "r");

@@ -91,7 +91,6 @@ function generateToken(){
 //Extraer extensión
 function extraerExtension($imagensubida, $lista_blanca_extension=array("image/x.png", "image/gif", "image/jpeg", "image/jpg")){
     $extension=$imagensubida;
-    $extraccion=".notValid";
     if(in_array($extension, $lista_blanca_extension)){
         switch($extension){
             case "image/x.png":
@@ -108,6 +107,7 @@ function extraerExtension($imagensubida, $lista_blanca_extension=array("image/x.
             break;
         }
     }
+    else $extraccion=".notvalid";
     return $extraccion;
 }
 
@@ -117,25 +117,26 @@ function moverImagen($imagen, $nombreImagen){
     return $ruta;
 }
 
-//Comprobación de extensión de la imagen de perfil
+//Comprobación de extensión de la imagen de la receta
 function checkExtension($extension, $lista_blanca_extension = array(".png", ".gif", ".jpeg", ".jpg")){
     if(!in_array($extension, $lista_blanca_extension)){
-        header("Location: insert.php?error=8");
+        header("Location: new-recipe.php?error=10");
     }
 }
+
 function resetPassword(){
     if (!$DB_LINK = connectDB()){
         return false;
     }
     
     $email=$_POST["email"];
-    $query="SELECT * FROM usuarios WHERE email = '$email'";
+    $query="SELECT * FROM usuarios WHERE Correo = '$email'";
     $res=mysqli_query($DB_LINK, $query);
     
     //Solo es válido si tiene una coincidencia en la base de datos
     if (mysqli_num_rows($res) == 1){
         $token = generateToken();
-        $query2="UPDATE usuarios SET token='$token' WHERE email = '$email'";
+        $query2="UPDATE usuarios SET token='$token' WHERE Correo = '$email'";
         $res=mysqli_query($DB_LINK, $query2);
         ?>
 
@@ -203,6 +204,18 @@ function showError($id_error){
         case 8:				
             echo "Error " . $id_error . ": La contraseña tiene que ser al menos de 6 caracteres</b></div>";				
             break;
+        case 9:				
+            echo "Error " . $id_error . ": Error al buscar el correo electrónico</b></div>";				
+            break;
+        case 10:				
+            echo "Error " . $id_error . ": La extensión no es valida, por favor, introduce una imagen</b></div>";				
+            break;
+        case 11:				
+            echo "Error " . $id_error . ": No puedes realizar esta acción</b></div>";				
+            break;
+        case 12:				
+            echo "Error " . $id_error . ": Categoría no válida</b></div>";				
+            break;
         default:
             echo "Error desconocido</b></div>";
             break;
@@ -228,7 +241,7 @@ function repeated($mail, $user, $DB_LINK){
 }
 
 function checks($nombre, $email, $usuario, $contraseña){ //checks de tipos y longitudes de datos introducidos
-    $allowed = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ- "; //caracteres permitidos para nombre y apellido
+    $allowed = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ- "; //caracteres permitidos para nombre y apellido 
     $email = filter_var($email, FILTER_SANITIZE_EMAIL); //elimina caracteres ilegales
     $flag = false;
     for ($i=0; $i<strlen($nombre); $i++){ //comprobamos que el nombre esté entre los caracteres permitidos
@@ -252,7 +265,11 @@ function search($recipe, $DB_LINK){ //busca recetas que contengan el nombre busc
     $query = "SELECT * FROM recetas WHERE Nombre LIKE '%$recipe%'";
     $res = mysqli_query($DB_LINK, $query);
     if (!mysqli_num_rows($res)){
-        echo "No existe ninguna receta que contenga $recipe";
+        ?>
+        <div class="recipe-not-found">
+            <b>No existe ninguna receta que contenga <?php echo $recipe?>.</b>
+        </div>
+        <?php
     }
     else{
         while ($row = mysqli_fetch_array($res)) {
@@ -262,7 +279,7 @@ function search($recipe, $DB_LINK){ //busca recetas que contengan el nombre busc
             <div class="recipe-card-body">
         
                 <div class="recipe-picture">
-                    <img class="recipeUwU" src="<?php if ($row['Imagen']=="Futura ruta") echo "pictures/brownie.jpg"; else echo $row['Imagen'];?>"/>
+                    <img class="recipeUwU" src="<?php echo $row['Imagen'];?>"/>
                 </div>
     
                 <div class="recipe-title">
@@ -275,14 +292,14 @@ function search($recipe, $DB_LINK){ //busca recetas que contengan el nombre busc
     
                 <div class="recipe-likes">
                 <div class="off like-counter">
-                        <?php echo $row["Me_gusta"] ?>
+                        <?php echo howManyLikes($row["ID"]) ?>
                     </div>
     
                     <div id="<?php echo $row["ID"] ?>" class="like-btn">
                         <i id="heart-btn" class="far fa-heart"></i>
                     </div>
                 
-                    <div id="" class="see-btn">
+                    <div class="see-btn">
                         <a href="./see-recipe.php?ID=<?php echo $row["ID"] ?>">
                             <i id="eye-btn" class="fas fa-eye"></i>
                         </a>
@@ -290,7 +307,7 @@ function search($recipe, $DB_LINK){ //busca recetas que contengan el nombre busc
                 </div>
     
                 <div class="recipe-author">
-                    Por: <a> <?php echo $row["Usuario"] ?> </a>
+                    Por: <a href="main-menu.php?author=<?php echo $row["Usuario"]?>"> <?php echo $row["Usuario"] ?> </a>
                 </div>
     
             </div>
@@ -311,7 +328,7 @@ function mainMenu($DB_LINK){ //busca recetas que contengan el nombre buscado en 
         <div class="recipe-card-body">
     
             <div class="recipe-picture">
-                <img class="recipeUwU" src="<?php if ($row['Imagen']=="Futura ruta") echo "pictures/brownie.jpg"; else echo $row['Imagen'];?>"/>
+                <img class="recipeUwU" src="<?php echo $row['Imagen'];?>"/>
             </div>
 
             <div class="recipe-title">
@@ -323,29 +340,162 @@ function mainMenu($DB_LINK){ //busca recetas que contengan el nombre buscado en 
             </div>
 
             <div class="recipe-likes">
-                    <div class="off like-counter">
-                        <?php echo $row["Me_gusta"] ?>
-                    </div>
-    
-                    <div id="<?php echo $row["ID"] ?>" class="like-btn">
-                        <i id="heart-btn" class="far fa-heart"></i>
-                    </div>
-                
-                    <div id="" class="see-btn">
-                        <a href="./see-recipe.php?ID=<?php echo $row["ID"] ?>">
-                            <i id="eye-btn" class="fas fa-eye"></i>
-                        </a>
-                    </div>
+                <div class="off like-counter">
+                    <b><?php echo howManyLikes($row["ID"]) ?></b> Me gusta
+                </div>
+
+                <div class="see-btn">
+                    <a href="./see-recipe.php?ID=<?php echo $row["ID"] ?>">
+                        <i id="eye-btn" class="fas fa-eye"></i>
+                    </a>
+                </div>
             </div>
 
             <div class="recipe-author">
-                Por: <a> <?php echo $row["Usuario"] ?> </a>
+                Por: <a href="main-menu.php?author=<?php echo $row["Usuario"]?>"> <?php echo $row["Usuario"] ?> </a>
             </div>
 
         </div>
         </div>
 
         <?php
+    }
+}
+
+function liked($DB_LINK){ //muestra recetas ordenadas por likes descendente
+    $query = "SELECT * FROM recetas ORDER BY Me_gusta DESC";
+    $res = mysqli_query($DB_LINK, $query);
+    
+    while ($row = mysqli_fetch_array($res)) {
+        ?>
+        <div class="recipe-card">
+        <div class="recipe-card-body">
+    
+            <div class="recipe-picture">
+                <img class="recipeUwU" src="<?php echo $row['Imagen'];?>"/>
+            </div>
+
+            <div class="recipe-title">
+                <h3> <?php echo $row["Nombre"] ?> </h3>
+            </div>
+
+            <div class="recipe-type">
+                <h4> <?php echo $row["Categoría"] ?> </h4>
+            </div>
+
+            <div class="recipe-likes">
+                <div class="off like-counter">
+                    <b><?php echo howManyLikes($row["ID"]) ?></b> Me gusta
+                </div>
+
+                <div class="see-btn">
+                    <a href="./see-recipe.php?ID=<?php echo $row["ID"] ?>">
+                        <i id="eye-btn" class="fas fa-eye"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="recipe-author">
+                Por: <a href="main-menu.php?author=<?php echo $row["Usuario"]?>"> <?php echo $row["Usuario"] ?> </a>
+            </div>
+
+        </div>
+        </div>
+
+        <?php
+    }
+}
+
+function howManyLikes ($recipeID){
+    $query = "SELECT * FROM likes WHERE IDReceta='$recipeID'";
+    $res = mysqli_query(connectDB(), $query);
+    $likes = mysqli_num_rows($res);
+    $query2 = "UPDATE recetas SET Me_gusta = $likes WHERE ID='$recipeID'";
+    $res2 = mysqli_query(connectDB(), $query2);
+    return $likes;
+}
+
+function hasLiked($recipeID, $username){    
+    $query = "SELECT * FROM likes WHERE IDReceta='$recipeID' AND Nombre_usuario='$username'";
+    $res = mysqli_query(connectDB(), $query);
+    $row = mysqli_num_rows($res);
+    if ($row==0){
+        $query2="INSERT INTO likes (Nombre_usuario, IDReceta) VALUES ('$username', '$recipeID')";
+        $res2=mysqli_query(connectDB(), $query2);
+    }
+    else{
+        $query3="DELETE FROM likes WHERE IDReceta='$recipeID' AND Nombre_usuario='$username'";
+        $res3=mysqli_query(connectDB(), $query3);
+        }
+    }
+
+function recipesAuthor($DB_LINK){
+    $author = clear($_GET["author"]);
+    $query = "SELECT * FROM recetas WHERE Usuario='$author'";
+    $res = mysqli_query($DB_LINK, $query);
+    while ($row = mysqli_fetch_array($res)) {
+        ?>
+        <div class="recipe-card">
+        <div class="recipe-card-body">
+    
+            <div class="recipe-picture">
+                <img class="recipeUwU" src="<?php echo $row['Imagen'];?>"/>
+            </div>
+
+            <div class="recipe-title">
+                <h3> <?php echo $row["Nombre"] ?> </h3>
+            </div>
+
+            <div class="recipe-type">
+                <h4> <?php echo $row["Categoría"] ?> </h4>
+            </div>
+
+            <div class="recipe-likes">
+                <div class="off like-counter">
+                    <b><?php echo howManyLikes($row["ID"]) ?></b> Me gusta
+                </div>
+
+                <div class="see-btn">
+                    <a href="./see-recipe.php?ID=<?php echo $row["ID"] ?>">
+                        <i id="eye-btn" class="fas fa-eye"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="recipe-author">
+                Por: <a href="main-menu.php?author=<?php echo $row["Usuario"]?>"> <?php echo $row["Usuario"] ?> </a>
+            </div>
+
+        </div>
+        </div>
+
+        <?php
+    }
+    
+
+}
+
+function deleteRecipe ($recipeID, $DB_LINK){
+    $Usuario=$_SESSION["username"];
+    $query = "SELECT * FROM recetas WHERE Usuario='$Usuario' AND ID='$recipeID'";
+    $res = mysqli_query($DB_LINK, $query);
+    $row = mysqli_num_rows($res);
+
+    if ($row==1){
+        $query2="DELETE * FROM recetas WHERE Usuario='$Usuario' AND ID='$recipeID'";
+        mysqli_query($DB_LINK, $query2);
+    }else{
+        header("Location: see-recipe.php?error=11"); exit;
+    }
+}
+
+function checkCategory (){
+    $recipeType = $_POST["recipe-type"];
+    $white_list=array("Desayunos", "Aperitivos", "Carnes", "Pescados", "Sopas", "Pastas", "Arroces", "Legumbres", "Ensaladas", "Salsas", 
+    "Postres", "Bebidas", "Fitness", "Vegetariano", "Vegano", "Otros");
+    if(!in_array($recipeType, $white_list)){
+        header("Location: new-recipe.php?error=12");
+        exit;
     }
 }
 

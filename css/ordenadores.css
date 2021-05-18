@@ -31,7 +31,7 @@ body {
     background-color: rgb(255, 255, 255);
     padding: 0 60px;
     border: 1px solid rgb(112, 112, 112);
-    border-radius: 4%;
+    border-radius: 0.75rem;
     opacity: 90%;
     box-shadow: 0px 0px 3px #3a3a3a;
 }
@@ -127,7 +127,7 @@ body {
 
 .register-box{    
     width: 33%;
-    margin-top: 4%;
+    margin-top: 0.75rem;
     position: relative;
     display: inline-block;
     flex-direction: column;
@@ -149,6 +149,48 @@ input{
     margin-bottom: 15px;
     color: rgb(83, 83, 83);
 }
+
+.remember-box-2{
+    width: 33%;
+    margin-top: 8%;
+    position: relative;
+    vertical-align: middle;
+    display: inline-block;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    padding: 0 60px;
+    border: 1px solid rgb(112, 112, 112);
+    border-radius: 0.75rem;
+    opacity: 90%;
+    box-shadow: 0px 0px 3px #3a3a3a;
+}
+
+.remember-box-2 form{
+    padding: 30px 10px;
+}
+
+.remember-box-2 form label{
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.remember-box-2 form input{
+    width: 80%;
+    height: 40px;
+    padding: 11px;
+    margin: 20px 0;
+    font-size: 18px;
+    font-family: 'Nunito', sans-serif;
+}
+
+#remember-btn{
+    margin: 30px 0 10px 0;
+    height: 40px;
+    width: 70%;
+}
+
+
+
 
 
 
@@ -197,9 +239,12 @@ user:hover{
     text-align: center;   
     font-size: 2em;
     font-weight: 900;
-    color: rgb(239, 255, 236);
-    text-shadow: rgb(34, 34, 34) 1px 0 10px;
     cursor: default;
+}
+
+.nav-recipe a{
+    color: rgb(241, 255, 239);
+    text-shadow: rgb(34, 34, 34) 1px 0 10px;
 }
 
 .nav-recipe a:hover{
@@ -266,7 +311,7 @@ user:hover{
 
 .recipe-card-body{
     display: grid;
-    grid-template-columns: 20% 50% 30%;
+    grid-template-columns: 20% 45% 35%;
     grid-template-rows: 80px 60px;
     align-items: center;
 }
@@ -286,7 +331,7 @@ user:hover{
 }
 
 .recipe-title{
-    font-size: 1.65em;
+    font-size: 1.55em;
     margin-left: 25px;
     grid-column: 2/3;
     grid-row: 1/2;
@@ -312,6 +357,7 @@ user:hover{
 
 .recipe-author a{
     font-weight: bold;
+    color:black;
 }
 
 .recipe-author a:hover{
@@ -331,14 +377,15 @@ user:hover{
 }
 
 .like-btn{
-    padding: 8px 10px;
+    padding: 8px 9px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 1);
     border-radius: 50%;
 }
 
 .see-btn{
     margin-left: 14px;
-    padding: 11px 13px;
+    padding: 11px 14px;
+    font-size: 1.4em;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 1);
     border-radius: 50%;
 }
@@ -348,7 +395,7 @@ user:hover{
 }
 
 .like-btn i{
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     transition: .3s all;
 }
 
@@ -361,23 +408,32 @@ user:hover{
     cursor: pointer;
 }
 
+.like-btn .fas{
+    color:#f50057;
+}
+
 .see-btn a:hover{
     color:#00af2c;
     cursor: pointer;
 }
 
-.like-btn .fas{
-    color:#f50057;
-}
-
 .like-counter{
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1.3em;
     margin-right: 10px;
+}
+
+.like-counter b{
+    color:rgb(236, 0, 0);
 }
 
 .on{
     color:#f50057;
+}
+
+.recipe-not-found{
+    padding: 60px;
+    font-size: 2em;
 }
 
 .new-recipe-box{
@@ -393,7 +449,7 @@ user:hover{
 .new-recipe-box form{
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 140px 140px 500px 140px 180px;
+    grid-template-rows: 140px 360px 500px 140px 180px;
     justify-items: flex-start;
     align-items: center;
 }
@@ -454,13 +510,23 @@ user:hover{
     text-align: start;
 }
 
+.new-recipe-ingredients textarea{
+    padding: 12px;
+    font-size: 1.7em;
+    font-family: 'Nunito', sans-serif;
+    margin-top: 12px;
+    height: 250px;
+    border-radius: .75rem;
+    border: 1px solid rgb(112, 112, 112);
+}
+
 .new-recipe-preparation textarea{
     padding: 12px;
     font-size: 1.6em;
     font-family: 'Nunito', sans-serif;
     margin-top: 12px;
     height: 400px;
-    border-radius: .40rem;
+    border-radius: .75rem;
     border: 1px solid rgb(112, 112, 112);
 }
 
@@ -554,7 +620,7 @@ user:hover{
 
 .recipe-box-line hr{
     margin-top: 30px;
-    width: 1000px;
+    width: 850px;
     border-style: inset;
     border-width: 1px;
 }
@@ -621,6 +687,12 @@ user:hover{
     grid-row: 5/6;
 }
 
+#ingredients b, #preparation b{
+    color: rgb(0, 0, 0);
+    font-size: 1.777em;
+    font-weight: bold;
+}
+
 .recipe-box #ingredients{
     grid-column: 1/4;
     grid-row: 6/7;
@@ -632,6 +704,12 @@ user:hover{
     background-color: rgb(246, 246, 246);
     border: 1px solid black;
     border-radius: .75rem;
+}
+
+.recipe-box hr{
+    margin: 30px 0;
+    border-style: inset;
+    border-width: 1px;
 }
 
 .recipe-box #preparation{

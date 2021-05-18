@@ -29,11 +29,12 @@ include_once ("functions.php");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" media="(max-width: 576px) and (max-width: 992px)"  href="./css/celulares.css">
-    <link rel="stylesheet" type="text/css" media="(min-width: 576px) and (max-width: 992px)"  href="./css/tablets.css">
-    <link rel="stylesheet" type="text/css" media="(min-width: 992px)"  href="./css/ordenadores.css">
+    <link rel="stylesheet" type="text/css" media="(max-width: 676px)" href="./css/celulares.css">
+    <link rel="stylesheet" type="text/css" media="(min-width: 676px) and (max-width: 1100px)"  href="./css/tablets.css">
+    <link rel="stylesheet" type="text/css" media="(min-width: 1100px)"  href="./css/ordenadores.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap" rel="stylesheet">    
+    <link rel="shortcut icon" href="./pictures/GreenAppleLogo.ico" />
     <title>HappyApple!</title>
     <script src='https://www.google.com/recaptcha/api.js?render=6Lce_4EaAAAAAADlrj62E7V1gUXTY6wzrvniDtoL'> </script>
 		<script>
@@ -69,11 +70,11 @@ include_once ("functions.php");
         <form action="index.php" method="POST">
 
             <div class="div-login-input" id="user-input">
-                <input type="text" class="login-input" placeholder="Nombre de usuario" name="username" required/>
+                <input type="text" class="login-input" placeholder="Nombre de usuario" name="username" required="required"/>
             </div>
 
             <div class="div-login-input" id="passwd-input">
-                <input type="password" class="login-input" placeholder="Contraseña" name="password" required/>
+                <input type="password" class="login-input" placeholder="Contraseña" name="password" required="required"/>
             </div>
 
             <!-- Este input es un honey pot, una trampa de seguridad para evitar posibles ataques automatizados-->
@@ -88,7 +89,7 @@ include_once ("functions.php");
         </form>
 
         <div class="remember-box">
-            <a href="">Recordar contraseña</a>
+            <a href="./remember.php">Recordar contraseña</a>
         </div>
 
     </div>
@@ -112,7 +113,15 @@ include_once ("functions.php");
                 <b>Usuario registrado exitosamente.</b>
             </div>
             <?php
+        }
 
+        if((isset($_GET["saved"])) && $_GET["saved"] == "yes"){
+            logout();
+            ?>
+            <div class="confirm-box">
+                <b>Contraseña cambiada correctamente.</b>
+            </div>
+            <?php
         }
     
     ?>

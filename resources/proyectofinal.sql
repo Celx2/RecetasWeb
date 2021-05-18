@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-05-2021 a las 17:45:30
+-- Tiempo de generación: 18-05-2021 a las 21:41:14
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 7.3.28
 
@@ -20,6 +20,24 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `proyectofinal`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `likes`
+--
+
+CREATE TABLE `likes` (
+  `Nombre_usuario` varchar(255) NOT NULL,
+  `IDReceta` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `likes`
+--
+
+INSERT INTO `likes` (`Nombre_usuario`, `IDReceta`) VALUES
+('Celx2', 81);
 
 -- --------------------------------------------------------
 
@@ -59,9 +77,40 @@ INSERT INTO `recetas` (`ID`, `Usuario`, `Nombre`, `Categoría`, `Me_gusta`, `Ima
 (80, 'Menkord', 'Salsa verde', 'Salsas', 0, 'pictures/f033ab37c30201f73f142449d037028d.jpeg', 'recipes/80_ingredients.txt', 'recipes/80_preparation.txt'),
 (81, 'Celx2', 'Ratatouille', 'Vegano', 1, 'pictures/43ec517d68b6edd3015b3edc9a11367b.jpeg', 'recipes/81_ingredients.txt', 'recipes/81_preparation.txt');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `Usuario` varchar(255) NOT NULL,
+  `Nombre_completo` text DEFAULT NULL,
+  `Correo` varchar(100) DEFAULT NULL,
+  `Contraseña` varchar(255) DEFAULT NULL,
+  `token` varchar(255) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`Usuario`, `Nombre completo`, `Correo`, `Contraseña`, `token`) VALUES
+('Celx2', 'Celeste Laura', 'celeste@correo.com', '$2y$10$LUOxhS8HnkE3ZPffdkisGeEhi8/WSQV8e/xGP.WzDDxGxngUwTy0C', '883e8419ae87bcfa047ffe7da3847ede'),
+('Javat00', 'Aarón Espinosa', 'aaron@correo.com', '$2y$10$LUOxhS8HnkE3ZPffdkisGeEhi8/WSQV8e/xGP.WzDDxGxngUwTy0C', '0'),
+('Kaarel', 'Carlos Marín', 'carlos@correo.com', '$2y$10$LUOxhS8HnkE3ZPffdkisGeEhi8/WSQV8e/xGP.WzDDxGxngUwTy0C', '0'),
+('Menkord', 'Antonio Fernández', 'antonio@correo.com', '$2y$10$LUOxhS8HnkE3ZPffdkisGeEhi8/WSQV8e/xGP.WzDDxGxngUwTy0C', '0');
+
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `likes`
+--
+ALTER TABLE `likes`
+  ADD KEY `id` (`Nombre_usuario`),
+  ADD KEY `idreceta` (`IDReceta`);
 
 --
 -- Indices de la tabla `recetas`
@@ -69,6 +118,12 @@ INSERT INTO `recetas` (`ID`, `Usuario`, `Nombre`, `Categoría`, `Me_gusta`, `Ima
 ALTER TABLE `recetas`
   ADD UNIQUE KEY `ID` (`ID`),
   ADD KEY `Usuario` (`Usuario`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`Usuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -83,6 +138,13 @@ ALTER TABLE `recetas`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `likes`
+--
+ALTER TABLE `likes`
+  ADD CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`Nombre_usuario`) REFERENCES `usuarios` (`Usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `likes_ibfk_2` FOREIGN KEY (`IDReceta`) REFERENCES `recetas` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `recetas`
