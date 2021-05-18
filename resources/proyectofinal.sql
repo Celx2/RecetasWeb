@@ -85,7 +85,7 @@ INSERT INTO `recetas` (`ID`, `Usuario`, `Nombre`, `Categoría`, `Me_gusta`, `Ima
 
 CREATE TABLE `usuarios` (
   `Usuario` varchar(255) NOT NULL,
-  `Nombre completo` text DEFAULT NULL,
+  `Nombre_completo` text DEFAULT NULL,
   `Correo` varchar(100) DEFAULT NULL,
   `Contraseña` varchar(255) DEFAULT NULL,
   `token` varchar(255) DEFAULT '0'
