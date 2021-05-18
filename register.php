@@ -68,7 +68,7 @@ if (isset($_POST["name"]) && isset ($_POST["email"]) && isset($_POST["username"]
         <form action="register.php" method="POST">
 
             <div class="div-login-input">
-                <input type="text" class="login-input" placeholder="Nombre completo" name="name" required="required" pattern="[a-zA-Záéíóúñ]+" minlength="10" maxlength="40"/>
+                <input type="text" class="login-input" placeholder="Nombre completo" name="name" required="required" pattern="[a-zA-ZáéíóúÁÉÍÓÚñ]+[ ][a-zA-ZáéíóúÁÉÍÓÚñ]+"minlength="7" maxlength="40"/>
             </div>
 
             <div class="div-login-input">
