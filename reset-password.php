@@ -2,15 +2,17 @@
 
 include_once ("functions.php");
 
+
+
 if ($DB_LINK=connectDB()){
-    if ($_POST["password"] == $_POST["password2"]){ //Miramos que las dos son iguales
+    if (isset($_POST["password"])){
         $token = clear($_GET["token"]); //Cogemos el token
         $comprobacion="SELECT * FROM usuarios WHERE token='$token'";
-        $resulcomprobacion=mysqli_query($ENLACE_DB, $comprobacion);
+        $resulcomprobacion=mysqli_query(connectDB(), $comprobacion);
 
         if (mysqli_num_rows($resulcomprobacion)==1){
         $password=generateHash(clear($_POST["password"])); //Guardamos la contraseña
-        $consulta="UPDATE usuarios SET token='0', contrasena='$password' WHERE token='$token'";
+        $consulta="UPDATE usuarios SET token='0', Contraseña='$password' WHERE token='$token'";
         if ($resultado=mysqli_query($DB_LINK, $consulta)){
             header("Location: index.php?saved=yes");
             exit;
@@ -41,10 +43,9 @@ if ($DB_LINK=connectDB()){
 
     <div class="remember-box-2">
         
-        <form action="" method="">
-
+        <form action="" method="POST">
             <label>¡Ya estás más cerca!</label>
-            <input type="password" placeholder="Nueva contraseña" name="password" required/>    
+            <input type="password" placeholder="Nueva contraseña" name="password" required="required"/>    
             <button class="btn" type="submit" id="remember-btn">Enviar</button>
 
         </form>

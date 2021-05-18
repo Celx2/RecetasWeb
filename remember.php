@@ -11,7 +11,7 @@ if ($DB_LINK=connectDB()){
             header("location: index.php?changed=yes");
         }
         else{
-            header("location: index.php?error=9"); //CARLOS
+            header("location: index.php?error=9");
         }
     }
 ?>
@@ -36,7 +36,7 @@ if ($DB_LINK=connectDB()){
 
     <div class="remember-box-2">
         
-        <form action="" method="">
+        <form action="remember.php" method="POST">
             
             <label>Escriba su correo electrónico</label>
             <input type="text" name="email" required/>

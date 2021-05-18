@@ -129,13 +129,13 @@ function resetPassword(){
     }
     
     $email=$_POST["email"];
-    $query="SELECT * FROM usuarios WHERE email = '$email'";
+    $query="SELECT * FROM usuarios WHERE Correo = '$email'";
     $res=mysqli_query($DB_LINK, $query);
     
     //Solo es válido si tiene una coincidencia en la base de datos
     if (mysqli_num_rows($res) == 1){
         $token = generateToken();
-        $query2="UPDATE usuarios SET token='$token' WHERE email = '$email'";
+        $query2="UPDATE usuarios SET token='$token' WHERE Correo = '$email'";
         $res=mysqli_query($DB_LINK, $query2);
         ?>
 
