@@ -70,11 +70,11 @@ include_once ("functions.php");
         <form action="index.php" method="POST">
 
             <div class="div-login-input" id="user-input">
-                <input type="text" class="login-input" placeholder="Nombre de usuario" name="username" required/>
+                <input type="text" class="login-input" placeholder="Nombre de usuario" name="username" required="required"/>
             </div>
 
             <div class="div-login-input" id="passwd-input">
-                <input type="password" class="login-input" placeholder="Contraseña" name="password" required/>
+                <input type="password" class="login-input" placeholder="Contraseña" name="password" required="required"/>
             </div>
 
             <!-- Este input es un honey pot, una trampa de seguridad para evitar posibles ataques automatizados-->

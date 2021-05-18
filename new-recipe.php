@@ -9,6 +9,9 @@
     if (isset($_GET["error"])){
         showError($_GET["error"]);
     }
+    //checkeamos categoria
+    if (isset($_POST["recipe-type"]))checkCategory();
+    //checkeamos extension
     if (isset($_FILES["picture"]) && !isset($_GET["error"]))checkExtension(extraerExtension($_FILES["picture"]["type"]));
     ////////////////////////
     if(isset($_POST["recipe-name"]) && isset($_POST["recipe-type"]) && isset($_POST["recipe-ingredients"]) && isset($_POST["recipe-preparation"]) && !isset($_GET["error"])){    
@@ -123,7 +126,7 @@
 
         <div class="new-recipe-name">
             <label for="name">Nombre: </label>
-            <input type="text" name="recipe-name" required/>
+            <input type="text" name="recipe-name" required="required"/>
         </div>
 
         <div class="new-recipe-type">
@@ -153,17 +156,17 @@
 
         <div class="new-recipe-ingredients">
             <label for="ingredients">Ingredientes: </label>
-            <textarea type="text" name="recipe-ingredients" required></textarea>
+            <textarea type="text" name="recipe-ingredients" required="required"></textarea>
         </div>
 
         <div class="new-recipe-preparation">
             <label for="preparation">Preparación: </label>
-            <textarea type="text" name="recipe-preparation" required></textarea>
+            <textarea type="text" name="recipe-preparation" required="required"></textarea>
         </div>
 
         <div class="new-recipe-picture">
             <label for="picture">Suba una imagen:</label>
-            <input type="file" name="picture"/>
+            <input type="file" name="picture" accept="image/x-png, image/gif, image/jpeg, image/jpg" required="required"/>
         </div>
 
         <div class="new-recipe-btns">

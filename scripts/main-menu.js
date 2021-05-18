@@ -15,7 +15,7 @@ $(document).ready(function(){
         $(".sub-nav").css("display", "none");
     });
     
-    div_like.addEventListener("click", function(){
+    /*div_like.addEventListener("click", function(){
         if(like_btn.classList.contains("far")){
 
             // Cambio la clase del corazón
@@ -44,6 +44,6 @@ $(document).ready(function(){
 
             
         }
-    });
+    });*/
 
 });

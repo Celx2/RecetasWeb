@@ -210,6 +210,12 @@ function showError($id_error){
         case 10:				
             echo "Error " . $id_error . ": La extensión no es valida, por favor, introduce una imagen</b></div>";				
             break;
+        case 11:				
+            echo "Error " . $id_error . ": No puedes realizar esta acción</b></div>";				
+            break;
+        case 12:				
+            echo "Error " . $id_error . ": Categoría no válida</b></div>";				
+            break;
         default:
             echo "Error desconocido</b></div>";
             break;
@@ -467,6 +473,30 @@ function recipesAuthor($DB_LINK){
     }
     
 
+}
+
+function deleteRecipe ($recipeID, $DB_LINK){
+    $Usuario=$_SESSION["username"];
+    $query = "SELECT * FROM recetas WHERE Usuario='$Usuario' AND ID='$recipeID'";
+    $res = mysqli_query($DB_LINK, $query);
+    $row = mysqli_num_rows($res);
+
+    if ($row==1){
+        $query2="DELETE * FROM recetas WHERE Usuario='$Usuario' AND ID='$recipeID'";
+        mysqli_query($DB_LINK, $query2);
+    }else{
+        header("Location: see-recipe.php?error=11"); exit;
+    }
+}
+
+function checkCategory (){
+    $recipeType = $_POST["recipe-type"];
+    $white_list=array("Desayunos", "Aperitivos", "Carnes", "Pescados", "Sopas", "Pastas", "Arroces", "Legumbres", "Ensaladas", "Salsas", 
+    "Postres", "Bebidas", "Fitness", "Vegetariano", "Vegano", "Otros");
+    if(!in_array($recipeType, $white_list)){
+        header("Location: new-recipe.php?error=12");
+        exit;
+    }
 }
 
 ?>

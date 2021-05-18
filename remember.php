@@ -14,6 +14,7 @@ if ($DB_LINK=connectDB()){
             header("location: index.php?error=9");
         }
     }
+    
 ?>
 
 <!DOCTYPE html>

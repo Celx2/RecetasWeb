@@ -2,7 +2,7 @@
 
 include_once ("functions.php");
 
-if (isset($_POST["name"]) && isset ($_POST["email"]) && isset($_POST["username"]) && isset($_POST["password"])){//que todos estén puestos7
+if (isset($_POST["name"]) && isset ($_POST["email"]) && isset($_POST["username"]) && isset($_POST["password"])){//que todos estén seteados
 
     //se limpia de posible inyeccion de codigo
     $name = clear($_POST["name"]);
@@ -16,7 +16,7 @@ if (isset($_POST["name"]) && isset ($_POST["email"]) && isset($_POST["username"]
     checks($name, $email, $username, $password);
     
     $query="INSERT INTO usuarios (Usuario, Nombre_completo, Correo, Contraseña) VALUES ('$username', '$name', '$email','$password')";
-    $res = mysqli_query($DB_LINK, $query);
+    $res = mysqli_query(connectDB(), $query);
     if($res){
         header("location:index.php?registered=yes");
     }
@@ -68,7 +68,7 @@ if (isset($_POST["name"]) && isset ($_POST["email"]) && isset($_POST["username"]
         <form action="register.php" method="POST">
 
             <div class="div-login-input">
-                <input type="text" class="login-input" placeholder="Nombre completo" name="name" required="required" pattern="[a-zA-Z ]+" minlength="10" maxlength="40"/>
+                <input type="text" class="login-input" placeholder="Nombre completo" name="name" required="required" pattern="[a-zA-Záéíóúñ]+" minlength="10" maxlength="40"/>
             </div>
 
             <div class="div-login-input">

@@ -25,7 +25,7 @@
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
     crossorigin="anonymous"></script>
     <script type="text/javascript" src="./scripts/main-menu.js"></script>
-    <title>Título</title>
+    <title>HappyApple!</title>
 </head>
 
 <body>
