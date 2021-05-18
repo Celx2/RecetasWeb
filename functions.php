@@ -282,7 +282,7 @@ function search($recipe, $DB_LINK){ //busca recetas que contengan el nombre busc
     
                 <div class="recipe-likes">
                 <div class="off like-counter">
-                        <?php echo $row["Me_gusta"] ?>
+                        <?php echo howManyLikes($row["ID"]) ?>
                     </div>
     
                     <div id="<?php echo $row["ID"] ?>" class="like-btn">
@@ -331,7 +331,7 @@ function mainMenu($DB_LINK){ //busca recetas que contengan el nombre buscado en 
 
             <div class="recipe-likes">
                     <div class="off like-counter">
-                        <b><?php echo $row["Me_gusta"] ?></b> Me gusta
+                        <b><?php echo howManyLikes($row["ID"]) ?></b> Me gusta
                     </div>
 
                     <div class="see-btn">
@@ -375,7 +375,7 @@ function liked($DB_LINK){ //muestra recetas ordenadas por likes descendente
 
             <div class="recipe-likes">
                     <div class="off like-counter">
-                        <?php echo $row["Me_gusta"] ?>
+                        <?php echo howManyLikes($row["ID"]) ?>
                     </div>
     
                     <div id="<?php echo $row["ID"] ?>" class="like-btn">
@@ -398,6 +398,15 @@ function liked($DB_LINK){ //muestra recetas ordenadas por likes descendente
 
         <?php
     }
+}
+
+function howManyLikes ($recipeID){
+    $query = "SELECT * FROM likes WHERE IDReceta='$recipeID'";
+    $res = mysqli_query(connectDB(), $query);
+    $likes = mysqli_num_rows($res);
+    $query2 = "UPDATE recetas SET Me_gusta = $likes WHERE ID='$recipeID'";
+    $res2 = mysqli_query(connectDB(), $query2);
+    return $likes;
 }
 
 function hasLiked($recipeID, $username){    
