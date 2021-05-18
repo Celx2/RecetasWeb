@@ -14,7 +14,7 @@ $(document).ready(function(){
             like_btn.classList.add("fas");
 
             // Sumo un like al contador y cambio de color el número
-            var like_number = Number(like_counter.textContent);
+            //var like_number = Number(like_counter.textContent);
             //like_counter.textContent = like_number + 1;
             like_counter.classList.remove("off");
             like_counter.classList.add("on");
@@ -29,7 +29,7 @@ $(document).ready(function(){
             like_btn.classList.remove("fas");
             like_btn.classList.add("far");
 
-            var like_number = Number(like_counter.textContent);
+            //var like_number = Number(like_counter.textContent);
             //like_counter.textContent = like_number - 1; 
             like_counter.classList.remove("on");
             like_counter.classList.add("off");

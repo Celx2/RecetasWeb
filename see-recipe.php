@@ -11,6 +11,7 @@
     $query2 = "SELECT * FROM likes WHERE IDReceta='$IDComprobar' AND Nombre_usuario='$UsuarioActual'";
     $res2 = mysqli_query(connectDB(), $query2);
     $numrows = mysqli_num_rows($res2);
+
     
     if (isset($_GET["ID"]) && $_GET["ID"]==""){
         
@@ -27,23 +28,23 @@
         $res = mysqli_query(connectDB(),$query);
         $row = mysqli_fetch_array($res);
     }
-
+    ///////////////////gestion de likes////////////////
     if (isset($_GET["liked"]) && $id!=null){
         hasLiked($id, $_SESSION["username"]);
     }
 
-    
-    if(isset($_GET["liked"]) && ($_GET["liked"])==true) $heart_class = "fas";
-    else $heart_class = "far";
-    /*
-    if ($numrows!=0){
+    if ($numrows!=0 && !isset($_GET["liked"])){
         $heart_class = "fas";
     }
-    else{
-        $heart_class = "far";
+    elseif($numrows==0 && $heart_class!="far"){
+        $heart_class = "far";    
     }
-    */
 
+    if(isset($_GET["liked"])){
+        if($heart_class == "far") $heart_class = "fas";
+        else $heart_class = "far";
+    }  
+    /////////////////////////////////////////////////////
 ?>
 
 <!DOCTYPE html>

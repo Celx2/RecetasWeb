@@ -5,26 +5,20 @@
         header("Location: index.php?error=2");
         exit;
     }
-    //comprobaciones errores
-    if (isset($_GET["error"])){
-        showError($_GET["error"]);
-    }
+  
     //checkeamos categoria
     if (isset($_POST["recipe-type"]))checkCategory();
     //checkeamos extension
     if (isset($_FILES["picture"]) && !isset($_GET["error"]))checkExtension(extraerExtension($_FILES["picture"]["type"]));
     ////////////////////////
-    if(isset($_POST["recipe-name"]) && isset($_POST["recipe-type"]) && isset($_POST["recipe-ingredients"]) && isset($_POST["recipe-preparation"]) && !isset($_GET["error"])){    
+    if(isset($_POST["recipe-name"]) && isset($_POST["recipe-type"]) && isset($_POST["recipe-ingredients"]) && isset($_POST["recipe-preparation"]) && !isset($_GET["error"])){ 
         $recipe_name=clear($_POST["recipe-name"]);
         $recipe_type=clear($_POST["recipe-type"]);
         $recipe_ingredients=htmlspecialchars($_POST["recipe-ingredients"]);
         $recipe_preparation=htmlspecialchars($_POST["recipe-preparation"]);
-
         $username=$_SESSION["username"];
-    
         $query = "INSERT INTO recetas (Usuario, Nombre, Categoría, Me_gusta, Imagen, Ingredientes, Preparación) VALUES ('$username', '$recipe_name', '$recipe_type', 0, 0, 0, 0)";
         $res = mysqli_query(connectDB(), $query);
-    
         $query2 = "SELECT * FROM recetas WHERE Usuario = '$username' AND Nombre = '$recipe_name'";
         $res2 = mysqli_query(connectDB(), $query2);
         $row = mysqli_fetch_array($res2);
@@ -32,14 +26,12 @@
         
         //Introducir una imagen
 		if($_FILES["picture"]["name"]!=""){
-			$extension=extraerExtension($_FILES["picture"]["type"]);
-            checkExtension($extension);
 			$nombreImagen=md5($row["ID"]).$extension;
 	    	$ruta = moverImagen($_FILES["picture"]["tmp_name"],$nombreImagen);
 			$picture=$nombreImagen;
 		}
 
-        //Guardar datos en los archivos
+        //Guardar preparacion e ingredientes en los .txt correspondientes
         $ext = "$row[ID]_ingredients";
         $ext2 = "$row[ID]_preparation";
         $fichero = "recipes/$ext.txt";
@@ -49,7 +41,7 @@
         $query3 = "UPDATE recetas SET Imagen = '$ruta', Ingredientes = '$fichero', Preparación = '$fichero2' WHERE ID = '$row[ID]'";
         $res3 = mysqli_query(connectDB(), $query3);
         header("Location: new-recipe.php?saved=yes");
-}
+    }
 
 
 
@@ -120,7 +112,11 @@
                 <b>Receta añadida correctamente.</b>
             </div>
             <?php
-            } ?>
+
+            }
+              //comprobaciones errores
+            if (isset($_GET["error"]))showError($_GET["error"]);
+     ?>
 
         <form name="form1" action="new-recipe.php" method="POST" enctype="multipart/form-data">
 

@@ -1,5 +1,7 @@
 <?php
 session_start();
+error_reporting(E_ERROR | E_PARSE); //para evitar todos los warnings, pero enseñar errores
+
 define("DB_HOST","localhost");
 
 define("DB_USER","admin"); 
@@ -10,6 +12,7 @@ define("DB_PASS","admin");
 
 define("DB_NAME","proyectofinal");
 //define("DB_NAME","id16810550_proyectofinal");
+
 
 function connectDB(){
     $DB_LINK = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -241,7 +244,7 @@ function repeated($mail, $user, $DB_LINK){
 }
 
 function checks($nombre, $email, $usuario, $contraseña){ //checks de tipos y longitudes de datos introducidos
-    $allowed = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ- "; //caracteres permitidos para nombre y apellido 
+    $allowed = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZáéíóúÁÉÍÓÚ "; //caracteres permitidos para nombre y apellido 
     $email = filter_var($email, FILTER_SANITIZE_EMAIL); //elimina caracteres ilegales
     $flag = false;
     for ($i=0; $i<strlen($nombre); $i++){ //comprobamos que el nombre esté entre los caracteres permitidos
@@ -319,7 +322,7 @@ function search($recipe, $DB_LINK){ //busca recetas que contengan el nombre busc
 }
 
 function mainMenu($DB_LINK){ //busca recetas que contengan el nombre buscado en main-menu.php
-    $query = "SELECT * FROM recetas ORDER BY ID DESC LIMIT 10";
+    $query = "SELECT * FROM recetas ORDER BY ID";
     $res = mysqli_query($DB_LINK, $query);
     
     while ($row = mysqli_fetch_array($res)) {
@@ -432,6 +435,52 @@ function hasLiked($recipeID, $username){
 function recipesAuthor($DB_LINK){
     $author = clear($_GET["author"]);
     $query = "SELECT * FROM recetas WHERE Usuario='$author'";
+    $res = mysqli_query($DB_LINK, $query);
+    while ($row = mysqli_fetch_array($res)) {
+        ?>
+        <div class="recipe-card">
+        <div class="recipe-card-body">
+    
+            <div class="recipe-picture">
+                <img class="recipeUwU" src="<?php echo $row['Imagen'];?>"/>
+            </div>
+
+            <div class="recipe-title">
+                <h3> <?php echo $row["Nombre"] ?> </h3>
+            </div>
+
+            <div class="recipe-type">
+                <h4> <?php echo $row["Categoría"] ?> </h4>
+            </div>
+
+            <div class="recipe-likes">
+                <div class="off like-counter">
+                    <b><?php echo howManyLikes($row["ID"]) ?></b> Me gusta
+                </div>
+
+                <div class="see-btn">
+                    <a href="./see-recipe.php?ID=<?php echo $row["ID"] ?>">
+                        <i id="eye-btn" class="fas fa-eye"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="recipe-author">
+                Por: <a href="main-menu.php?author=<?php echo $row["Usuario"]?>"> <?php echo $row["Usuario"] ?> </a>
+            </div>
+
+        </div>
+        </div>
+
+        <?php
+    }
+    
+
+}
+
+function recipesCategory($DB_LINK){
+    $category = clear($_GET["category"]);
+    $query = "SELECT * FROM recetas WHERE Categoría='$category'";
     $res = mysqli_query($DB_LINK, $query);
     while ($row = mysqli_fetch_array($res)) {
         ?>
