@@ -63,6 +63,11 @@ include_once ("functions.php");
                     if(isset($_GET["error"])){
                         showError($_GET["error"]);
                     }
+                
+                    if (isset($_GET["invalidCaptcha"]) && $_GET["invalidCaptcha"]=="yes"){
+                        echo "<b><div class='error-box'>";
+                        echo "Captcha inválido</b></div>";		
+                    }
                 ?>
             </b>
         </div>
