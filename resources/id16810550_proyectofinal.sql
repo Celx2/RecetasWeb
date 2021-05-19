@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 19-05-2021 a las 16:37:38
+-- Tiempo de generación: 19-05-2021 a las 16:36:31
 -- Versión del servidor: 10.3.16-MariaDB
 -- Versión de PHP: 7.3.23
 
@@ -21,6 +21,33 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `id16810550_proyectofinal`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `likes`
+--
+
+CREATE TABLE `likes` (
+  `Nombre_usuario` varchar(255) DEFAULT NULL,
+  `IDReceta` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `likes`
+--
+
+INSERT INTO `likes` (`Nombre_usuario`, `IDReceta`) VALUES
+('Celx2', 64),
+('Menkord', 77),
+('Kaarel', 80),
+('Kaarel', 81),
+('Javat00', 65),
+('Javat00', 68),
+('Celx2', 81),
+('Celx2', 71),
+('Javat00', 81),
+('Menkord', 69);
 
 -- --------------------------------------------------------
 
@@ -58,6 +85,32 @@ INSERT INTO `recetas` (`ID`, `Usuario`, `Nombre`, `Categoría`, `Me_gusta`, `Ima
 (80, 'Menkord', 'Salsa verde', 'Salsas', 1, 'pictures/f033ab37c30201f73f142449d037028d.jpeg', 'recipes/80_ingredients.txt', 'recipes/80_preparation.txt'),
 (81, 'Celx2', 'Ratatouille', 'Vegano', 3, 'pictures/43ec517d68b6edd3015b3edc9a11367b.jpeg', 'recipes/81_ingredients.txt', 'recipes/81_preparation.txt');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `Usuario` varchar(255) NOT NULL,
+  `Nombre_completo` text DEFAULT NULL,
+  `Correo` varchar(100) DEFAULT NULL,
+  `Contraseña` varchar(255) DEFAULT NULL,
+  `token` varchar(255) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`Usuario`, `Nombre_completo`, `Correo`, `Contraseña`, `token`) VALUES
+('Celx2', 'Celeste Laura', 'celeste@correo.com', '$2y$10$LUOxhS8HnkE3ZPffdkisGeEhi8/WSQV8e/xGP.WzDDxGxngUwTy0C', '0'),
+('das95balas', 'David Alcázar', 'das95balas@gmail.com', '$2y$10$vLhoF7kaL9TnCByMfPSsFuPuEeRexhFUDA.AwyDCBTxgCxnDzdlxi', '0'),
+('Javat00', 'Aarón Espinosa', 'aaron@correo.com', '$2y$10$7XYMlXa9kn00f4uC6W1yAO/8HBMC0O6wOUvW6o.EZpv3VI3kcPxOW', '0'),
+('juli00', 'Julio Iglesias', 'julio@correo.com', '$2y$10$s4mrE9NOFIGfv5yy.h6BBuEdJ4OVksDx5jLTQh8l3uSy7PdXf1F3a', '0'),
+('Kaarel', 'Carlos Marín', 'carlos@correo.com', '$2y$10$LUOxhS8HnkE3ZPffdkisGeEhi8/WSQV8e/xGP.WzDDxGxngUwTy0C', '0'),
+('Menkord', 'Antonio Fernández', 'antonio@correo.com', '$2y$10$LUOxhS8HnkE3ZPffdkisGeEhi8/WSQV8e/xGP.WzDDxGxngUwTy0C', '0');
+
 --
 -- Índices para tablas volcadas
 --
@@ -68,6 +121,12 @@ INSERT INTO `recetas` (`ID`, `Usuario`, `Nombre`, `Categoría`, `Me_gusta`, `Ima
 ALTER TABLE `recetas`
   ADD UNIQUE KEY `ID` (`ID`),
   ADD KEY `Usuario` (`Usuario`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`Usuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
