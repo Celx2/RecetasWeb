@@ -5,9 +5,7 @@
         exit;
     }
 
-    if (is_numeric($_GET["deleted"])){
-        deleteRecipe($_GET["deleted"]);
-    }
+
    
 ?>
 
@@ -74,7 +72,15 @@
 
     <div class="recipes-box">
 
-	<?php
+	<?php 
+    if (is_numeric($_GET["deleted"])){
+        deleteRecipe($_GET["deleted"]);
+        ?>
+        <div class="confirm-box">
+            <b>Receta borrada correctamente.</b>
+        </div>
+        <?php
+    }
     //////gestion de muestra de los resultados//////
         orderMainMenu();
     ?>
