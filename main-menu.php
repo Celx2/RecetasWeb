@@ -76,7 +76,7 @@
 
 	<?php
     //////gestion de muestra de los resultados//////
-            orderMainMenu();
+        orderMainMenu();
     ?>
 
     </div>
