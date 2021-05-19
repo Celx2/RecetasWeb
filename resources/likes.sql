@@ -37,9 +37,16 @@ CREATE TABLE `likes` (
 --
 
 INSERT INTO `likes` (`Nombre_usuario`, `IDReceta`) VALUES
-('Javat00', 1),
-('Celx2', 3),
-('Celx2', 4);
+('Celx2', 81),
+('Celx2', 64),
+('Menkord', 69),
+('Menkord', 77),
+('Kaarel', 80),
+('Kaarel', 81),
+('Javat00', 65),
+('Javat00', 68),
+('Javat00', 81);
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
