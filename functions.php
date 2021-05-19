@@ -750,7 +750,7 @@ function likeDislike($numrows, $heart_class){
     return $heart_class;
 }
 
-function OrderMainMenu(){
+function orderMainMenu(){
     if (isset($_GET["recipe"]) && $_GET["recipe"]!=""){
         $recipe = clear($_GET["recipe"]);
         search($recipe,connectDB());
