@@ -293,20 +293,16 @@ function search($recipe, $DB_LINK){ //busca recetas que contengan el nombre busc
                     <h4> <?php echo $row["Categoría"] ?> </h4>
                 </div>
     
-                <div class="recipe-likes">
-                <div class="off like-counter">
-                        <?php echo howManyLikes($row["ID"]) ?>
-                    </div>
-    
-                    <div id="<?php echo $row["ID"] ?>" class="like-btn">
-                        <i id="heart-btn" class="far fa-heart"></i>
-                    </div>
-                
-                    <div class="see-btn">
-                        <a href="./see-recipe.php?ID=<?php echo $row["ID"] ?>">
-                            <i id="eye-btn" class="fas fa-eye"></i>
-                        </a>
-                    </div>
+                <div class="recipe-likes" id="main-menu">
+                <div class="off like-counter" id="counter-main-menu">
+                    <b><?php echo howManyLikes($row["ID"]) ?></b> Me gusta
+                </div>
+
+                <div class="see-btn">
+                    <a href="./see-recipe.php?ID=<?php echo $row["ID"] ?>">
+                        <i id="eye-btn" class="fas fa-eye"></i>
+                    </a>
+                </div>
                 </div>
     
                 <div class="recipe-author">
@@ -342,8 +338,8 @@ function mainMenu($DB_LINK){ //busca recetas que contengan el nombre buscado en 
                 <h4> <?php echo $row["Categoría"] ?> </h4>
             </div>
 
-            <div class="recipe-likes">
-                <div class="off like-counter">
+            <div class="recipe-likes" id="main-menu">
+                <div class="off like-counter" id="counter-main-menu">
                     <b><?php echo howManyLikes($row["ID"]) ?></b> Me gusta
                 </div>
 
@@ -386,8 +382,8 @@ function liked($DB_LINK){ //muestra recetas ordenadas por likes descendente
                 <h4> <?php echo $row["Categoría"] ?> </h4>
             </div>
 
-            <div class="recipe-likes">
-                <div class="off like-counter">
+            <div class="recipe-likes" id="main-menu">
+                <div class="off like-counter" id="counter-main-menu">
                     <b><?php echo howManyLikes($row["ID"]) ?></b> Me gusta
                 </div>
 
@@ -453,8 +449,8 @@ function recipesAuthor($DB_LINK){
                 <h4> <?php echo $row["Categoría"] ?> </h4>
             </div>
 
-            <div class="recipe-likes">
-                <div class="off like-counter">
+            <div class="recipe-likes" id="main-menu">
+                <div class="off like-counter" id="counter-main-menu">
                     <b><?php echo howManyLikes($row["ID"]) ?></b> Me gusta
                 </div>
 
@@ -499,8 +495,8 @@ function recipesAuthorLikes($DB_LINK){
                 <h4> <?php echo $row["Categoría"] ?> </h4>
             </div>
 
-            <div class="recipe-likes">
-                <div class="off like-counter">
+            <div class="recipe-likes" id="main-menu">
+                <div class="off like-counter" id="counter-main-menu">
                     <b><?php echo howManyLikes($row["ID"]) ?></b> Me gusta
                 </div>
 
@@ -545,8 +541,8 @@ function recipesAuthorRecents($DB_LINK){
                 <h4> <?php echo $row["Categoría"] ?> </h4>
             </div>
 
-            <div class="recipe-likes">
-                <div class="off like-counter">
+            <div class="recipe-likes" id="main-menu">
+                <div class="off like-counter" id="counter-main-menu">
                     <b><?php echo howManyLikes($row["ID"]) ?></b> Me gusta
                 </div>
 
@@ -591,8 +587,8 @@ function recipesCategory($DB_LINK){
                 <h4> <?php echo $row["Categoría"] ?> </h4>
             </div>
 
-            <div class="recipe-likes">
-                <div class="off like-counter">
+            <div class="recipe-likes" id="main-menu">
+                <div class="off like-counter" id="counter-main-menu">
                     <b><?php echo howManyLikes($row["ID"]) ?></b> Me gusta
                 </div>
 
@@ -637,8 +633,8 @@ function recipesCategoryLikes($DB_LINK){
                 <h4> <?php echo $row["Categoría"] ?> </h4>
             </div>
 
-            <div class="recipe-likes">
-                <div class="off like-counter">
+            <div class="recipe-likes" id="main-menu">
+                <div class="off like-counter" id="counter-main-menu">
                     <b><?php echo howManyLikes($row["ID"]) ?></b> Me gusta
                 </div>
 
@@ -683,8 +679,8 @@ function recipesCategoryRecents($DB_LINK){
                 <h4> <?php echo $row["Categoría"] ?> </h4>
             </div>
 
-            <div class="recipe-likes">
-                <div class="off like-counter">
+            <div class="recipe-likes" id="main-menu">
+                <div class="off like-counter" id="counter-main-menu">
                     <b><?php echo howManyLikes($row["ID"]) ?></b> Me gusta
                 </div>
 

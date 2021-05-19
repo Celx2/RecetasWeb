@@ -115,6 +115,17 @@
         </div>
 
         <div id="see-recipe-btns" class="recipe-likes">
+                    
+            <div class="like-divs">
+            <div id="see-recipe" class="off like-counter">
+                <?php echo howManyLikes($id); ?>
+            </div>
+
+            <div id="1" class="like-btn">
+                <i id="heart-btn" class="<?php echo $heart_class; ?> fa-heart"></i>
+            </div>
+            </div>
+
             <?php
             if(showDeleteButton($_SESSION["id"])){
             ?>
@@ -125,17 +136,6 @@
             <?php
             }
             ?>
-           
-
-            <div class="like-divs">
-            <div class="off like-counter">
-                <?php echo howManyLikes($id); ?>
-            </div>
-
-            <div id="1" class="like-btn">
-                <i id="heart-btn" class="<?php echo $heart_class; ?> fa-heart"></i>
-            </div>
-            </div>
 
         </div>
 
