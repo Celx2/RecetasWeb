@@ -295,18 +295,14 @@ function search($recipe, $DB_LINK){ //busca recetas que contengan el nombre busc
     
                 <div class="recipe-likes" id="main-menu">
                 <div class="off like-counter" id="counter-main-menu">
-                        <?php echo howManyLikes($row["ID"]) ?>
-                    </div>
-    
-                    <div id="<?php echo $row["ID"] ?>" class="like-btn">
-                        <i id="heart-btn" class="far fa-heart"></i>
-                    </div>
-                
-                    <div class="see-btn">
-                        <a href="./see-recipe.php?ID=<?php echo $row["ID"] ?>">
-                            <i id="eye-btn" class="fas fa-eye"></i>
-                        </a>
-                    </div>
+                    <b><?php echo howManyLikes($row["ID"]) ?></b> Me gusta
+                </div>
+
+                <div class="see-btn">
+                    <a href="./see-recipe.php?ID=<?php echo $row["ID"] ?>">
+                        <i id="eye-btn" class="fas fa-eye"></i>
+                    </a>
+                </div>
                 </div>
     
                 <div class="recipe-author">
