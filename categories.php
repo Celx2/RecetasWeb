@@ -66,7 +66,7 @@
             Desayunos
         </a>
 
-        <a href="main-menu.php?categorie=Aperitivos" class="categorie-box">
+        <a href="main-menu.php?category=Aperitivos" class="categorie-box">
             Aperitivos
         </a>
         
