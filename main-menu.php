@@ -53,9 +53,17 @@
 
         <div class="sub-nav">
             <b><a href="./new-recipe.php">Nueva receta</a></b>
+
+            <?php if (isset($_GET["author"])) echo "<b><a href=./main-menu.php?author=$_GET[author]&order=liked>Más populares</a></b>";
+            elseif(!isset($_GET["category"])) echo "<b><a href=./main-menu.php?order=liked>Más populares</a></b>";?>
+            <?php if (isset($_GET["author"])) echo "<b><a href=./main-menu.php?author=$_GET[author]&order=recent>Más recientes</a></b>";
+            elseif(!isset($_GET["category"])) echo "<b><a href=./main-menu.php?order=recent>Más recientes</a></b>";?>
+
             <?php if (isset($_GET["category"])) echo "<b><a href=./main-menu.php?category=$_GET[category]&order=liked>Más populares</a></b>";
-            else echo "<b><a href=./main-menu.php?order=liked>Más populares</a></b>";?>
-            <b><a href="./main-menu.php?order=recent">Más recientes</a></b>
+           elseif(!isset($_GET["author"])) echo "<b><a href=./main-menu.php?order=liked>Más populares</a></b>";?>
+            <?php if (isset($_GET["category"])) echo "<b><a href=./main-menu.php?category=$_GET[category]&order=recent>Más recientes</a></b>";
+            elseif(!isset($_GET["author"])) echo "<b><a href=./main-menu.php?order=recent>Más recientes</a></b>";?>
+
             <b><a href="./categories.php">Categorías</a></b>
         </div>
 
@@ -64,35 +72,43 @@
 
     <div class="recipes-box">
 
-	<?php 
+	<?php //////gestion de muestra de los resultados////////
             if (isset($_GET["recipe"]) && $_GET["recipe"]!=""){
                 $recipe = clear($_GET["recipe"]);
                 search($recipe,connectDB());
             }
-            elseif (isset($_GET["order"]) && $_GET["order"]=="liked"){
+            elseif (!isset($_GET["category"]) && !isset($_GET["author"]) && isset($_GET["order"]) && $_GET["order"]=="liked"){
                 liked(connectDB());
             }
             elseif (isset($_GET["author"])){
                 recipesAuthor(connectDB());
-            }
-            elseif (isset($_GET["category"])){
-                if (isset($_GET["order"])){
-                    echo "hola3";
-                    if ($_GET["order"]=="liked"){
-                        echo "hola";exit;
-                        recipesCategoryLikes(connectDB());
-                    }
-                    else recipesCategoryRecents(connectDB());
-
+                if ($_GET["order"]=="liked"){
+                    recipesAuthorLikes(connectDB());
+                }
+                elseif ($_GET["order"]=="recent"){
+                    recipesAuthorRecents(connectDB());
                 }
                 else {
-                    echo "hola2";exit;
+                    recipesAuthor(connectDB());
+                }
+            }
+
+            elseif (isset($_GET["category"])){
+                if ($_GET["order"]=="liked"){
+                    recipesCategoryLikes(connectDB());
+                }
+                elseif ($_GET["order"]=="recent"){
+                    recipesCategoryRecents(connectDB());
+                }
+                else {
                     recipesCategory(connectDB());
                 }
             }
+
             else{
                 mainMenu(connectDB());
             } 
+    ////////////////////////////////////////////////////////////////////
     ?>
 
     </div>
