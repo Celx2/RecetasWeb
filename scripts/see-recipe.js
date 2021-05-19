@@ -12,10 +12,6 @@ $(document).ready(function(){
             // Cambio la clase del corazón
             like_btn.classList.remove("far");
             like_btn.classList.add("fas");
-
-            // Sumo un like al contador y cambio de color el número
-            //var like_number = Number(like_counter.textContent);
-            //like_counter.textContent = like_number + 1;
             like_counter.classList.remove("off");
             like_counter.classList.add("on");
             window.location.replace("http://localhost/RecetasWeb/see-recipe.php?liked=true&ID=");
@@ -25,12 +21,8 @@ $(document).ready(function(){
         }
         else{
             // Función inversa
-
             like_btn.classList.remove("fas");
             like_btn.classList.add("far");
-
-            //var like_number = Number(like_counter.textContent);
-            //like_counter.textContent = like_number - 1; 
             like_counter.classList.remove("on");
             like_counter.classList.add("off");
             window.location.replace("http://localhost/RecetasWeb/see-recipe.php?liked=true&ID=");

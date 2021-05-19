@@ -62,7 +62,7 @@
         <h1>Seleccione una categoría</h1>
 
         <div class="categorie-list">
-        <a href="main-menu.php?categorie=Desayunos" class="categorie-box">
+        <a href="main-menu.php?category=Desayunos" class="categorie-box">
             Desayunos
         </a>
 
@@ -70,59 +70,59 @@
             Aperitivos
         </a>
         
-        <a href="main-menu.php?categorie=Carnes" class="categorie-box">
+        <a href="main-menu.php?category=Carnes" class="categorie-box">
             Carnes
         </a>
         
-        <a href="main-menu.php?categorie=Pescados" class="categorie-box">
+        <a href="main-menu.php?category=Pescados" class="categorie-box">
             Pescados
         </a>
         
-        <a href="main-menu.php?categorie=Sopas" class="categorie-box">
+        <a href="main-menu.php?category=Sopas" class="categorie-box">
             Sopas
         </a>
         
-        <a href="main-menu.php?categorie=Pastas" class="categorie-box">
+        <a href="main-menu.php?category=Pastas" class="categorie-box">
             Pastas
         </a>
         
-        <a href="main-menu.php?categorie=Arroces" class="categorie-box">
+        <a href="main-menu.php?category=Arroces" class="categorie-box">
             Arroces
         </a>
         
-        <a href="main-menu.php?categorie=Legumbres" class="categorie-box">
+        <a href="main-menu.php?category=Legumbres" class="categorie-box">
             Legumbres
         </a>
         
-        <a href="main-menu.php?categorie=Ensaladas" class="categorie-box">
+        <a href="main-menu.php?category=Ensaladas" class="categorie-box">
             Ensaladas
         </a>
         
-        <a href="main-menu.php?categorie=Salsas" class="categorie-box">
+        <a href="main-menu.php?category=Salsas" class="categorie-box">
             Salsas
         </a>
         
-        <a href="main-menu.php?categorie=Postres" class="categorie-box">
+        <a href="main-menu.php?category=Postres" class="categorie-box">
             Postres
         </a>
         
-        <a href="main-menu.php?categorie=Bebidas" class="categorie-box">
+        <a href="main-menu.php?category=Bebidas" class="categorie-box">
             Bebidas
         </a>
         
-        <a href="main-menu.php?categorie=Fitness" class="categorie-box">
+        <a href="main-menu.php?category=Fitness" class="categorie-box">
             Fitness
         </a>
         
-        <a href="main-menu.php?categorie=Vegetariano" class="categorie-box">
+        <a href="main-menu.php?category=Vegetariano" class="categorie-box">
             Vegetariano
         </a>
         
-        <a href="main-menu.php?categorie=Vegano" class="categorie-box">
+        <a href="main-menu.php?category=Vegano" class="categorie-box">
             Vegano
         </a>
         
-        <a href="main-menu.php?categorie=Otros" class="categorie-box">
+        <a href="main-menu.php?category=Otros" class="categorie-box">
             Otros
         </a>
         </div>

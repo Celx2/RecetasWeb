@@ -70,6 +70,9 @@
             elseif (isset($_GET["author"])){
                 recipesAuthor(connectDB());
             }
+            elseif (isset($_GET["category"])){
+                recipesCategory(connectDB());
+            }
             else{
                 mainMenu(connectDB());
             } 
