@@ -322,7 +322,7 @@ function search($recipe, $DB_LINK){ //busca recetas que contengan el nombre busc
 }
 
 function mainMenu($DB_LINK){ //busca recetas que contengan el nombre buscado en main-menu.php
-    $query = "SELECT * FROM recetas ORDER BY ID";
+    $query = "SELECT * FROM recetas ORDER BY ID DESC";
     $res = mysqli_query($DB_LINK, $query);
     
     while ($row = mysqli_fetch_array($res)) {
@@ -478,6 +478,98 @@ function recipesAuthor($DB_LINK){
 
 }
 
+function recipesAuthorLikes($DB_LINK){
+    $author = clear($_GET["author"]);
+    $query = "SELECT * FROM recetas WHERE Usuario='$author' ORDER BY Me_gusta DESC";
+    $res = mysqli_query($DB_LINK, $query);
+    while ($row = mysqli_fetch_array($res)) {
+        ?>
+        <div class="recipe-card">
+        <div class="recipe-card-body">
+    
+            <div class="recipe-picture">
+                <img class="recipeUwU" src="<?php echo $row['Imagen'];?>"/>
+            </div>
+
+            <div class="recipe-title">
+                <h3> <?php echo $row["Nombre"] ?> </h3>
+            </div>
+
+            <div class="recipe-type">
+                <h4> <?php echo $row["Categoría"] ?> </h4>
+            </div>
+
+            <div class="recipe-likes">
+                <div class="off like-counter">
+                    <b><?php echo howManyLikes($row["ID"]) ?></b> Me gusta
+                </div>
+
+                <div class="see-btn">
+                    <a href="./see-recipe.php?ID=<?php echo $row["ID"] ?>">
+                        <i id="eye-btn" class="fas fa-eye"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="recipe-author">
+                Por: <a href="main-menu.php?author=<?php echo $row["Usuario"]?>"> <?php echo $row["Usuario"] ?> </a>
+            </div>
+
+        </div>
+        </div>
+
+        <?php
+    }
+    
+
+}
+
+function recipesAuthorRecents($DB_LINK){
+    $author = clear($_GET["author"]);
+    $query = "SELECT * FROM recetas WHERE Usuario='$author' ORDER BY ID DESC";
+    $res = mysqli_query($DB_LINK, $query);
+    while ($row = mysqli_fetch_array($res)) {
+        ?>
+        <div class="recipe-card">
+        <div class="recipe-card-body">
+    
+            <div class="recipe-picture">
+                <img class="recipeUwU" src="<?php echo $row['Imagen'];?>"/>
+            </div>
+
+            <div class="recipe-title">
+                <h3> <?php echo $row["Nombre"] ?> </h3>
+            </div>
+
+            <div class="recipe-type">
+                <h4> <?php echo $row["Categoría"] ?> </h4>
+            </div>
+
+            <div class="recipe-likes">
+                <div class="off like-counter">
+                    <b><?php echo howManyLikes($row["ID"]) ?></b> Me gusta
+                </div>
+
+                <div class="see-btn">
+                    <a href="./see-recipe.php?ID=<?php echo $row["ID"] ?>">
+                        <i id="eye-btn" class="fas fa-eye"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="recipe-author">
+                Por: <a href="main-menu.php?author=<?php echo $row["Usuario"]?>"> <?php echo $row["Usuario"] ?> </a>
+            </div>
+
+        </div>
+        </div>
+
+        <?php
+    }
+    
+
+}
+
 function recipesCategory($DB_LINK){
     $category = clear($_GET["category"]);
     $query = "SELECT * FROM recetas WHERE Categoría='$category'";
@@ -524,21 +616,115 @@ function recipesCategory($DB_LINK){
 
 }
 
-function deleteRecipe ($recipeID, $DB_LINK){
-    $Usuario=$_SESSION["username"];
-    $query = "SELECT * FROM recetas WHERE Usuario='$Usuario' AND ID='$recipeID'";
+function recipesCategoryLikes($DB_LINK){
+    $category = clear($_GET["category"]);
+    $query = "SELECT * FROM recetas WHERE Categoría='$category' ORDER BY Me_gusta DESC";
     $res = mysqli_query($DB_LINK, $query);
-    $row = mysqli_num_rows($res);
+    while ($row = mysqli_fetch_array($res)) {
+        ?>
+        <div class="recipe-card">
+        <div class="recipe-card-body">
+    
+            <div class="recipe-picture">
+                <img class="recipeUwU" src="<?php echo $row['Imagen'];?>"/>
+            </div>
 
-    if ($row==1){
-        $query2="DELETE * FROM recetas WHERE Usuario='$Usuario' AND ID='$recipeID'";
-        mysqli_query($DB_LINK, $query2);
-    }else{
-        header("Location: see-recipe.php?error=11"); exit;
+            <div class="recipe-title">
+                <h3> <?php echo $row["Nombre"] ?> </h3>
+            </div>
+
+            <div class="recipe-type">
+                <h4> <?php echo $row["Categoría"] ?> </h4>
+            </div>
+
+            <div class="recipe-likes">
+                <div class="off like-counter">
+                    <b><?php echo howManyLikes($row["ID"]) ?></b> Me gusta
+                </div>
+
+                <div class="see-btn">
+                    <a href="./see-recipe.php?ID=<?php echo $row["ID"] ?>">
+                        <i id="eye-btn" class="fas fa-eye"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="recipe-author">
+                Por: <a href="main-menu.php?author=<?php echo $row["Usuario"]?>"> <?php echo $row["Usuario"] ?> </a>
+            </div>
+
+        </div>
+        </div>
+
+        <?php
     }
+    
+
 }
 
-function checkCategory (){
+function recipesCategoryRecents($DB_LINK){
+    $category = clear($_GET["category"]);
+    $query = "SELECT * FROM recetas WHERE Categoría='$category' ORDER BY ID DESC";
+    $res = mysqli_query($DB_LINK, $query);
+    while ($row = mysqli_fetch_array($res)) {
+        ?>
+        <div class="recipe-card">
+        <div class="recipe-card-body">
+    
+            <div class="recipe-picture">
+                <img class="recipeUwU" src="<?php echo $row['Imagen'];?>"/>
+            </div>
+
+            <div class="recipe-title">
+                <h3> <?php echo $row["Nombre"] ?> </h3>
+            </div>
+
+            <div class="recipe-type">
+                <h4> <?php echo $row["Categoría"] ?> </h4>
+            </div>
+
+            <div class="recipe-likes">
+                <div class="off like-counter">
+                    <b><?php echo howManyLikes($row["ID"]) ?></b> Me gusta
+                </div>
+
+                <div class="see-btn">
+                    <a href="./see-recipe.php?ID=<?php echo $row["ID"] ?>">
+                        <i id="eye-btn" class="fas fa-eye"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="recipe-author">
+                Por: <a href="main-menu.php?author=<?php echo $row["Usuario"]?>"> <?php echo $row["Usuario"] ?> </a>
+            </div>
+
+        </div>
+        </div>
+
+        <?php
+    }
+    
+
+}
+function showDeleteButton($recipeID){
+    $query="SELECT Usuario FROM recetas WHERE ID='$recipeID'";
+    $res=mysqli_query(connectDB(), $query);
+    $user = mysqli_fetch_array($res);
+    if ($_SESSION["username"]==$user["Usuario"]){
+        return true;
+    }else{
+        return false;
+    }    
+}
+
+function deleteRecipe($recipeID){
+    $Usuario=$_SESSION["username"];
+    $query2="DELETE FROM recetas WHERE Usuario='$Usuario' AND ID='$recipeID'";
+    mysqli_query(connectDB(), $query2);
+}
+
+function checkCategory(){
     $recipeType = $_POST["recipe-type"];
     $white_list=array("Desayunos", "Aperitivos", "Carnes", "Pescados", "Sopas", "Pastas", "Arroces", "Legumbres", "Ensaladas", "Salsas", 
     "Postres", "Bebidas", "Fitness", "Vegetariano", "Vegano", "Otros");
@@ -546,6 +732,60 @@ function checkCategory (){
         header("Location: new-recipe.php?error=12");
         exit;
     }
+}
+
+function likeDislike($numrows, $heart_class){
+
+    if ($numrows!=0 && !isset($_GET["liked"])){
+        $heart_class = "fas";
+    }
+    elseif($numrows==0 && $heart_class!="far"){
+        $heart_class = "far";    
+    }
+
+    if(isset($_GET["liked"])){
+        if($heart_class == "far") $heart_class = "fas";
+        else $heart_class = "far";
+    }
+    return $heart_class;
+}
+
+function OrderMainMenu(){
+    if (isset($_GET["recipe"]) && $_GET["recipe"]!=""){
+        $recipe = clear($_GET["recipe"]);
+        search($recipe,connectDB());
+    }
+    elseif (!isset($_GET["category"]) && !isset($_GET["author"]) && isset($_GET["order"]) && $_GET["order"]=="liked"){
+        liked(connectDB());
+    }
+    elseif (isset($_GET["author"])){
+        recipesAuthor(connectDB());
+        if ($_GET["order"]=="liked"){
+            recipesAuthorLikes(connectDB());
+        }
+        elseif ($_GET["order"]=="recent"){
+            recipesAuthorRecents(connectDB());
+        }
+        else {
+            recipesAuthor(connectDB());
+        }
+    }
+
+    elseif (isset($_GET["category"])){
+        if ($_GET["order"]=="liked"){
+            recipesCategoryLikes(connectDB());
+        }
+        elseif ($_GET["order"]=="recent"){
+            recipesCategoryRecents(connectDB());
+        }
+        else {
+            recipesCategory(connectDB());
+        }
+    }
+
+    else{
+        mainMenu(connectDB());
+    } 
 }
 
 ?>

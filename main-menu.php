@@ -4,6 +4,10 @@
         header("Location: index.php?error=2");
         exit;
     }
+
+    if (is_numeric($_GET["deleted"])){
+        deleteRecipe($_GET["deleted"]);
+    }
    
 ?>
 
@@ -48,11 +52,21 @@
         </form>
 
         <div class="sub-nav">
-            <b><a href="./main-menu.php?order=liked">Recetas con más likes</a></b>
-        
             <b><a href="./new-recipe.php">Nueva receta</a></b>
-        
-            <b><a href="./main-menu.php?order=recent">Recetas más recientes</a></b>
+            <?php if(!isset($_GET["category"])&& !isset($_GET["author"])) echo "<b><a href=./main-menu.php?order=recent>Más recientes</a></b>";?>
+
+            <?php if (isset($_GET["author"]) && !isset($_GET["category"])) echo "<b><a href=./main-menu.php?author=$_GET[author]&order=liked>Más populares</a></b>";
+            elseif(!isset($_GET["category"])&& isset($_GET["author"])) echo "<b><a href=./main-menu.php?order=liked>Más populares</a></b>";?>
+            <?php if (isset($_GET["author"])) echo "<b><a href=./main-menu.php?author=$_GET[author]&order=recent>Más recientes</a></b>";
+            elseif(!isset($_GET["category"])&& isset($_GET["author"])) echo "<b><a href=./main-menu.php?order=recent>Más recientes</a></b>";?>
+
+            <?php if (isset($_GET["category"])&& !isset($_GET["author"])) echo "<b><a href=./main-menu.php?category=$_GET[category]&order=liked>Más populares</a></b>";
+            elseif(!isset($_GET["author"])&& isset($_GET["category"])) echo "<b><a href=./main-menu.php?order=liked>Más populares</a></b>";?>
+            <?php if (isset($_GET["category"])) echo "<b><a href=./main-menu.php?category=$_GET[category]&order=recent>Más recientes</a></b>";
+            elseif(!isset($_GET["author"])&& isset($_GET["category"])) echo "<b><a href=./main-menu.php?order=recent>Más recientes</a></b>";?>
+
+            <?php if(!isset($_GET["category"])&& !isset($_GET["author"])) echo "<b><a href=./main-menu.php?order=liked>Más populares</a></b>";?>
+            <b><a href="./categories.php">Categorías</a></b>
         </div>
 
     </nav>
@@ -60,20 +74,9 @@
 
     <div class="recipes-box">
 
-	<?php 
-            if (isset($_GET["recipe"]) && $_GET["recipe"]!=""){
-                $recipe = clear($_GET["recipe"]);
-                search($recipe,connectDB());
-            }
-            elseif (isset($_GET["order"]) && $_GET["order"]=="liked"){
-                liked(connectDB());
-            }
-            elseif (isset($_GET["author"])){
-                recipesAuthor(connectDB());
-            }
-            else{
-                mainMenu(connectDB());
-            } 
+	<?php
+    //////gestion de muestra de los resultados//////
+            orderMainMenu();
     ?>
 
     </div>
