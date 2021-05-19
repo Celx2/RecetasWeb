@@ -4,6 +4,10 @@
         header("Location: index.php?error=2");
         exit;
     }
+
+    if (is_numeric($_GET["deleted"])){
+        deleteRecipe($_GET["deleted"]);
+    }
    
 ?>
 
@@ -49,7 +53,8 @@
 
         <div class="sub-nav">
             <b><a href="./new-recipe.php">Nueva receta</a></b>
-            <b><a href="./main-menu.php?order=liked">Más populares</a></b>
+            <?php if (isset($_GET["category"])) echo "<b><a href=./main-menu.php?category=$_GET[category]&order=liked>Más populares</a></b>";
+            else echo "<b><a href=./main-menu.php?order=liked>Más populares</a></b>";?>
             <b><a href="./main-menu.php?order=recent">Más recientes</a></b>
             <b><a href="./categories.php">Categorías</a></b>
         </div>
@@ -71,7 +76,19 @@
                 recipesAuthor(connectDB());
             }
             elseif (isset($_GET["category"])){
-                recipesCategory(connectDB());
+                if (isset($_GET["order"])){
+                    echo "hola3";
+                    if ($_GET["order"]=="liked"){
+                        echo "hola";exit;
+                        recipesCategoryLikes(connectDB());
+                    }
+                    else recipesCategoryRecents(connectDB());
+
+                }
+                else {
+                    echo "hola2";exit;
+                    recipesCategory(connectDB());
+                }
             }
             else{
                 mainMenu(connectDB());

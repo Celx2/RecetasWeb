@@ -29,21 +29,11 @@
         $row = mysqli_fetch_array($res);
     }
     ///////////////////gestion de likes////////////////
+    
     if (isset($_GET["liked"]) && $id!=null){
         hasLiked($id, $_SESSION["username"]);
     }
-
-    if ($numrows!=0 && !isset($_GET["liked"])){
-        $heart_class = "fas";
-    }
-    elseif($numrows==0 && $heart_class!="far"){
-        $heart_class = "far";    
-    }
-
-    if(isset($_GET["liked"])){
-        if($heart_class == "far") $heart_class = "fas";
-        else $heart_class = "far";
-    }  
+    $heart_class = likeDislike($numrows, $heart_class);
     /////////////////////////////////////////////////////
 ?>
 
@@ -73,7 +63,6 @@
     <nav>
 
         <div class="nav-user">
-        <!-- arreglar nombre usuario logeado -->
             <user><?php echo $_SESSION["username"]; ?></user> | <a class="logout" href="index.php?logout=yes">Cerrar sesión</a>
         </div>
 
@@ -126,10 +115,17 @@
         </div>
 
         <div id="see-recipe-btns" class="recipe-likes">
-            <!---BOTÓN DE BORRAR -->
-            <a href="" class="remove-btn">
+            <?php
+            if(showDeleteButton($_SESSION["id"])){
+            ?>
+             <!---BOTÓN DE BORRAR -->
+             <a href="main-menu.php?deleted=<?php echo $_SESSION["id"] ?>" class="remove-btn">
                 <i class="fas fa-trash-alt"></i>
             </a>
+            <?php
+            }
+            ?>
+           
 
             <div class="like-divs">
             <div class="off like-counter">
