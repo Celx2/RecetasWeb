@@ -88,11 +88,10 @@
         </form>
 
         <div class="sub-nav">
-            <b><a href="./main-menu.php?order=liked">Recetas con más likes</a></b>
-        
             <b><a href="./new-recipe.php">Nueva receta</a></b>
-        
-            <b><a href="./main-menu.php?order=recent">Recetas más recientes</a></b>
+            <b><a href="./main-menu.php?order=liked">Más populares</a></b>
+            <b><a href="./main-menu.php?order=recent">Más recientes</a></b>
+            <b><a href="./categories.php">Categorías</a></b>
         </div>
 
     </nav>
@@ -126,14 +125,20 @@
         <h3><?php echo $row["Usuario"] ?></h3>
         </div>
 
-        <div id="likes-see-recipe" class="recipe-likes">
+        <div id="see-recipe-btns" class="recipe-likes">
+            <!---BOTÓN DE BORRAR -->
+            <a href="" class="remove-btn">
+                <i class="fas fa-trash-alt"></i>
+            </a>
 
+            <div class="like-divs">
             <div class="off like-counter">
                 <?php echo howManyLikes($id); ?>
             </div>
 
             <div id="1" class="like-btn">
                 <i id="heart-btn" class="<?php echo $heart_class; ?> fa-heart"></i>
+            </div>
             </div>
 
         </div>

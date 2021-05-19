@@ -192,6 +192,11 @@ user:hover{
     cursor: default;
 }
 
+.nav-recipe a{
+    color: rgb(241, 255, 239);
+    text-shadow: rgb(34, 34, 34) 1px 0 10px;
+}
+
 .nav-recipe:hover{
     color: white;
     cursor: pointer;
@@ -299,6 +304,10 @@ user:hover{
 
 .recipe-author a{
     font-weight: bold;
+    color:black;
+}
+
+.recipe-author a:hover{
     color:#005f18;
 }
 
@@ -388,7 +397,7 @@ user:hover{
 .new-recipe-box form{
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 140px 140px 500px 140px 180px;
+    grid-template-rows: 140px 360px 500px 140px 180px;
     justify-items: flex-start;
     align-items: center;
 }
@@ -439,6 +448,15 @@ user:hover{
     display: flex;
     flex-direction: column;
     text-align: start;
+}
+
+.new-recipe-ingredients textarea{
+    padding: 12px;
+    font-size: 1.7em;
+    font-family: 'Nunito', sans-serif;
+    margin-top: 12px;
+    height: 250px;
+    border-radius: .75rem;
 }
 
 .new-recipe-preparation{

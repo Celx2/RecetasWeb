@@ -95,11 +95,10 @@
         </form>
 
         <div class="sub-nav">
-            <b><a href="./main-menu.php?order=liked">Recetas con más likes</a></b>
-        
             <b><a href="./new-recipe.php">Nueva receta</a></b>
-        
-            <b><a href="./main-menu.php?order=recent">Recetas más recientes</a></b>
+            <b><a href="./main-menu.php?order=liked">Más populares</a></b>
+            <b><a href="./main-menu.php?order=recent">Más recientes</a></b>
+            <b><a href="./categories.php">Categorías</a></b>
         </div>
 
     </nav>
@@ -144,9 +143,6 @@
                 <option>Vegetariano</option>
                 <option>Vegano</option>
                 <option>Otros</option>
-
-
-
             </select>
         </div>
 

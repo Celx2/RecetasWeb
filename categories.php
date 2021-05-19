@@ -1,10 +1,13 @@
 <?php
+
     include_once ("functions.php");
     if (!isLoggedIn()){
         header("Location: index.php?error=2");
         exit;
     }
-   
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +30,6 @@
     <script type="text/javascript" src="./scripts/main-menu.js"></script>
     <title>HappyApple!</title>
 </head>
-
 <body>
 
 <div class="container">
@@ -53,30 +55,82 @@
             <b><a href="./main-menu.php?order=recent">Más recientes</a></b>
             <b><a href="./categories.php">Categorías</a></b>
         </div>
-
     </nav>
 
+    <div class="categories-box">
 
-    <div class="recipes-box">
+        <h1>Seleccione una categoría</h1>
 
-	<?php 
-            if (isset($_GET["recipe"]) && $_GET["recipe"]!=""){
-                $recipe = clear($_GET["recipe"]);
-                search($recipe,connectDB());
-            }
-            elseif (isset($_GET["order"]) && $_GET["order"]=="liked"){
-                liked(connectDB());
-            }
-            elseif (isset($_GET["author"])){
-                recipesAuthor(connectDB());
-            }
-            else{
-                mainMenu(connectDB());
-            } 
-    ?>
+        <div class="categorie-list">
+        <a href="main-menu.php?categorie=Desayunos" class="categorie-box">
+            Desayunos
+        </a>
 
+        <a href="main-menu.php?categorie=Aperitivos" class="categorie-box">
+            Aperitivos
+        </a>
+        
+        <a href="main-menu.php?categorie=Carnes" class="categorie-box">
+            Carnes
+        </a>
+        
+        <a href="main-menu.php?categorie=Pescados" class="categorie-box">
+            Pescados
+        </a>
+        
+        <a href="main-menu.php?categorie=Sopas" class="categorie-box">
+            Sopas
+        </a>
+        
+        <a href="main-menu.php?categorie=Pastas" class="categorie-box">
+            Pastas
+        </a>
+        
+        <a href="main-menu.php?categorie=Arroces" class="categorie-box">
+            Arroces
+        </a>
+        
+        <a href="main-menu.php?categorie=Legumbres" class="categorie-box">
+            Legumbres
+        </a>
+        
+        <a href="main-menu.php?categorie=Ensaladas" class="categorie-box">
+            Ensaladas
+        </a>
+        
+        <a href="main-menu.php?categorie=Salsas" class="categorie-box">
+            Salsas
+        </a>
+        
+        <a href="main-menu.php?categorie=Postres" class="categorie-box">
+            Postres
+        </a>
+        
+        <a href="main-menu.php?categorie=Bebidas" class="categorie-box">
+            Bebidas
+        </a>
+        
+        <a href="main-menu.php?categorie=Fitness" class="categorie-box">
+            Fitness
+        </a>
+        
+        <a href="main-menu.php?categorie=Vegetariano" class="categorie-box">
+            Vegetariano
+        </a>
+        
+        <a href="main-menu.php?categorie=Vegano" class="categorie-box">
+            Vegano
+        </a>
+        
+        <a href="main-menu.php?categorie=Otros" class="categorie-box">
+            Otros
+        </a>
+        </div>
+    
     </div>
-</div>
 
+
+</div>
+    
 </body>
 </html>

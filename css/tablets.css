@@ -201,9 +201,12 @@ user:hover{
     text-align: center;   
     font-size: 1.4em;
     font-weight: 900;
-    color: rgb(239, 255, 236);
-    text-shadow: rgb(34, 34, 34) 1px 0 10px;
     cursor: default;
+}
+
+.nav-recipe a{
+    color: rgb(241, 255, 239);
+    text-shadow: rgb(34, 34, 34) 1px 0 10px;
 }
 
 .nav-recipe a:hover{
@@ -317,6 +320,7 @@ user:hover{
 
 .recipe-author a{
     font-weight: bold;
+    color:black;
 }
 
 .recipe-author a:hover{

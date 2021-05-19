@@ -322,7 +322,7 @@ function search($recipe, $DB_LINK){ //busca recetas que contengan el nombre busc
 }
 
 function mainMenu($DB_LINK){ //busca recetas que contengan el nombre buscado en main-menu.php
-    $query = "SELECT * FROM recetas ORDER BY ID";
+    $query = "SELECT * FROM recetas ORDER BY ID DESC";
     $res = mysqli_query($DB_LINK, $query);
     
     while ($row = mysqli_fetch_array($res)) {
