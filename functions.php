@@ -63,7 +63,6 @@ function isLoggedIn(){ //verifica que esté logueado el user y que posea la ip y
     else{
         return false;
     }
-    
 }
 
 function generateHash($password){ //hasheamos la contrasena
@@ -709,7 +708,8 @@ function showDeleteButton($recipeID){
     $user = mysqli_fetch_array($res);
     if ($_SESSION["username"]==$user["Usuario"]){
         return true;
-    }else{
+    }
+    else{
         return false;
     }    
 }

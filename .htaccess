@@ -1,0 +1,2 @@
+Options -Indexes
+RedirectMatch 404 "/(css|pictures|recipes|resources|scripts)/*"
