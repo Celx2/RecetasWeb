@@ -5,13 +5,10 @@ error_reporting(E_ERROR | E_PARSE); //para evitar todos los warnings, pero ense√
 define("DB_HOST","localhost");
 
 define("DB_USER","admin"); 
-//define("DB_USER","id16810550_admin");
 
 define("DB_PASS","admin");
-//define("DB_PASS","8P&H9bru&zePv");
 
 define("DB_NAME","proyectofinal");
-//define("DB_NAME","id16810550_proyectofinal");
 
 
 function connectDB(){
